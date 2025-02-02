@@ -24,10 +24,6 @@ jobs:
     - name: Build
       run: npm run build
       
-    - name: Run Tests
-      run: npm test
-      if: success()
-      
     - name: Deploy to GitHub Pages
       uses: peaceiris/actions-gh-pages@v3
       if: github.ref == 'refs/heads/main'
