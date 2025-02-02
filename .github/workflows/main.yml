@@ -6,6 +6,10 @@ on:
   pull_request:
     branches: [ main ]
 
+# Add permissions
+permissions:
+  contents: write
+
 jobs:
   build:
     runs-on: ubuntu-latest
