@@ -1,7 +1,8 @@
 import { BrowserRouter } from 'react-router-dom';
-import { createContext, useState, useContext } from 'react';
+import { createContext, useState, useEffect } from 'react';
 
 export const ThemeContext = createContext({ isDark: false, toggleTheme: () => {} });
+
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import About from './components/About';
@@ -31,45 +32,36 @@ const App = () => {
   };
 
   return (
-    <ThemeContext.Provider value={{ isDark, toggleTheme }}>
-    <BrowserRouter>
-      <div className="min-h-screen bg-gray-50">
-        <Navbar />
-        {/* <Routes>
-          <Route path="/" element={<Hero />} />
-          <Route path="/home" element={<Hero />} />
-          <Route path="/skills" element={<Skills />} />
-          <Route path="/education" element={<Education />} />
-          <Route path="/research" element={<Projects />} />
-          <Route path="/experience" element={<Experience />} />
-          <Route path="/contact" element={<Contact />} />
-        </Routes> */}
+    <ThemeContext.Provider value={{ isDark: theme === 'dark', toggleTheme }}>
+      <BrowserRouter>
+        <div className="min-h-screen bg-gray-50">
+          <Navbar />
+          <div id="home">
+            <Hero />
+          </div>
+          <div id="about" className="container mx-auto px-4 py-12">
+            <About />
+          </div>
+          <div id="skills" className="container mx-auto px-4 py-12">
+            <Skills />
+          </div>
+          <div id="experience" className="container mx-auto px-4 py-12">
+            <Experience />
+          </div>
 
-        <div id="home">
-          <Hero />
+          <div id="projects" className="container mx-auto px-4 py-12">
+            <Projects />
+          </div>
+          <div id="education" className="container mx-auto px-4 py-12">
+            <Education />
+          </div>
+          <div id="contact" className="container mx-auto px-4 py-12">
+            <Contact />
+          </div>
+          <Footer />
         </div>
-        <div id="about" className="container mx-auto px-4 py-12">
-          <About />
-        </div>
-        <div id="skills" className="container mx-auto px-4 py-12">
-          <Skills />
-        </div>
-        <div id="experience" className="container mx-auto px-4 py-12">
-          <Experience />
-        </div>
-
-        <div id="projects" className="container mx-auto px-4 py-12">
-          <Projects />
-        </div>
-        <div id="education" className="container mx-auto px-4 py-12">
-          <Education />
-        </div>
-        <div id="contact" className="container mx-auto px-4 py-12">
-          <Contact />
-        </div>
-        <Footer />
-      </div>
-    </BrowserRouter>
+      </BrowserRouter>
+    </ThemeContext.Provider>
   );
 };
 

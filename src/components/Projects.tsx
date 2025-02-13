@@ -1,9 +1,19 @@
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 const Projects = () => {
     const [loading, setLoading] = useState(true);
-    const [selectedProject, setSelectedProject] = useState(null);
+    interface Project {
+        name: string;
+        period: string;
+        description: string;
+        technologies: string[];
+        category: string;
+        link: string;
+        highlights: string[];
+    }
+    
+    const [selectedProject, setSelectedProject] = useState<Project | null>(null);
     const [isModalOpen, setIsModalOpen] = useState(false);
 
     useEffect(() => {
@@ -105,37 +115,6 @@ const Projects = () => {
                 />
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                {filteredProjects.map((project) => (
-                    <div key={project.name} className="bg-white rounded-lg shadow-sm p-6">
-                        <h3 className="text-xl font-semibold mb-2">
-                            {project.name}
-                            <a className="bg-green-200 text-red-800 px-3 py-1 rounded-full text-sm ml-2" href={project.link}>
-                                Live here
-                            </a>
-                        </h3>
-                        <p className="text-gray-500 text-sm mb-4">{project.period}</p>
-                        <p className="text-gray-700 mb-4">{project.description}</p>
-                        <div className="mb-4">
-                            <h4 className="font-medium mb-2">Technologies:</h4>
-                            <div className="flex flex-wrap gap-2">
-                                {project.technologies.map((tech) => (
-                                    <span key={tech} className="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm">
-                                        {tech}
-                                    </span>
-                                ))}
-                            </div>
-                        </div>
-                    </div>
-                ))}
-            </div>
-        </section>
-    );
-};
-
-export default Projects;
-
-
             {loading ? (
                 <div className="flex justify-center items-center h-64">
                     <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-500"></div>
@@ -152,7 +131,24 @@ export default Projects;
                                     setIsModalOpen(true);
                                 }}
                             >
-                                {/* Existing project card content */}
+                                <h3 className="text-xl font-semibold mb-2">
+                                    {project.name}
+                                    <a className="bg-green-200 text-red-800 px-3 py-1 rounded-full text-sm ml-2" href={project.link}>
+                                        Live here
+                                    </a>
+                                </h3>
+                                <p className="text-gray-500 text-sm mb-4">{project.period}</p>
+                                <p className="text-gray-700 mb-4">{project.description}</p>
+                                <div className="mb-4">
+                                    <h4 className="font-medium mb-2">Technologies:</h4>
+                                    <div className="flex flex-wrap gap-2">
+                                        {project.technologies.map((tech) => (
+                                            <span key={tech} className="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm">
+                                                {tech}
+                                            </span>
+                                        ))}
+                                    </div>
+                                </div>
                             </div>
                         ))}
                     </div>
@@ -174,7 +170,7 @@ export default Projects;
                                 <div className="mb-4">
                                     <h4 className="font-medium mb-2">Technologies:</h4>
                                     <div className="flex flex-wrap gap-2">
-                                        {selectedProject.technologies.map((tech) => (
+                                        {selectedProject.technologies.map((tech:any) => (
                                             <span key={tech} className="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm">
                                                 {tech}
                                             </span>
@@ -184,7 +180,7 @@ export default Projects;
                                 <div className="mb-4">
                                     <h4 className="font-medium mb-2">Highlights:</h4>
                                     <ul className="list-disc list-inside">
-                                        {selectedProject.highlights.map((highlight, index) => (
+                                        {selectedProject.highlights.map((highlight:any, index:any) => (
                                             <li key={index} className="text-gray-700">{highlight}</li>
                                         ))}
                                     </ul>
@@ -194,3 +190,8 @@ export default Projects;
                     )}
                 </>
             )}
+        </section>
+    );
+};
+
+export default Projects;
