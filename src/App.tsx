@@ -1,4 +1,7 @@
 import { BrowserRouter } from 'react-router-dom';
+import { createContext, useState, useContext } from 'react';
+
+export const ThemeContext = createContext({ isDark: false, toggleTheme: () => {} });
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import About from './components/About';
@@ -10,7 +13,11 @@ import Contact from './components/Contact';
 import Footer from './components/Footer';
 
 const App = () => {
+  const [isDark, setIsDark] = useState(false);
+  const toggleTheme = () => setIsDark(!isDark);
+
   return (
+    <ThemeContext.Provider value={{ isDark, toggleTheme }}>
     <BrowserRouter>
       <div className="min-h-screen bg-gray-50">
         <Navbar />
