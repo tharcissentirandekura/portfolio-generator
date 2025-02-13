@@ -15,13 +15,13 @@ import Footer from './components/Footer';
 
 const App = () => {
   const [theme, setTheme] = useState('light');
-  const [loading, setLoading] = useState(true);
+  // const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const savedTheme = localStorage.getItem('theme') || 'light';
     setTheme(savedTheme);
     document.documentElement.classList.toggle('dark', savedTheme === 'dark');
-    setLoading(false);
+    // setLoading(false);
   }, []);
 
   const toggleTheme = () => {
