@@ -2,6 +2,14 @@
 import { useState } from 'react';
 
 const Projects = () => {
+    const [loading, setLoading] = useState(true);
+    const [selectedProject, setSelectedProject] = useState(null);
+    const [isModalOpen, setIsModalOpen] = useState(false);
+
+    useEffect(() => {
+        setTimeout(() => setLoading(false), 1000); // Simulate loading
+    }, []);
+
     const projects = [
         {
             name: "Epreuves.com",
@@ -126,3 +134,63 @@ const Projects = () => {
 };
 
 export default Projects;
+
+
+            {loading ? (
+                <div className="flex justify-center items-center h-64">
+                    <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-500"></div>
+                </div>
+            ) : (
+                <>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        {filteredProjects.map((project) => (
+                            <div 
+                                key={project.name} 
+                                className="bg-white rounded-lg shadow-sm p-6 cursor-pointer transition-all duration-300 hover:shadow-lg"
+                                onClick={() => {
+                                    setSelectedProject(project);
+                                    setIsModalOpen(true);
+                                }}
+                            >
+                                {/* Existing project card content */}
+                            </div>
+                        ))}
+                    </div>
+
+                    {isModalOpen && selectedProject && (
+                        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
+                            <div className="bg-white rounded-lg p-6 max-w-2xl w-full max-h-[90vh] overflow-y-auto">
+                                <div className="flex justify-between items-center mb-4">
+                                    <h3 className="text-2xl font-bold">{selectedProject.name}</h3>
+                                    <button 
+                                        onClick={() => setIsModalOpen(false)}
+                                        className="text-gray-500 hover:text-gray-700"
+                                    >
+                                        ×
+                                    </button>
+                                </div>
+                                <p className="text-gray-500 text-sm mb-4">{selectedProject.period}</p>
+                                <p className="text-gray-700 mb-4">{selectedProject.description}</p>
+                                <div className="mb-4">
+                                    <h4 className="font-medium mb-2">Technologies:</h4>
+                                    <div className="flex flex-wrap gap-2">
+                                        {selectedProject.technologies.map((tech) => (
+                                            <span key={tech} className="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm">
+                                                {tech}
+                                            </span>
+                                        ))}
+                                    </div>
+                                </div>
+                                <div className="mb-4">
+                                    <h4 className="font-medium mb-2">Highlights:</h4>
+                                    <ul className="list-disc list-inside">
+                                        {selectedProject.highlights.map((highlight, index) => (
+                                            <li key={index} className="text-gray-700">{highlight}</li>
+                                        ))}
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    )}
+                </>
+            )}

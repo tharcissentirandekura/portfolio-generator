@@ -13,8 +13,22 @@ import Contact from './components/Contact';
 import Footer from './components/Footer';
 
 const App = () => {
-  const [isDark, setIsDark] = useState(false);
-  const toggleTheme = () => setIsDark(!isDark);
+  const [theme, setTheme] = useState('light');
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const savedTheme = localStorage.getItem('theme') || 'light';
+    setTheme(savedTheme);
+    document.documentElement.classList.toggle('dark', savedTheme === 'dark');
+    setLoading(false);
+  }, []);
+
+  const toggleTheme = () => {
+    const newTheme = theme === 'light' ? 'dark' : 'light';
+    setTheme(newTheme);
+    localStorage.setItem('theme', newTheme);
+    document.documentElement.classList.toggle('dark');
+  };
 
   return (
     <ThemeContext.Provider value={{ isDark, toggleTheme }}>
