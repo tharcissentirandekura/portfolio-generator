@@ -1,4 +1,4 @@
-import { BrowserRouter } from 'react-router-dom';
+import { BrowserRouter} from 'react-router-dom';
 import { createContext, useState, useEffect } from 'react';
 
 export const ThemeContext = createContext({ isDark: false, toggleTheme: () => {} });
@@ -12,6 +12,7 @@ import Projects from './components/Projects';
 import Education from './components/Education';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
+// import ExtracurricularActivities from './pages/ExtracurricularActivities';
 
 const App = () => {
   const [theme, setTheme] = useState('light');
@@ -60,6 +61,9 @@ const App = () => {
           </div>
           <Footer />
         </div>
+        {/* <Routes>
+          <Route path="/extracurricular" element={<ExtracurricularActivities />} />
+        </Routes> */}
       </BrowserRouter>
     </ThemeContext.Provider>
   );

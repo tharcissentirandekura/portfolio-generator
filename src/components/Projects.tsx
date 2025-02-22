@@ -37,7 +37,7 @@ const Projects = () => {
         {
             name: "LED Matrices Research",
             period: "Feb 2024 - Oct 2024",
-            description: `- I work to find best way to optimize hardware graphics in combination of  tools like raspberry pi, AdaFruit Hat and by adapting an existing Python library for better integration.    
+            description: `I work to find best way to optimize hardware graphics in combination of  tools like raspberry pi, AdaFruit Hat and by adapting an existing Python library for better integration.    
             
             Other work involves debugging LED flickering issues to achieve a better display resolution`,
             technologies: ["Python", "Hardware Integration"],
@@ -138,7 +138,7 @@ const Projects = () => {
                                     </a>
                                 </h3>
                                 <p className="text-gray-500 text-sm mb-4">{project.period}</p>
-                                <p className="text-gray-700 mb-4">{project.description}</p>
+                                <p className="text-gray-700 mb-4 text-xl">{project.description}</p>
                                 <div className="mb-4">
                                     <h4 className="font-medium mb-2">Technologies:</h4>
                                     <div className="flex flex-wrap gap-2">
@@ -154,8 +154,8 @@ const Projects = () => {
                     </div>
 
                     {isModalOpen && selectedProject && (
-                        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
-                            <div className="bg-white rounded-lg p-6 max-w-2xl w-full max-h-[90vh] overflow-y-auto">
+                        <div className="fixed inset-0 bg-black bg-opacity-60 flex items-center justify-center p-4 z-50">
+                            <div className="bg-gray-400 rounded-lg p-6 max-w-2xl w-full max-h-[90vh] overflow-y-auto">
                                 <div className="flex justify-between items-center mb-4">
                                     <h3 className="text-2xl font-bold">{selectedProject.name}</h3>
                                     <button 
@@ -165,10 +165,10 @@ const Projects = () => {
                                         ×
                                     </button>
                                 </div>
-                                <p className="text-gray-500 text-sm mb-4">{selectedProject.period}</p>
-                                <p className="text-gray-700 mb-4">{selectedProject.description}</p>
+                                <p className="text-red-800 text-xl mb-4">{selectedProject.period}</p>
+                                <p className="text-gray-700 mb-4 text-2xl">{selectedProject.description}</p>
                                 <div className="mb-4">
-                                    <h4 className="font-medium mb-2">Technologies:</h4>
+                                    <h4 className="font-medium mb-2 text-xl">Technologies:</h4>
                                     <div className="flex flex-wrap gap-2">
                                         {selectedProject.technologies.map((tech:any) => (
                                             <span key={tech} className="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm">
@@ -178,10 +178,10 @@ const Projects = () => {
                                     </div>
                                 </div>
                                 <div className="mb-4">
-                                    <h4 className="font-medium mb-2">Highlights:</h4>
+                                    <h4 className="font-medium mb-2 text-xl">Highlights:</h4>
                                     <ul className="list-disc list-inside">
                                         {selectedProject.highlights.map((highlight:any, index:any) => (
-                                            <li key={index} className="text-gray-700">{highlight}</li>
+                                            <li key={index} className="text-gray-700 text-2xl ">{highlight}</li>
                                         ))}
                                     </ul>
                                 </div>
