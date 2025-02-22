@@ -16,6 +16,7 @@ module.exports = {
 			backgroundImage: {
 				"custom-image": "url('./assets/me.png')",
 				"work-image": "url('./assets/work.png')",
+				"tech-image": "url('./assets/tech.png')",
 			},
 		},
 	},

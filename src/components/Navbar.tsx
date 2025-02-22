@@ -2,6 +2,7 @@ import { Link as ScrollLink } from 'react-scroll';
 import { Github, Linkedin, Mail, Moon, Sun } from 'lucide-react';
 import { useContext } from 'react';
 import { ThemeContext } from '../App';
+import { Link } from 'react-router-dom';
 
 const Navbar = () => {
     const { isDark, toggleTheme } = useContext(ThemeContext);
@@ -20,8 +21,14 @@ const Navbar = () => {
                         <ScrollLink to="experience" smooth={true} duration={700} className={`text-gray-300 hover:text-white cursor-pointer ${isDark ? 'text-gray-300' : 'text-gray-300'}`}>Experience</ScrollLink>
                         <ScrollLink to="projects" smooth={true} duration={700} className={`text-gray-300 hover:text-white cursor-pointer ${isDark ? 'text-gray-300' : 'text-gray-300'}`}>Projects</ScrollLink>
                         <ScrollLink to="contact" smooth={true} duration={700} className={`text-gray-300 hover:text-white cursor-pointer ${isDark ? 'text-gray-300' : 'text-gray-300'}`}>Contact</ScrollLink>
+                        <Link 
+                            to="/activities" 
+                            className="text-gray-800 hover:text-blue-600 dark:text-white dark:hover:text-blue-400"
+                        >
+                            Activities
+                        </Link>
 
-                        <button onClick={toggleTheme} className="p-2 rounded-full hover:bg-gray-300/50 transition-colors">
+                        <button onClick={toggleTheme} className="p-2 rounded-full bg-gray-700 text-white hover:bg-gray-300/50 transition-colors">
                             {isDark ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
                         </button>
 
