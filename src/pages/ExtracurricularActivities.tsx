@@ -2,25 +2,40 @@ import { Link } from 'react-router-dom';
 import { FaUsers, FaLightbulb, FaHandsHelping } from 'react-icons/fa';
 
 const ExtracurricularActivities = () => {
-    const image = 'relative bg-tech-image bg-cover bg-center text-white py-60 rounded-lg md:w-1/2 flex justify-end';
+    const image = 'relative bg-cover bg-center py-60 rounded-lg md:w-1/3 flex justify-end';
+    const sign = ""
     return (
         <section className="min-h-screen py-16 px-4 md:px-8 bg-gradient-to-br from-gray-50 to-gray-100">
-            <div className="max-w-6xl mx-auto">
+            <div className="max-w-6xl mx-auto ">
                 {/* Hero Section with Image */}
                 <div className="flex flex-col md:flex-row items-center justify-between mb-16 gap-8">
                     {/* Text Content */}
-                    <div className="md:w-1/2 text-left">
-                        <h1 className="text-5xl font-bold mb-4">
-                            <span className="block">Lead with <span className="text-blue-500">Vision</span></span>
+                    <div className="md:w-50 text-left p-10">
+                        <h1 className="text-5xl font-bold mb-4 mt-10 p-5">
+                            <span className="block ">Lead with <span className="text-blue-500">Vision</span></span>
                             <span className="block">Mentor with <span className="text-orange-500">Purpose</span></span>
                             <span className="block">Build with <span className="text-red-500">Impact</span></span>
+                            <span className="block">Volunteer <span className="text-green-500">For a purpose</span></span>
                         </h1>
                     </div>
                     
                     {/* Hero Image */}
                     <div className={image}>
-                        <h1 className="w-full max-w-md transform hover:scale-105 transition-transform duration-300 text-blue-800 text-3xl">Building for good with new technologies</h1>
+                        <h1 className='text-4xl text-red-500'>{sign}</h1>
+
                     </div>
+                    {/* <div className="absolute inset-0 overflow-hidden">
+                    <div className="absolute w-[150%] h-[150%] -right-1/4 -bottom-1/4 animate-spin-slow-reverse">
+                            <div className="absolute bottom-0 right-0 w-full h-full border-[40px] border-blue-400/20 rounded-full transform -rotate-45"></div>
+                            <div className="absolute bottom-1/2 right-1/3 w-full h-full border-[30px] border-blue-500/20 rounded-full transform rotate-12"></div>
+                            <div className="absolute bottom-1/2 right-1/2 w-full h-full border-[20px] border-blue-600/20 rounded-full transform -rotate-90"></div>
+                        </div>
+                        <div className="absolute w-[150%] h-[150%] -right-1/4 -bottom-1/4 animate-spin-slow-reverse">
+                            <div className="absolute bottom-0 right-0 w-full h-full border-[40px] border-blue-400/20 rounded-full transform -rotate-45"></div>
+                            <div className="absolute bottom-1/4 right-1/4 w-full h-full border-[30px] border-blue-500/20 rounded-full transform rotate-12"></div>
+                            <div className="absolute bottom-1/2 right-1/2 w-full h-full border-[20px] border-blue-600/20 rounded-full transform -rotate-90"></div>
+                        </div>
+                    </div> */}
                 </div>
 
                 {/* Main Cards Grid */}
@@ -88,9 +103,8 @@ const ExtracurricularActivities = () => {
 
                 <Link 
                     to="/" 
-                    className="mt-12 px-6 py-3 bg-gradient-to-r from-blue-500 to-blue-600 text-white rounded-full hover:from-blue-600 hover:to-blue-700 transition-all duration-300 flex items-center"
-                >
-                    <span className="mr-2">←</span> Back to Home
+                    className="mt-12 w-50 px-6 py-3 bg-gradient-to-r from-red-500 to-red-600 text-white rounded-lg hover:from-blue-600 hover:to-blue-700 transition-all duration-300 flex text-center">
+                    <span className="mr-2">←</span> Back to main page
                 </Link>
             </div>
         </section>
