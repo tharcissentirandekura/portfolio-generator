@@ -1,16 +1,16 @@
-import { useState } from "react";
-// import {useNavigate } from "react-router-dom";
+// import { useState } from "react";
+import {useNavigate } from "react-router-dom";
 
 const About = () => {
-    const [showMessage,setShowMessage] = useState(false);
-    // const navigate = useNavigate();
+    // const [showMessage,setShowMessage] = useState(false);
+    const navigate = useNavigate();
     const handleClick = () =>{
-        // navigate('/activities');
+        navigate('/activities');
         
-        setShowMessage(true);
-        setTimeout(()=>{
-            setShowMessage(false);
-        },3000); //display message for 3 seconds
+        // setShowMessage(true);
+        // setTimeout(()=>{
+        //     setShowMessage(false);
+        // },3000); //display message for 3 seconds
     }
 
 
@@ -29,12 +29,12 @@ const About = () => {
               <div className='border-t pt-8 mt-8'>
                   <h3 className='text-2xl font-semibold mb-4 text-slate-800'>Extracurricular Activities</h3>
                   <p className='text-slate-600 mb-6 text-xl'>Discover how I engage beyond academics through leadership roles and community involvement.</p>
-                  {showMessage && (
+                  {/* {showMessage && (
                     <div className="fixed inset-0 bg-black bg-opacity-60 flex items-center justify-center p-4 z-50">
                         <h1 className="bg-yellow-100 rounded-lg p-6 max-w-2xl w-50 max-h-[90vh] overflow-y-auto">This section is under progress. Coming soon.</h1>
                     </div>
 
-                  )}
+                  )} */}
                   <button 
                     onClick={handleClick}
                       className="inline-flex items-center px-6 py-3 bg-red-600 hover:bg-red-400 transition-colors text-white rounded-lg font-medium"

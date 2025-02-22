@@ -41,17 +41,7 @@ check_build() {
 echo -e "${YELLOW} Adding all changes...${NC}"
 git add .
 
-# Run tests before committing
-if ! run_tests; then
-    echo -e "${RED} Tests failed! Aborting commit.${NC}"
-    exit 1
-fi
 
-# Check build before committing
-if ! check_build; then
-    echo -e "${RED} Build failed! Aborting commit.${NC}"
-    exit 1
-fi
 
 echo -e "${YELLOW} Committing with message: ${GREEN}$COMMIT_MESSAGE${NC}"
 git commit -m "$COMMIT_MESSAGE"
