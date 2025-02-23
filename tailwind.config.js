@@ -17,6 +17,7 @@ module.exports = {
 				"custom-image": "url('./assets/me.png')",
 				"work-image": "url('./assets/work.png')",
 				"tech-image": "url('./assets/tech.png')",
+				"rust-image": "url('./assets/rust.png')",
 			},
 		},
 	},

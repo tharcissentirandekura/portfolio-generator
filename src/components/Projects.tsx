@@ -1,6 +1,6 @@
 
 import { useState, useEffect } from 'react';
-
+import { SlClose } from "react-icons/sl";
 const Projects = () => {
     const [loading, setLoading] = useState(true);
     interface Project {
@@ -69,7 +69,8 @@ const Projects = () => {
           category: "Machine Learning",
           link:'https://github.com/tharcissentirandekura/ML-yew',
           highlights:[
-            ""
+            "Objective to complete a full project with Rust",
+            "Applying some Systems programming skills gained from class."
           ]
         }
     ];
@@ -160,9 +161,8 @@ const Projects = () => {
                                     <h3 className="text-2xl font-bold">{selectedProject.name}</h3>
                                     <button 
                                         onClick={() => setIsModalOpen(false)}
-                                        className="text-gray-500 hover:text-gray-700"
-                                    >
-                                        ×
+                                        className="text-gray-500 hover:text-gray-700">
+                                        <SlClose className='text-3xl text-red-500 font-bold'/>
                                     </button>
                                 </div>
                                 <p className="text-red-800 text-xl mb-4">{selectedProject.period}</p>
