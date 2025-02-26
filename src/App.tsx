@@ -4,7 +4,11 @@ import Router from './routers/Router';
 import Navbar from './components/Navbar';
 
 export const ThemeContext = createContext({ isDark: false, toggleTheme: () => {} });
-
+/**
+ * 
+ * @returns The main component of the application that wraps
+ *  the entire application with the ThemeContext provider and the BrowserRouter.
+ */
 const App = () => {
   const [theme, setTheme] = useState('light');
 

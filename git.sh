@@ -7,9 +7,9 @@ REMOTE_NAME="origin"
 DEFAULT_MESSAGE="Update: Regular code update"
 
 # Colors for output
-GREEN='\033[0;32m'
-YELLOW='\033[1;33m'
-RED='\033[0;31m'
+GREEN='\033[0;32m' # Green
+YELLOW='\033[1;33m' # Yellow
+RED='\033[0;31m' # Red
 NC='\033[0m' # No Color
 
 # If no commit message is provided, use default

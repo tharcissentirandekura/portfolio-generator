@@ -7,6 +7,12 @@ import Education from '../components/Education';
 import Contact from '../components/Contact';
 import Footer from '../components/Footer';
 
+/**
+ * 
+ * @returns The main layout of the application that wraps
+ *  the entire application with the Hero, About, Skills, Experience,
+ *  Projects, Education, Contact, and Footer components.
+ */
 const MainLayout = () => {
   return (
     <>

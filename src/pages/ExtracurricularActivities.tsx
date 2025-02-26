@@ -1,6 +1,11 @@
 import { Link } from 'react-router-dom';
 import { FaUsers, FaLightbulb, FaHandsHelping } from 'react-icons/fa';
 
+/**
+ * 
+ * @returns The ExtracurricularActivities component that displays the extracurricular activities
+ * of the user.
+ */
 const ExtracurricularActivities = () => {
     const image = 'relative bg-cover bg-center py-60 rounded-lg md:w-1/3 flex justify-end';
     const sign = ""
