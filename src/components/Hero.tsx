@@ -23,11 +23,11 @@ const Hero = () => {
             <div className="absolute bg-black opacity-50 rounded-lg"></div>
             {/* Content */}
             <div className="relative z-10 px-10">
-                <h1 className="text-5xl font-bold">Computer Science & Economics</h1>
-                <h1 className="text-4xl font-bold py-6 text-blue-400  ">Sophomore Year</h1>
+                <h1 className="font-inter lg:text-9xl sm:font-bold lg:font-black ">Computer Science & Economics</h1>
+                <h1 className="text-4xl font-bold py-6 text-blue-400 lg:text-5xl lg:font-bold ">Sophomore Year</h1>
 
-                <p className="mt-4 text-xl ">Building innovative solutions with modern technologies</p>
-                <p className="mt-4 text-xl">By taking classroom experience to next level</p>
+                <p className="font-inter mt-4 text-xl lg:text-4xl lg:font-bold ">Building innovative solutions with modern technologies</p>
+                <p className="font-inter mt-4 text-xl lg:text-3xl lg:font-bold ">By taking classroom experience to next level</p>
             </div>
         </div>
     );

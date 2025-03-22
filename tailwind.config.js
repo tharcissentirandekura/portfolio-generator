@@ -19,6 +19,10 @@ module.exports = {
 				"tech-image": "url('./assets/tech.png')",
 				"rust-image": "url('./assets/rust.png')",
 			},
+			fontFamily:{
+				inter: ['Inter', 'sans-serif'],
+				mono: ['JetBrains Mono', 'monospace'],
+			},
 		},
 	},
 	plugins: [],

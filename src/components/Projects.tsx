@@ -25,7 +25,7 @@ const Projects = () => {
             name: "Epreuves.com",
             period: "Jul 2024 - Oct 2024",
             description: "A comprehensive platform designed to help 5,000+ students prepare for national exams in Burundi. The platform centralizes access to over 1,000 past exam papers and yearly ministry practice tests.",
-            technologies: ["Django", "PostgreSQL", "REST API"],
+            technologies: ["Django", "PostgreSQL", "REST API","Angular","Docker"],
             category: "Web Development",
             link:'https://github.com/tharcissentirandekura/epreuve-archive',
             highlights: [
@@ -52,7 +52,7 @@ const Projects = () => {
             name: "Collatz Visualizer",
             period: "May 2024 - Jun 2024",
             description: "Interactive website that provides visual representation of the Collatz conjecture through dynamic charts and graphs.",
-            technologies: ["JavaScript", "Data Visualization", "Web Development"],
+            technologies: ["JavaScript", "Data Visualization", "Web Development","React"],
             category: "Data Visualization",
             link:'https://github.com/tharcissentirandekura/collatz',
             highlights: [
