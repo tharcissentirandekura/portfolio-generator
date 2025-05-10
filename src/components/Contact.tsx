@@ -1,4 +1,3 @@
-import { Linkedin, Github, Mail, Phone, MessageSquare } from 'lucide-react';
 
 const Contact = () => {
     return (

@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { motion, AnimatePresence, Variants } from 'framer-motion';
+import { motion, Variants } from 'framer-motion';
 import { TypeAnimation } from 'react-type-animation';
 
 const Hero = () => {
@@ -85,7 +85,7 @@ const Hero = () => {
     };
 
     // Generate random particle properties
-    const generateParticle = (index: number) => {
+    const generateParticle = () => {
         const size = Math.random() * 8 + 4; // Random size between 4 and 12
         const color = colors[Math.floor(Math.random() * colors.length)];
         const duration = Math.random() * 3 + 2; // Random duration between 2 and 5 seconds
@@ -102,7 +102,7 @@ const Hero = () => {
     };
 
     // Generate 30 particles with random properties
-    const particles = Array.from({ length: 30 }, (_, i) => generateParticle(i));
+    const particles = Array.from({ length: 30 }, () => generateParticle());
 
     return (
         <motion.div 

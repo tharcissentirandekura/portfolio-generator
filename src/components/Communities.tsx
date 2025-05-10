@@ -8,12 +8,10 @@ import { useEffect, useState } from 'react';
  */
 const Community = () => {
     const [radius, setRadius] = useState(250);
-    const [isMobile, setIsMobile] = useState(false);
 
     useEffect(() => {
         const handleResize = () => {
             const width = window.innerWidth;
-            setIsMobile(width < 768);
             setRadius(width < 768 ? 150 : width < 1024 ? 200 : 250);
         };
 
