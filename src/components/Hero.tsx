@@ -4,8 +4,7 @@ import { TypeAnimation } from 'react-type-animation';
 
 const Hero = () => {
     const backgrounds = [
-        // 'bg-gradient-to-r from-black to-blue-300 text-white py-60',
-        'relative bg-custom-image bg-cover bg-center text-white py-60 rounded-lg',
+        'relative bg-custom-image bg-cover bg-center text-white rounded-lg',
         // 'relative bg-work-image bg-cover bg-center text-white py-60 rounded-lg'
     ];
 
@@ -112,7 +111,12 @@ const Hero = () => {
             animate={{ scale: 1 }}
             transition={{ duration: 1.5, ease: "easeOut" }}
             style={{
-                transform: `perspective(1000px) rotateX(${mousePosition.y}deg) rotateY(${mousePosition.x}deg)`
+                transform: `perspective(1000px) rotateX(${mousePosition.y}deg) rotateY(${mousePosition.x}deg)`,
+                position: 'relative',
+                overflow: 'hidden',
+                backgroundSize: 'cover',
+                backgroundPosition: 'center',
+                width: '100%'
             }}
         >
             {/* Animated Gradient Overlay */}
@@ -133,7 +137,7 @@ const Hero = () => {
 
             {/* Animated Overlay */}
             <motion.div 
-                className="absolute bg-black opacity-50 rounded-lg"
+                className="absolute inset-0 bg-black opacity-50 rounded-lg"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 0.5 }}
                 transition={{ duration: 1 }}
@@ -165,13 +169,13 @@ const Hero = () => {
             
             {/* Content */}
             <motion.div 
-                className="relative z-10 px-10"
+                className="relative z-10 px-4 sm:px-6 lg:px-8 py-12 sm:py-16 lg:py-20 max-w-7xl mx-auto"
                 variants={containerVariants}
                 initial="hidden"
                 animate="visible"
             >
                 <motion.h1 
-                    className="font-inter lg:text-9xl sm:font-bold lg:font-black"
+                    className="font-inter text-4xl sm:text-6xl lg:text-8xl font-bold sm:font-bold lg:font-black"
                     variants={itemVariants}
                     whileHover={{ scale: 1.02, transition: { duration: 0.2 } }}
                 >
@@ -179,7 +183,7 @@ const Hero = () => {
                 </motion.h1>
                 
                 <motion.h1 
-                    className="text-4xl font-bold py-6 text-blue-400 lg:text-5xl lg:font-bold"
+                    className="text-2xl sm:text-3xl font-bold py-4 sm:py-6 text-blue-400 lg:text-4xl lg:font-bold"
                     variants={itemVariants}
                     whileHover={{ scale: 1.02, transition: { duration: 0.2 } }}
                 >
@@ -191,6 +195,8 @@ const Hero = () => {
                             1000,
                             'Tech Enthusiast',
                             1000,
+                            'Community oriented', 
+                            1000,
                         ]}
                         wrapper="span"
                         speed={50}
@@ -198,21 +204,64 @@ const Hero = () => {
                     />
                 </motion.h1>
 
-                <motion.p 
-                    className="font-inter mt-4 text-xl lg:text-4xl lg:font-bold"
-                    variants={itemVariants}
-                    whileHover={{ scale: 1.02, transition: { duration: 0.2 } }}
+                <motion.div 
+                    className="flex flex-wrap gap-4 justify-center mt-6 sm:mt-8"
+                    variants={containerVariants}
                 >
-                    Building innovative solutions with modern technologies
-                </motion.p>
-                
-                <motion.p 
-                    className="font-inter mt-4 text-xl lg:text-3xl lg:font-bold"
+                    {[
+                        {
+                            title: "Software development",
+                            description: "Modern applications and softwares",
+                            icon: "🌐"
+                        },
+                        {
+                            title: "Data Analysis",
+                            description: "Python & SQL expertise",
+                            icon: "📊"
+                        },
+                        {
+                            title: "UI/UX Design",
+                            description: "Beautiful user interfaces",
+                            icon: "🎨"
+                        },
+                        {
+                            title: "Problem Solving",
+                            description: "Algorithm & data structures",
+                            icon: "💡"
+                        }
+                    ].map((card, index) => (
+                        <motion.div
+                            key={index}
+                            className="bg-white/10 backdrop-blur-lg rounded-xl p-4 sm:p-6 w-full sm:w-64 hover:bg-white/20 transition-all duration-300"
+                            variants={itemVariants}
+                            whileHover={{ 
+                                scale: 1.05,
+                                transition: { duration: 0.2 }
+                            }}
+                        >
+                            <div className="text-3xl sm:text-4xl mb-3">{card.icon}</div>
+                            <h3 className="text-lg sm:text-xl font-bold text-white mb-2">{card.title}</h3>
+                            <p className="text-sm sm:text-base text-gray-200">{card.description}</p>
+                        </motion.div>
+                    ))}
+                </motion.div>
+
+                <motion.section 
+                    className="mt-8 sm:mt-10 text-center"
                     variants={itemVariants}
-                    whileHover={{ scale: 1.02, transition: { duration: 0.2 } }}
                 >
-                    By taking classroom experience to next level
-                </motion.p>
+                    <motion.button 
+                        className="bg-blue-500 hover:bg-blue-600 text-white px-8 sm:px-12 py-3 sm:py-4 rounded-full text-xl sm:text-2xl font-bold transition-all duration-300 shadow-lg hover:shadow-xl"
+                        whileHover={{ 
+                            scale: 1.05,
+                            boxShadow: "0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)"
+                        }}
+                        whileTap={{ scale: 0.95 }}
+                        onClick={() => window.location.href = 'mailto:your.email@example.com'}
+                    >
+                        Let's Connect
+                    </motion.button>
+                </motion.section>
             </motion.div>
         </motion.div>
     );
