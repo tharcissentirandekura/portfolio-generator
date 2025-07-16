@@ -117,39 +117,39 @@ const Projects = () => {
     return (
         <ScrollAnimationWrapper direction="right" delay={0.2}>
             <section className="mb-16 max-w-6xl mx-auto px-4">
-                <div className="text-center mb-12">
-                    <h2 className="text-4xl font-bold text-gray-900 mb-4">Featured Projects</h2>
-                    <p className="text-lg text-gray-600">
+                <div className="text-center mb-8 sm:mb-12">
+                    <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 mb-3 sm:mb-4">Featured Projects</h2>
+                    <p className="text-base sm:text-lg text-gray-600 px-4">
                         A showcase of my technical projects and research work
                     </p>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
                     {projects.map((project, index) => (
                         <motion.div
                             key={index}
-                            className={`${project.bgColor} rounded-3xl p-8 cursor-pointer transition-all duration-300 hover:shadow-lg hover:-translate-y-1`}
+                            className={`${project.bgColor} rounded-2xl sm:rounded-3xl p-4 sm:p-6 md:p-8 cursor-pointer transition-all duration-300 hover:shadow-lg hover:-translate-y-1`}
                             onClick={() => openModal(index)}
                             whileHover={{ scale: 1.02 }}
                             whileTap={{ scale: 0.98 }}
                         >
-                            <div className="flex items-center justify-between mb-6">
-                                <div className="w-16 h-16 bg-white rounded-2xl flex items-center justify-center shadow-sm">
-                                    <span className={`text-2xl font-bold ${project.accentColor}`}>
+                            <div className="flex items-center justify-between mb-4 sm:mb-6">
+                                <div className="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 bg-white rounded-xl sm:rounded-2xl flex items-center justify-center shadow-sm">
+                                    <span className={`text-lg sm:text-xl md:text-2xl font-bold ${project.accentColor}`}>
                                         {project.name.charAt(0)}
                                     </span>
                                 </div>
-                                <div className="flex items-center gap-2 text-gray-600">
-                                    <span className="text-sm font-medium">{project.period}</span>
-                                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <div className="flex items-center gap-1 sm:gap-2 text-gray-600">
+                                    <span className="text-xs sm:text-sm font-medium">{project.period}</span>
+                                    <svg className="w-4 h-4 sm:w-5 sm:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                                     </svg>
                                 </div>
                             </div>
 
-                            <h3 className="text-xl font-bold text-gray-900 mb-2">{project.name}</h3>
-                            <p className={`font-semibold mb-4 ${project.accentColor}`}>{project.category}</p>
-                            <p className="text-gray-700 leading-relaxed">{project.shortDescription}</p>
+                            <h3 className="text-lg sm:text-xl font-bold text-gray-900 mb-2 leading-tight">{project.name}</h3>
+                            <p className={`font-semibold mb-3 sm:mb-4 ${project.accentColor} text-sm sm:text-base`}>{project.category}</p>
+                            <p className="text-gray-700 leading-relaxed text-sm sm:text-base">{project.shortDescription}</p>
                         </motion.div>
                     ))}
                 </div>
@@ -203,36 +203,36 @@ const Projects = () => {
                                 </div>
 
                                 {/* Hero Section */}
-                                <div className={`${projects[selectedProject].bgColor} py-16`}>
-                                    <div className="max-w-6xl mx-auto px-6">
-                                        <div className="flex items-center gap-6 mb-8">
-                                            <div className="w-24 h-24 bg-white rounded-3xl flex items-center justify-center shadow-lg">
-                                                <span className={`text-4xl font-bold ${projects[selectedProject].accentColor}`}>
+                                <div className={`${projects[selectedProject].bgColor} py-8 sm:py-12 md:py-16`}>
+                                    <div className="max-w-6xl mx-auto px-4 sm:px-6">
+                                        <div className="flex flex-col sm:flex-row items-center sm:items-start gap-4 sm:gap-6 mb-6 sm:mb-8">
+                                            <div className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 bg-white rounded-2xl sm:rounded-3xl flex items-center justify-center shadow-lg flex-shrink-0">
+                                                <span className={`text-2xl sm:text-3xl md:text-4xl font-bold ${projects[selectedProject].accentColor}`}>
                                                     {projects[selectedProject].name.charAt(0)}
                                                 </span>
                                             </div>
-                                            <div>
-                                                <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-2">
+                                            <div className="text-center sm:text-left">
+                                                <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-2 leading-tight">
                                                     {projects[selectedProject].name}
                                                 </h1>
-                                                <p className={`text-2xl font-semibold ${projects[selectedProject].accentColor} mb-2`}>
+                                                <p className={`text-lg sm:text-xl md:text-2xl font-semibold ${projects[selectedProject].accentColor} mb-2`}>
                                                     {projects[selectedProject].category}
                                                 </p>
-                                                <p className="text-lg text-gray-600">{projects[selectedProject].period}</p>
+                                                <p className="text-base sm:text-lg text-gray-600">{projects[selectedProject].period}</p>
                                             </div>
                                         </div>
-                                        <p className="text-xl text-gray-700 leading-relaxed max-w-4xl">
+                                        <p className="text-base sm:text-lg md:text-xl text-gray-700 leading-relaxed max-w-4xl">
                                             {projects[selectedProject].fullDescription}
                                         </p>
                                     </div>
                                 </div>
 
                                 {/* Content Sections */}
-                                <div className="max-w-6xl mx-auto px-6 py-16">
-                                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                                <div className="max-w-6xl mx-auto px-4 sm:px-6 py-8 sm:py-12 md:py-16">
+                                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 md:gap-12">
                                         {/* Key Achievements */}
-                                        <div className="bg-white rounded-3xl p-8 shadow-sm border border-gray-100">
-                                            <h2 className="text-2xl font-bold text-gray-900 mb-6 flex items-center gap-3">
+                                        <div className="bg-white rounded-2xl sm:rounded-3xl p-4 sm:p-6 md:p-8 shadow-sm border border-gray-100">
+                                            <h2 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900 mb-4 sm:mb-6 flex items-center gap-2 sm:gap-3">
                                                 <div className={`w-8 h-8 ${projects[selectedProject].bgColor} rounded-lg flex items-center justify-center`}>
                                                     <svg className={`w-5 h-5 ${projects[selectedProject].accentColor}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />

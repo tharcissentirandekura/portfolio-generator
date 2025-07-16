@@ -204,7 +204,7 @@ const Hero = () => {
                 </motion.div>
                 
                 <motion.h1 
-                    className="font-inter text-4xl sm:text-6xl lg:text-8xl font-bold sm:font-bold lg:font-black text-center mb-4 bg-clip-text text-transparent bg-gradient-to-r from-white to-blue-200"
+                    className="font-inter text-2xl xs:text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl 2xl:text-8xl font-bold text-center mb-4 bg-clip-text text-transparent bg-gradient-to-r from-white to-blue-200 leading-tight px-2"
                     variants={itemVariants}
                     whileHover={{ scale: 1.02, transition: { duration: 0.2 } }}
                 >
@@ -212,7 +212,7 @@ const Hero = () => {
                 </motion.h1>
                 
                 <motion.h2 
-                    className="text-2xl sm:text-3xl font-bold py-4 sm:py-6 text-blue-300 lg:text-4xl lg:font-bold text-center mb-8"
+                    className="text-lg xs:text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold py-3 sm:py-4 md:py-6 text-blue-300 text-center mb-6 sm:mb-8 px-2"
                     variants={itemVariants}
                     whileHover={{ scale: 1.02, transition: { duration: 0.2 } }}
                 >
@@ -239,9 +239,9 @@ const Hero = () => {
                     className="mt-12 sm:mt-16 text-center"
                     variants={itemVariants}
                 >
-                    <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+                    <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center items-center px-4">
                         <motion.button 
-                            className="bg-gradient-to-r from-blue-600 to-blue-400 hover:from-blue-700 hover:to-blue-500 text-white px-8 sm:px-12 py-3 sm:py-4 rounded-full text-xl sm:text-2xl font-bold transition-all duration-300 shadow-lg hover:shadow-xl"
+                            className="w-full sm:w-auto bg-gradient-to-r from-blue-600 to-blue-400 hover:from-blue-700 hover:to-blue-500 text-white px-6 sm:px-8 md:px-12 py-3 sm:py-4 rounded-full text-lg sm:text-xl md:text-2xl font-bold transition-all duration-300 shadow-lg hover:shadow-xl"
                             whileHover={{ 
                                 scale: 1.05,
                                 boxShadow: "0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)"
@@ -252,7 +252,7 @@ const Hero = () => {
                             Let's Connect
                         </motion.button>
                         <motion.button 
-                            className="bg-transparent border-2 border-white/50 hover:border-white text-white px-8 sm:px-12 py-3 sm:py-4 rounded-full text-xl sm:text-2xl font-bold transition-all duration-300"
+                            className="w-full sm:w-auto bg-transparent border-2 border-white/50 hover:border-white text-white px-6 sm:px-8 md:px-12 py-3 sm:py-4 rounded-full text-lg sm:text-xl md:text-2xl font-bold transition-all duration-300"
                             whileHover={{ 
                                 scale: 1.05,
                                 borderColor: "rgba(255, 255, 255, 1)"
