@@ -1,112 +1,172 @@
 import { motion } from 'framer-motion';
-import { useEffect, useState } from 'react';
+import ScrollAnimationWrapper from './ScrollAnimationWrapper';
 
 /**
  * 
  * @returns The Community component that displays the communities
- * and organizations that I am a part of.
+ * and organizations in a scrolling sponsor-style layout.
  */
 const Community = () => {
-    const [radius, setRadius] = useState(250);
-
-    useEffect(() => {
-        const handleResize = () => {
-            const width = window.innerWidth;
-            setRadius(width < 768 ? 150 : width < 1024 ? 200 : 250);
-        };
-
-        handleResize();
-        window.addEventListener('resize', handleResize);
-        return () => window.removeEventListener('resize', handleResize);
-    }, []);
-
     const organizations = [
         {
             name: "Tujenge Scholars Program",
             position: "Scholar Alumna",
-            image: "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=500&h=500&fit=crop",
-            background: "https://images.unsplash.com/photo-1523240795612-9a054b0db644?w=800&h=600&fit=crop",
-            gradient: "bg-gradient-to-br from-blue-500/90 to-blue-700/90"
+            logo: "TS",
+            color: "bg-blue-500",
+            description: "Educational scholarship program supporting African students"
         },
         {
             name: "Oberlin College",
             position: "Strengths Ambassador",
-            image: "https://images.unsplash.com/photo-1523240795612-9a054b0db644?w=500&h=500&fit=crop",
-            background: "https://images.unsplash.com/photo-1541339907198-e08756dedf3f?w=800&h=600&fit=crop",
-            gradient: "bg-gradient-to-br from-red-500/90 to-red-700/90"
+            logo: "OC",
+            color: "bg-red-500",
+            description: "Liberal arts college fostering academic excellence"
         },
         {
             name: "ColorStack",
             position: "Member",
-            image: "https://images.unsplash.com/photo-1552664730-d307ca884978?w=500&h=500&fit=crop",
-            background: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=800&h=600&fit=crop",
-            gradient: "bg-gradient-to-br from-purple-500/90 to-purple-700/90"
+            logo: "CS",
+            color: "bg-purple-500",
+            description: "Community for Black and Latinx computer science students"
         },
         {
             name: "X-Possible",
             position: "Fellow",
-            image: "https://images.unsplash.com/photo-1551434678-e076c223a692?w=500&h=500&fit=crop",
-            background: "https://images.unsplash.com/photo-1552664730-d307ca884978?w=800&h=600&fit=crop",
-            gradient: "bg-gradient-to-br from-green-500/90 to-green-700/90"
+            logo: "XP",
+            color: "bg-green-500",
+            description: "Fellowship program for emerging leaders"
         },
+        {
+            name: "GitHub Student",
+            position: "Developer",
+            logo: "GH",
+            color: "bg-gray-800",
+            description: "Student developer community and resources"
+        },
+        {
+            name: "IEEE Computer Society",
+            position: "Student Member",
+            logo: "IEEE",
+            color: "bg-indigo-500",
+            description: "Professional association for computing professionals"
+        }
     ];
 
+    // Duplicate the array for seamless infinite scroll
+    const duplicatedOrganizations = [...organizations, ...organizations];
+
     return (
-        <section className="py-10 px-4 md:px-8 bg-gradient-to-br from-gray-100 to-gray-120 overflow-hidden">
-            <div className="max-w-7xl mx-auto ">
-                <h2 className="text-3xl font-bold text-center mb-8">
-                    Communities & Organizations
-                </h2>
-                
-                <p className="text-center text-gray-600 mb-12">
-                    Communities of passionate individuals making an impact that I am a part of.
-                </p>
+        <ScrollAnimationWrapper direction="up" delay={0.2}>
+            <section className="py-16 bg-gradient-to-br from-gray-50 to-white overflow-hidden">
+                <div className="max-w-7xl mx-auto px-4">
+                    <div className="text-center mb-16">
+                        <h2 className="text-4xl font-bold text-gray-900 mb-4">
+                            Communities & Organizations
+                        </h2>
+                        <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+                            Proud to be part of these amazing communities that foster growth, learning, and positive impact
+                        </p>
+                    </div>
 
-                <div className="relative min-h-[400px] md:min-h-[600px] lg:min-h-[800px] flex items-center justify-center">
-                    <div className="absolute">
-                        {organizations.map((org, index) => {
-                            const angle = (index * (360 / organizations.length)) * (Math.PI / 180);
-                            const x = Math.cos(angle) * radius;
-                            const y = Math.sin(angle) * radius;
-
-                            return (
-                                <motion.div
-                                    key={index}
-                                    className="absolute w-48 md:w-56 lg:w-64 bg-white rounded-full shadow-md p-4 md:p-6 hover:shadow-lg transition-shadow duration-300 overflow-hidden"
-                                    style={{
-                                        x,
-                                        y,
-                                        translateX: "-50%",
-                                        translateY: "-50%",
-                                    }}
-                                    whileHover={{ scale: 1.1, zIndex: 10 }}
-                                >
-                                    <div className="absolute inset-0 z-0">
-                                        <img 
-                                            src={org.background} 
-                                            alt={`${org.name} background`}
-                                            className="w-full h-full object-cover opacity-20"
-                                        />
-                                        <div className={`absolute inset-0 ${org.gradient}`} />
-                                    </div>
-                                    <div className="relative z-10">
-                                        <div className="h-20 w-20 md:h-24 md:w-24 lg:h-30 lg:w-30 mx-auto mb-4 flex items-center justify-center overflow-hidden rounded-full border-4 border-white">
-                                            <img 
-                                                src={org.image} 
-                                                alt={org.name}
-                                                className="h-full w-full object-cover"
-                                            />
+                    {/* Scrolling Organizations */}
+                    <div className="relative">
+                        {/* First Row - Left to Right */}
+                        <div className="flex overflow-hidden mb-8">
+                            <motion.div
+                                className="flex gap-8 min-w-full"
+                                animate={{
+                                    x: [0, -100 * organizations.length]
+                                }}
+                                transition={{
+                                    x: {
+                                        repeat: Infinity,
+                                        repeatType: "loop",
+                                        duration: 20,
+                                        ease: "linear",
+                                    },
+                                }}
+                            >
+                                {duplicatedOrganizations.map((org, index) => (
+                                    <motion.div
+                                        key={`row1-${index}`}
+                                        className="flex-shrink-0 bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 p-6 min-w-[300px] border border-gray-100"
+                                        whileHover={{ scale: 1.05, y: -5 }}
+                                    >
+                                        <div className="flex items-center gap-4 mb-4">
+                                            <div className={`w-16 h-16 ${org.color} rounded-xl flex items-center justify-center shadow-lg`}>
+                                                <span className="text-white font-bold text-lg">{org.logo}</span>
+                                            </div>
+                                            <div>
+                                                <h3 className="text-lg font-bold text-gray-900">{org.name}</h3>
+                                                <p className="text-sm font-medium text-gray-600">{org.position}</p>
+                                            </div>
                                         </div>
-                                        <h3 className="text-lg md:text-xl font-semibold text-center mb-2 text-white">{org.name}</h3>
-                                        <p className="text-sm md:text-base text-white/90 font-medium text-center">{org.position}</p>
-                                    </div>
-                                </motion.div>
-                            );
-                        })}
+                                        <p className="text-gray-700 text-sm leading-relaxed">{org.description}</p>
+                                    </motion.div>
+                                ))}
+                            </motion.div>
+                        </div>
+
+                        {/* Second Row - Right to Left */}
+                        <div className="flex overflow-hidden">
+                            <motion.div
+                                className="flex gap-8 min-w-full"
+                                animate={{
+                                    x: [-100 * organizations.length, 0]
+                                }}
+                                transition={{
+                                    x: {
+                                        repeat: Infinity,
+                                        repeatType: "loop",
+                                        duration: 25,
+                                        ease: "linear",
+                                    },
+                                }}
+                            >
+                                {duplicatedOrganizations.reverse().map((org, index) => (
+                                    <motion.div
+                                        key={`row2-${index}`}
+                                        className="flex-shrink-0 bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 p-6 min-w-[300px] border border-gray-100"
+                                        whileHover={{ scale: 1.05, y: -5 }}
+                                    >
+                                        <div className="flex items-center gap-4 mb-4">
+                                            <div className={`w-16 h-16 ${org.color} rounded-xl flex items-center justify-center shadow-lg`}>
+                                                <span className="text-white font-bold text-lg">{org.logo}</span>
+                                            </div>
+                                            <div>
+                                                <h3 className="text-lg font-bold text-gray-900">{org.name}</h3>
+                                                <p className="text-sm font-medium text-gray-600">{org.position}</p>
+                                            </div>
+                                        </div>
+                                        <p className="text-gray-700 text-sm leading-relaxed">{org.description}</p>
+                                    </motion.div>
+                                ))}
+                            </motion.div>
+                        </div>
+                    </div>
+
+                    {/* Stats Section */}
+                    <div className="mt-16 grid grid-cols-2 md:grid-cols-4 gap-8">
+                        <div className="text-center">
+                            <div className="text-3xl font-bold text-blue-600 mb-2">6+</div>
+                            <div className="text-gray-600 font-medium">Communities</div>
+                        </div>
+                        <div className="text-center">
+                            <div className="text-3xl font-bold text-green-600 mb-2">3</div>
+                            <div className="text-gray-600 font-medium">Leadership Roles</div>
+                        </div>
+                        <div className="text-center">
+                            <div className="text-3xl font-bold text-purple-600 mb-2">2+</div>
+                            <div className="text-gray-600 font-medium">Years Active</div>
+                        </div>
+                        <div className="text-center">
+                            <div className="text-3xl font-bold text-orange-600 mb-2">100+</div>
+                            <div className="text-gray-600 font-medium">Network Connections</div>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </section>
+            </section>
+        </ScrollAnimationWrapper>
     );
 };
 

@@ -1,279 +1,342 @@
-import { useState, useEffect } from 'react';
-import { SlClose } from "react-icons/sl";
+import { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import ScrollAnimationWrapper from './ScrollAnimationWrapper';
+
 const Projects = () => {
-    const [loading, setLoading] = useState(true);
-    const [showAll, setShowAll] = useState(false);
-    interface Project {
-        name: string;
-        period: string;
-        description: string;
-        technologies: string[];
-        category: string;
-        link: string;
-        highlights: string[];
-        image: string;
-        article?: string;
-    }
-    
-    const [selectedProject, setSelectedProject] = useState<Project | null>(null);
-    const [isModalOpen, setIsModalOpen] = useState(false);
+    const [selectedProject, setSelectedProject] = useState<number | null>(null);
 
-    useEffect(() => {
-        setTimeout(() => setLoading(false), 1000); // Simulate loading
-    }, []);
-
-    const allProjects = [
+    const projects = [
         {
             name: "Epreuves.com",
             period: "Jul 2024 - Oct 2024",
-            description: "A comprehensive platform designed to help 5,000+ students prepare for national exams in Burundi. The platform centralizes access to over 1,000 past exam papers and yearly ministry practice tests.",
-            technologies: ["Django", "PostgreSQL", "REST API","Angular","Docker"],
-            category: "Web Development",
-            link:'https://github.com/tharcissentirandekura/epreuve-archive',
-            image: "https://images.unsplash.com/photo-1501504905252-473c47e087f8?q=80&w=1000",
-            article: "https://medium.com/@tharcisse/epreuve-com-building-an-educational-platform-123456",
-            highlights: [
-                "Built full backend and API infrastructure",
-                "Centralized access to 1,000+ past exam papers",
+            shortDescription: "A comprehensive platform designed to help 5,000+ students prepare for national exams in Burundi.",
+            fullDescription: "Epreuves.com is a comprehensive educational platform that I developed to address the challenges faced by students in Burundi when preparing for national exams. The platform centralizes access to over 1,000 past exam papers and yearly ministry practice tests, making quality educational resources accessible to students regardless of their geographical location.",
+            achievements: [
+                "Built full backend and API infrastructure using Django and PostgreSQL",
+                "Centralized access to 1,000+ past exam papers from various subjects",
                 "Reduced geographical study barriers across Burundi",
-            ]
+                "Implemented user authentication and progress tracking systems",
+                "Deployed using Docker for scalable infrastructure"
+            ],
+            responsibilities: [
+                "Full-Stack Development: Built both frontend and backend systems",
+                "Database Design: Structured PostgreSQL database for efficient data storage",
+                "API Development: Created RESTful APIs for seamless data access",
+                "DevOps: Implemented Docker containerization for deployment"
+            ],
+            technologies: ["Django", "PostgreSQL", "REST API", "Angular", "Docker"],
+            category: "Web Development",
+            link: 'https://github.com/tharcissentirandekura/epreuve-archive',
+            bgColor: "bg-purple-50",
+            accentColor: "text-purple-600"
         },
         {
             name: "LED Matrices Research",
             period: "Feb 2024 - Oct 2024",
-            description: `I work to find best way to optimize hardware graphics in combination of  tools like raspberry pi, AdaFruit Hat and by adapting an existing Python library for better integration.    
-            
-            Other work involves debugging LED flickering issues to achieve a better display resolution`,
-            technologies: ["Python", "Hardware Integration"],
-            category: "Hardware",
+            shortDescription: "Hardware optimization research combining Raspberry Pi and AdaFruit Hat for better LED display integration.",
+            fullDescription: "This research project focused on optimizing hardware graphics performance by combining Raspberry Pi, AdaFruit Hat, and adapting existing Python libraries for better integration. The work involved extensive debugging of LED flickering issues to achieve better display resolution and performance.",
+            achievements: [
+                "Optimized hardware graphics performance using Raspberry Pi and AdaFruit Hat",
+                "Successfully debugged LED flickering issues for better display resolution",
+                "Adapted existing Python libraries for improved hardware integration",
+                "Documented research findings for future development",
+                "Presented findings at undergraduate research symposium"
+            ],
+            responsibilities: [
+                "Hardware Integration: Combined multiple hardware components effectively",
+                "Software Optimization: Adapted Python libraries for better performance",
+                "Problem Solving: Debugged complex hardware-software interaction issues",
+                "Research Documentation: Maintained detailed research logs and findings"
+            ],
+            technologies: ["Python", "Raspberry Pi", "AdaFruit Hat", "Hardware Integration"],
+            category: "Hardware Research",
             link: 'https://www.oberlin.edu/undergraduate-research/student-projects/478980',
-            image: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=1000",
-            article: "https://medium.com/@tharcisse/optimizing-led-matrix-displays-with-raspberry-pi-789012",
-            highlights: [
-                "- I work to find best way to optimize hardware graphics in combination of  tools like raspberry pi, AdaFruit Hat and by adapting an existing Python library for better integration. ",
-                "Other work involves debugging LED flickering issues to achieve a better display resolution",
-            ]
+            bgColor: "bg-orange-50",
+            accentColor: "text-orange-600"
+        },
+        {
+            name: "Image Classifier: Machine Learning",
+            period: "November 2024",
+            shortDescription: "Full-stack website for object classification using pretrained Machine Learning models built with Rust.",
+            fullDescription: "This project represents my exploration into systems programming with Rust while building a practical machine learning application. The full-stack website allows users to upload images and classify objects using pretrained ML models, showcasing the power of Rust in both backend and frontend development through WebAssembly.",
+            achievements: [
+                "Successfully completed a full project using Rust programming language",
+                "Applied systems programming skills gained from coursework",
+                "Implemented machine learning model integration with Rust backend",
+                "Built responsive frontend using Rust Yew framework",
+                "Deployed application using Docker containerization"
+            ],
+            responsibilities: [
+                "Backend Development: Built API using Rust Actix-web framework",
+                "Frontend Development: Created user interface with Rust Yew and WebAssembly",
+                "ML Integration: Connected pretrained models for image classification",
+                "Styling: Implemented responsive design with Tailwind CSS"
+            ],
+            technologies: ["Rust Actix-web", "Rust Yew", "Tailwind CSS", "Docker", "WebAssembly", "Machine Learning"],
+            category: "Machine Learning",
+            link: 'https://github.com/tharcissentirandekura/ML-yew',
+            bgColor: "bg-red-50",
+            accentColor: "text-red-600"
         },
         {
             name: "Collatz Visualizer",
             period: "May 2024 - Jun 2024",
-            description: "Interactive website that provides visual representation of the Collatz conjecture through dynamic charts and graphs.",
-            technologies: ["JavaScript", "Data Visualization", "Web Development","React"],
+            shortDescription: "Interactive website providing visual representation of the Collatz conjecture through dynamic charts.",
+            fullDescription: "The Collatz Visualizer is an interactive web application that brings mathematical concepts to life through dynamic visualizations. This project demonstrates the famous Collatz conjecture using various chart types and interactive elements, making complex mathematical concepts accessible and engaging for users of all levels.",
+            achievements: [
+                "Implemented multiple visualization types for mathematical data",
+                "Enhanced user understanding through interactive elements and animations",
+                "Integrated advanced graphing features for complex mathematical sequences",
+                "Created responsive design for optimal viewing across devices",
+                "Optimized performance for handling large datasets"
+            ],
+            responsibilities: [
+                "Frontend Development: Built interactive user interface with React",
+                "Data Visualization: Implemented various chart types and animations",
+                "Algorithm Implementation: Coded Collatz conjecture calculations",
+                "UX Design: Created intuitive user experience for mathematical exploration"
+            ],
+            technologies: ["JavaScript", "React", "Data Visualization", "Web Development"],
             category: "Data Visualization",
-            link:'https://github.com/tharcissentirandekura/collatz',
-            image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=1000",
-            article: "https://medium.com/@tharcisse/visualizing-the-collatz-conjecture-345678",
-            highlights: [
-                "Implemented multiple visualization types",
-                "Enhanced user understanding through interactive elements",
-                "Integrated advanced graphing features",
-            ]
-        },
-        {
-          name:"Image Classifier: Machine Learning",
-          period:"November 2024",
-          description:"Fullstack website to classify objects in an Image using pretrained Machine Learning Model.",
-          technologies:["Rust Actix-web","Rust Yew","Tailwind css","Docker","Bash","Web Assembly"],
-          category: "Machine Learning",
-          link:'https://github.com/tharcissentirandekura/ML-yew',
-          image: "https://images.unsplash.com/photo-1620712943543-bcc4688e7485?q=80&w=1000",
-          article: "https://medium.com/@tharcisse/building-an-image-classifier-with-rust-and-webassembly-901234",
-          highlights:[
-            "Objective to complete a full project with Rust",
-            "Applying some Systems programming skills gained from class."
-          ]
-        },
-        {
-            name: "Smart Home Dashboard",
-            period: "March 2024",
-            description: "A centralized dashboard for managing smart home devices with real-time monitoring and control capabilities.",
-            technologies: ["React", "Node.js", "WebSocket", "IoT", "MongoDB"],
-            category: "Web Development",
-            link: 'https://github.com/tharcissentirandekura/smart-home-dashboard',
-            image: "https://images.unsplash.com/photo-1558002038-1055907df827?q=80&w=1000",
-            article: "https://medium.com/@tharcisse/building-a-smart-home-dashboard-567890",
-            highlights: [
-                "Real-time device monitoring and control",
-                "Customizable dashboard layouts",
-                "Integration with multiple IoT protocols"
-            ]
-        },
-        {
-            name: "AI Code Assistant",
-            period: "January 2024",
-            description: "An AI-powered code assistant that helps developers write better code through intelligent suggestions and automated refactoring.",
-            technologies: ["Python", "TensorFlow", "FastAPI", "React", "TypeScript"],
-            category: "Machine Learning",
-            link: 'https://github.com/tharcissentirandekura/ai-code-assistant',
-            image: "https://images.unsplash.com/photo-1587620962725-abab7fe55159?q=80&w=1000",
-            article: "https://medium.com/@tharcisse/building-an-ai-code-assistant-234567",
-            highlights: [
-                "Code suggestion and completion",
-                "Automated code refactoring",
-                "Integration with popular IDEs"
-            ]
+            link: 'https://github.com/tharcissentirandekura/collatz',
+            bgColor: "bg-green-50",
+            accentColor: "text-green-600"
         }
     ];
 
-    const projects = showAll ? allProjects : allProjects.slice(0, 4);
+    const openModal = (index: number) => {
+        setSelectedProject(index);
+        document.body.style.overflow = 'hidden';
+    };
 
-    const categories = ["All", ...new Set(allProjects.map(project => project.category))];
-    const [selectedCategory, setSelectedCategory] = useState("All");
-    const [searchQuery, setSearchQuery] = useState("");
-
-    const filteredProjects = projects.filter(project => {
-        const matchesCategory = selectedCategory === "All" || project.category === selectedCategory;
-        const matchesSearch = project.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-                            project.description.toLowerCase().includes(searchQuery.toLowerCase()) ||
-                            project.technologies.some(tech => tech.toLowerCase().includes(searchQuery.toLowerCase()));
-        return matchesCategory && matchesSearch;
-    });
+    const closeModal = () => {
+        setSelectedProject(null);
+        document.body.style.overflow = 'unset';
+    };
 
     return (
-        <section className="mb-12">
-            <h2 className="text-3xl font-bold mb-6">Featured Projects</h2>
-            
-            <div className="mb-6 flex flex-col md:flex-row gap-4">
-                <div className="flex flex-wrap gap-2">
-                    {categories.map((category) => (
-                        <button
-                            key={category}
-                            onClick={() => setSelectedCategory(category)}
-                            className={`px-4 py-2 rounded-full text-sm ${
-                                selectedCategory === category
-                                    ? 'bg-blue-500 text-white'
-                                    : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
-                            }`}
+        <ScrollAnimationWrapper direction="right" delay={0.2}>
+            <section className="mb-16 max-w-6xl mx-auto px-4">
+                <div className="text-center mb-12">
+                    <h2 className="text-4xl font-bold text-gray-900 mb-4">Featured Projects</h2>
+                    <p className="text-lg text-gray-600">
+                        A showcase of my technical projects and research work
+                    </p>
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    {projects.map((project, index) => (
+                        <motion.div
+                            key={index}
+                            className={`${project.bgColor} rounded-3xl p-8 cursor-pointer transition-all duration-300 hover:shadow-lg hover:-translate-y-1`}
+                            onClick={() => openModal(index)}
+                            whileHover={{ scale: 1.02 }}
+                            whileTap={{ scale: 0.98 }}
                         >
-                            {category}
-                        </button>
+                            <div className="flex items-center justify-between mb-6">
+                                <div className="w-16 h-16 bg-white rounded-2xl flex items-center justify-center shadow-sm">
+                                    <span className={`text-2xl font-bold ${project.accentColor}`}>
+                                        {project.name.charAt(0)}
+                                    </span>
+                                </div>
+                                <div className="flex items-center gap-2 text-gray-600">
+                                    <span className="text-sm font-medium">{project.period}</span>
+                                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                                    </svg>
+                                </div>
+                            </div>
+
+                            <h3 className="text-xl font-bold text-gray-900 mb-2">{project.name}</h3>
+                            <p className={`font-semibold mb-4 ${project.accentColor}`}>{project.category}</p>
+                            <p className="text-gray-700 leading-relaxed">{project.shortDescription}</p>
+                        </motion.div>
                     ))}
                 </div>
-                <input
-                    type="text"
-                    placeholder="Search projects..."
-                    value={searchQuery}
-                    onChange={(e) => setSearchQuery(e.target.value)}
-                    className="px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-                />
-            </div>
 
-            {loading ? (
-                <div className="flex justify-center items-center h-64">
-                    <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-500"></div>
-                </div>
-            ) : (
-                <>
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        {filteredProjects.map((project) => (
-                            <div 
-                                key={project.name} 
-                                className="bg-white rounded-lg shadow-sm cursor-pointer transition-all duration-300 hover:shadow-lg relative overflow-hidden h-64"
-                                onClick={() => {
-                                    setSelectedProject(project);
-                                    setIsModalOpen(true);
-                                }}
-                            >
-                                <div 
-                                    className="absolute inset-0 bg-cover bg-center"
-                                    style={{ backgroundImage: `url(${project.image})` }}
-                                />
-                                <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent" />
-                                <div className="relative z-10 p-6 h-full flex flex-col justify-end">
-                                    <h3 className="text-2xl font-bold text-white mb-2">
-                                        {project.name}
-                                        <a className="bg-green-200 text-red-800 px-3 py-1 rounded-full text-sm ml-2" href={project.link}>
-                                            Live here
-                                        </a>
-                                    </h3>
-                                    <p className="text-gray-300 text-sm mb-4">{project.period}</p>
-                                    <div>
-                                        <h4 className="font-medium mb-2 text-white">Technologies:</h4>
-                                        <div className="flex flex-wrap gap-2">
-                                            {project.technologies.map((tech) => (
-                                                <span key={tech} className="bg-gradient-to-r from-purple-500/30 to-blue-500/30 backdrop-blur-sm text-white px-3 py-1 rounded-full text-sm border border-white/20">
+                {/* Full Screen Modal */}
+                <AnimatePresence>
+                    {selectedProject !== null && (
+                        <motion.div
+                            className="fixed inset-0 bg-white z-50 overflow-y-auto"
+                            initial={{ x: "100%" }}
+                            animate={{ x: 0 }}
+                            exit={{ x: "100%" }}
+                            transition={{ type: "tween", duration: 0.3, ease: "easeInOut" }}
+                        >
+                            <div className="min-h-screen bg-white">
+                                {/* Glassmorphism Navigation Bar */}
+                                <div className="sticky top-0 z-10 p-4">
+                                    <div className="max-w-4xl mx-auto">
+                                        <div className="bg-white/10 backdrop-blur-xl border border-white/20 rounded-2xl shadow-2xl">
+                                            <div className="px-6 py-4">
+                                                <div className="flex items-center justify-between">
+                                                    <button
+                                                        onClick={closeModal}
+                                                        className="flex items-center gap-3 px-4 py-2 bg-white/10 hover:bg-white/20 backdrop-blur-sm border border-white/20 rounded-full transition-all duration-300 hover:scale-105 hover:shadow-lg"
+                                                    >
+                                                        <svg className="w-5 h-5 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                                                        </svg>
+                                                        <span className="font-medium text-gray-700">Back to Projects</span>
+                                                    </button>
+                                                    
+                                                    <div className="flex items-center gap-3">
+                                                        <div className="hidden sm:flex items-center gap-2 px-3 py-1 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full">
+                                                            <div className="w-2 h-2 bg-blue-400 rounded-full animate-pulse"></div>
+                                                            <span className="text-sm text-gray-600 font-medium">Project Details</span>
+                                                        </div>
+                                                        
+                                                        <button
+                                                            onClick={closeModal}
+                                                            className="p-3 bg-white/10 hover:bg-red-50 backdrop-blur-sm border border-white/20 rounded-full transition-all duration-300 hover:scale-110 hover:shadow-lg group"
+                                                        >
+                                                            <svg className="w-5 h-5 text-gray-600 group-hover:text-red-500 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                                                            </svg>
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                {/* Hero Section */}
+                                <div className={`${projects[selectedProject].bgColor} py-16`}>
+                                    <div className="max-w-6xl mx-auto px-6">
+                                        <div className="flex items-center gap-6 mb-8">
+                                            <div className="w-24 h-24 bg-white rounded-3xl flex items-center justify-center shadow-lg">
+                                                <span className={`text-4xl font-bold ${projects[selectedProject].accentColor}`}>
+                                                    {projects[selectedProject].name.charAt(0)}
+                                                </span>
+                                            </div>
+                                            <div>
+                                                <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-2">
+                                                    {projects[selectedProject].name}
+                                                </h1>
+                                                <p className={`text-2xl font-semibold ${projects[selectedProject].accentColor} mb-2`}>
+                                                    {projects[selectedProject].category}
+                                                </p>
+                                                <p className="text-lg text-gray-600">{projects[selectedProject].period}</p>
+                                            </div>
+                                        </div>
+                                        <p className="text-xl text-gray-700 leading-relaxed max-w-4xl">
+                                            {projects[selectedProject].fullDescription}
+                                        </p>
+                                    </div>
+                                </div>
+
+                                {/* Content Sections */}
+                                <div className="max-w-6xl mx-auto px-6 py-16">
+                                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                                        {/* Key Achievements */}
+                                        <div className="bg-white rounded-3xl p-8 shadow-sm border border-gray-100">
+                                            <h2 className="text-2xl font-bold text-gray-900 mb-6 flex items-center gap-3">
+                                                <div className={`w-8 h-8 ${projects[selectedProject].bgColor} rounded-lg flex items-center justify-center`}>
+                                                    <svg className={`w-5 h-5 ${projects[selectedProject].accentColor}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                                    </svg>
+                                                </div>
+                                                Key Achievements
+                                            </h2>
+                                            <ul className="space-y-4">
+                                                {projects[selectedProject].achievements.map((achievement, i) => (
+                                                    <li key={i} className="flex items-start gap-4">
+                                                        <span className={`mt-2 w-2 h-2 rounded-full ${projects[selectedProject].accentColor.replace('text-', 'bg-')} flex-shrink-0`}></span>
+                                                        <span className="text-gray-700 leading-relaxed">{achievement}</span>
+                                                    </li>
+                                                ))}
+                                            </ul>
+                                        </div>
+
+                                        {/* Responsibilities */}
+                                        <div className="bg-white rounded-3xl p-8 shadow-sm border border-gray-100">
+                                            <h2 className="text-2xl font-bold text-gray-900 mb-6 flex items-center gap-3">
+                                                <div className={`w-8 h-8 ${projects[selectedProject].bgColor} rounded-lg flex items-center justify-center`}>
+                                                    <svg className={`w-5 h-5 ${projects[selectedProject].accentColor}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
+                                                    </svg>
+                                                </div>
+                                                Responsibilities
+                                            </h2>
+                                            <ul className="space-y-4">
+                                                {projects[selectedProject].responsibilities.map((responsibility, i) => (
+                                                    <li key={i} className="flex items-start gap-4">
+                                                        <span className={`mt-2 w-2 h-2 rounded-full ${projects[selectedProject].accentColor.replace('text-', 'bg-')} flex-shrink-0`}></span>
+                                                        <span className="text-gray-700 leading-relaxed">{responsibility}</span>
+                                                    </li>
+                                                ))}
+                                            </ul>
+                                        </div>
+                                    </div>
+
+                                    {/* Technologies Section */}
+                                    <div className="mt-12 bg-white rounded-3xl p-8 shadow-sm border border-gray-100">
+                                        <h2 className="text-2xl font-bold text-gray-900 mb-6 flex items-center gap-3">
+                                            <div className={`w-8 h-8 ${projects[selectedProject].bgColor} rounded-lg flex items-center justify-center`}>
+                                                <svg className={`w-5 h-5 ${projects[selectedProject].accentColor}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
+                                                </svg>
+                                            </div>
+                                            Technologies & Tools
+                                        </h2>
+                                        <div className="flex flex-wrap gap-3">
+                                            {projects[selectedProject].technologies.map((tech, i) => (
+                                                <span
+                                                    key={i}
+                                                    className={`px-6 py-3 ${projects[selectedProject].bgColor} ${projects[selectedProject].accentColor} rounded-full text-sm font-medium border border-gray-200 hover:shadow-sm transition-shadow`}
+                                                >
                                                     {tech}
                                                 </span>
                                             ))}
                                         </div>
                                     </div>
+
+                                    {/* Project Link Section */}
+                                    <div className="mt-12 bg-white rounded-3xl p-8 shadow-sm border border-gray-100">
+                                        <h2 className="text-2xl font-bold text-gray-900 mb-6 flex items-center gap-3">
+                                            <div className={`w-8 h-8 ${projects[selectedProject].bgColor} rounded-lg flex items-center justify-center`}>
+                                                <svg className={`w-5 h-5 ${projects[selectedProject].accentColor}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                                                </svg>
+                                            </div>
+                                            View Project
+                                        </h2>
+                                        <a
+                                            href={projects[selectedProject].link}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            className={`inline-flex items-center gap-2 px-8 py-4 ${projects[selectedProject].accentColor.replace('text-', 'bg-')} text-white rounded-full font-medium hover:opacity-90 transition-opacity`}
+                                        >
+                                            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                                            </svg>
+                                            View on GitHub
+                                        </a>
+                                    </div>
                                 </div>
-                            </div>
-                        ))}
-                    </div>
 
-                    {!showAll && allProjects.length > 4 && (
-                        <div className="mt-8 flex justify-center">
-                            <button
-                                onClick={() => setShowAll(true)}
-                                className="px-6 py-3 bg-gradient-to-r from-blue-500 to-purple-500 text-white rounded-full hover:shadow-lg transition-all duration-300 flex items-center gap-2"
-                            >
-                                <span>Show More Projects</span>
-                                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                                    <path fillRule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clipRule="evenodd" />
-                                </svg>
-                            </button>
-                        </div>
-                    )}
-
-                    {isModalOpen && selectedProject && (
-                        <div className="fixed inset-0 bg-black bg-opacity-60 flex items-center justify-center p-4 z-50 overflow-y-auto">
-                            <div className="bg-white rounded-lg max-w-2xl w-full my-8 relative">
-                                <div 
-                                    className="w-full h-64 bg-cover bg-center rounded-t-lg"
-                                    style={{ backgroundImage: `url(${selectedProject.image})` }}
-                                />
-                                <div className="p-6">
-                                    <div className="flex justify-between items-center mb-4">
-                                        <div className="flex items-center gap-3">
-                                            <h3 className="text-2xl font-bold">{selectedProject.name}</h3>
-                                            {selectedProject.article && (
-                                                <a 
-                                                    href={selectedProject.article}
-                                                    target="_blank"
-                                                    rel="noopener noreferrer"
-                                                    className="inline-flex items-center gap-1 bg-gradient-to-r from-green-500 to-emerald-500 text-white px-3 py-1 rounded-full text-sm hover:shadow-md transition-shadow"
-                                                >
-                                                    <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z" />
-                                                    </svg>
-                                                    Read Article
-                                                </a>
-                                            )}
-                                        </div>
-                                        <button 
-                                            onClick={() => setIsModalOpen(false)}
-                                            className="text-gray-500 hover:text-gray-700">
-                                            <SlClose className='text-3xl text-red-500 font-bold'/>
+                                {/* Footer */}
+                                <div className="bg-gray-50 py-12">
+                                    <div className="max-w-6xl mx-auto px-6 text-center">
+                                        <button
+                                            onClick={closeModal}
+                                            className={`inline-flex items-center gap-2 px-8 py-4 ${projects[selectedProject].accentColor.replace('text-', 'bg-')} text-white rounded-full font-medium hover:opacity-90 transition-opacity`}
+                                        >
+                                            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                                            </svg>
+                                            Back to All Projects
                                         </button>
                                     </div>
-                                    <p className="text-gray-500 text-lg mb-4">{selectedProject.period}</p>
-                                    <p className="text-gray-700 mb-6 text-xl">{selectedProject.description}</p>
-                                    <div className="mb-6">
-                                        <h4 className="font-medium mb-2 text-xl">Technologies:</h4>
-                                        <div className="flex flex-wrap gap-2">
-                                            {selectedProject.technologies.map((tech:any) => (
-                                                <span key={tech} className="bg-gradient-to-r from-purple-500 to-blue-500 text-white px-3 py-1 rounded-full text-sm shadow-sm">
-                                                    {tech}
-                                                </span>
-                                            ))}
-                                        </div>
-                                    </div>
-                                    <div>
-                                        <h4 className="font-medium mb-2 text-xl">Highlights:</h4>
-                                        <ul className="list-disc list-inside">
-                                            {selectedProject.highlights.map((highlight:string, index:number) => (
-                                                <li key={index} className="text-gray-700 text-lg mb-2">{highlight}</li>
-                                            ))}
-                                        </ul>
-                                    </div>
                                 </div>
                             </div>
-                        </div>
+                        </motion.div>
                     )}
-                </>
-            )}
-        </section>
+                </AnimatePresence>
+            </section>
+        </ScrollAnimationWrapper>
     );
 };
 

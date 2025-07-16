@@ -1,53 +1,143 @@
-// import { useState } from "react";
-import {useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import { motion } from 'framer-motion';
+import ScrollAnimationWrapper from './ScrollAnimationWrapper';
 
 const About = () => {
-    // const [showMessage,setShowMessage] = useState(false);
     const navigate = useNavigate();
-    const handleClick = () =>{
+    const handleClick = () => {
         navigate('/activities');
-        
-        // setShowMessage(true);
-        // setTimeout(()=>{
-        //     setShowMessage(false);
-        // },3000); //display message for 3 seconds
     }
 
+    const personalStats = [
+        { label: "Years of Coding", value: "3+", icon: "💻" },
+        { label: "Projects Completed", value: "15+", icon: "🚀" },
+        { label: "Technologies Mastered", value: "10+", icon: "⚡" },
+        { label: "Communities Joined", value: "6+", icon: "🤝" }
+    ];
 
+    const interests = [
+        { name: "Full-Stack Development", icon: "🌐", color: "bg-blue-100 text-blue-700" },
+        { name: "Machine Learning", icon: "🤖", color: "bg-purple-100 text-purple-700" },
+        { name: "Systems Programming", icon: "⚙️", color: "bg-orange-100 text-orange-700" },
+        { name: "Data Analysis", icon: "📊", color: "bg-green-100 text-green-700" },
+        { name: "UI/UX Design", icon: "🎨", color: "bg-pink-100 text-pink-700" },
+        { name: "Open Source", icon: "🔓", color: "bg-indigo-100 text-indigo-700" }
+    ];
 
-  return (
-      <section className="mb-12">
-          <h2 className="text-4xl font-bold mb-6">About Me</h2>
-          <div className="bg-white rounded-lg shadow-sm p-6">
-              <p className="leading-relaxed text-xl text-slate-700 mb-8">
-                  I'm a Computer Science and Economics student at Oberlin College with a passion for building efficient,
-                   scalable software solutions. My experience spans web development, automation, and software optimization,
-                    with a strong foundation in both frontend and backend technologies. Currently working as a Student Software
-                     Developer at Oberlin College & Conservatory, I focus on modernizing applications and improving system performance.
-              </p>
+    return (
+        <ScrollAnimationWrapper direction="left" delay={0.2}>
+            <section className="mb-16 max-w-6xl mx-auto px-4">
+                <div className="text-center mb-12">
+                    <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">About Me</h2>
+                    <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+                        Passionate about creating innovative solutions through code and collaboration
+                    </p>
+                </div>
 
-              <div className='border-t pt-8 mt-8'>
-                  <h3 className='text-2xl font-semibold mb-4 text-slate-800'>Extracurricular Activities</h3>
-                  <p className='text-slate-600 mb-6 text-xl'>Discover how I engage beyond academics through leadership roles and community involvement.</p>
-                  {/* {showMessage && (
-                    <div className="fixed inset-0 bg-black bg-opacity-60 flex items-center justify-center p-4 z-50">
-                        <h1 className="bg-yellow-100 rounded-lg p-6 max-w-2xl w-50 max-h-[90vh] overflow-y-auto">This section is under progress. Coming soon.</h1>
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-16">
+                    {/* Personal Story */}
+                    <motion.div 
+                        className="space-y-6"
+                        initial={{ opacity: 0, x: -50 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ duration: 0.6, delay: 0.2 }}
+                    >
+                        <div className="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-3xl p-8 border border-blue-100">
+                            <h3 className="text-2xl font-bold text-gray-900 mb-4 flex items-center gap-3">
+                                <span className="text-3xl">👋</span>
+                                Hello, I'm Tharcisse!
+                            </h3>
+                            <p className="text-lg text-gray-700 leading-relaxed mb-6">
+                                I'm a Computer Science and Economics student at <span className="font-semibold text-blue-600">Oberlin College</span> with 
+                                a passion for building efficient, scalable software solutions. My journey in tech started with curiosity 
+                                and has evolved into a deep commitment to creating meaningful digital experiences.
+                            </p>
+                            <p className="text-lg text-gray-700 leading-relaxed">
+                                Currently working as a <span className="font-semibold text-indigo-600">Student Software Developer</span> at 
+                                Oberlin College & Conservatory, I focus on modernizing applications, improving system performance, 
+                                and bridging the gap between technical innovation and real-world impact.
+                            </p>
+                        </div>
+                    </motion.div>
+
+                    {/* Profile Image & Quick Stats */}
+                    <motion.div 
+                        className="space-y-6"
+                        initial={{ opacity: 0, x: 50 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ duration: 0.6, delay: 0.4 }}
+                    >
+                        <div className="bg-white rounded-3xl p-8 shadow-lg border border-gray-100">
+                            <div className="text-center mb-6">
+                                <div className="w-32 h-32 mx-auto bg-gradient-to-br from-blue-500 to-purple-600 rounded-full flex items-center justify-center text-white text-4xl font-bold shadow-lg mb-4">
+                                    TN
+                                </div>
+                                <h4 className="text-xl font-bold text-gray-900">Tharcisse Ntirandekura</h4>
+                                <p className="text-gray-600">CS & Economics Student</p>
+                            </div>
+                            
+                            <div className="grid grid-cols-2 gap-4">
+                                {personalStats.map((stat, index) => (
+                                    <div key={index} className="text-center p-3 bg-gray-50 rounded-xl">
+                                        <div className="text-2xl mb-1">{stat.icon}</div>
+                                        <div className="text-2xl font-bold text-gray-900">{stat.value}</div>
+                                        <div className="text-sm text-gray-600">{stat.label}</div>
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+                    </motion.div>
+                </div>
+
+                {/* Interests & Skills */}
+                <motion.div 
+                    className="mb-12"
+                    initial={{ opacity: 0, y: 50 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.6, delay: 0.6 }}
+                >
+                    <h3 className="text-2xl font-bold text-gray-900 mb-6 text-center">Areas of Interest</h3>
+                    <div className="flex flex-wrap justify-center gap-4">
+                        {interests.map((interest, index) => (
+                            <motion.div
+                                key={index}
+                                className={`px-6 py-3 rounded-full ${interest.color} font-medium flex items-center gap-2 hover:scale-105 transition-transform cursor-pointer`}
+                                whileHover={{ scale: 1.05 }}
+                                whileTap={{ scale: 0.95 }}
+                            >
+                                <span className="text-lg">{interest.icon}</span>
+                                {interest.name}
+                            </motion.div>
+                        ))}
                     </div>
+                </motion.div>
 
-                  )} */}
-                  <button 
-                    onClick={handleClick}
-                      className="inline-flex items-center px-6 py-3 bg-red-600 hover:bg-red-400 transition-colors text-white rounded-lg font-medium"
-                  >
-                    Learn more
-                      <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 ml-2" viewBox="0 0 20 20" fill="currentColor">
-                          <path fillRule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clipRule="evenodd" />
-                      </svg>
-                  </button>
-              </div>
-          </div>
-      </section>
-  );
+                {/* Call to Action */}
+                <motion.div 
+                    className="bg-gradient-to-r from-blue-500 to-purple-600 rounded-3xl p-8 text-center text-white"
+                    initial={{ opacity: 0, y: 50 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.6, delay: 0.8 }}
+                >
+                    <h3 className="text-2xl font-bold mb-4">Beyond the Code</h3>
+                    <p className="text-lg mb-6 opacity-90">
+                        Discover how I engage beyond academics through leadership roles, community involvement, 
+                        and initiatives that make a difference.
+                    </p>
+                    <button 
+                        onClick={handleClick}
+                        className="inline-flex items-center px-8 py-4 bg-white text-blue-600 rounded-full font-bold hover:bg-gray-100 transition-all duration-300 hover:scale-105 shadow-lg"
+                    >
+                        <span className="mr-2">🌟</span>
+                        Explore My Activities
+                        <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 ml-2" viewBox="0 0 20 20" fill="currentColor">
+                            <path fillRule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clipRule="evenodd" />
+                        </svg>
+                    </button>
+                </motion.div>
+            </section>
+        </ScrollAnimationWrapper>
+    );
 };
 
 export default About;
