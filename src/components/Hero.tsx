@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { motion, Variants, useAnimation } from 'framer-motion';
-import { TypeAnimation } from 'react-type-animation';
+// import { TypeAnimation } from 'react-type-animation';
 import { useInView } from 'react-intersection-observer';
 
 const Hero = () => {
@@ -216,23 +216,7 @@ const Hero = () => {
                     variants={itemVariants}
                     whileHover={{ scale: 1.02, transition: { duration: 0.2 } }}
                 >
-                    <TypeAnimation
-                        sequence={[
-                            'Sophomore Year',
-                            1000,
-                            'Problem Solver',
-                            1000,
-                            'Tech Enthusiast',
-                            1000,
-                            'Community Builder', 
-                            1000,
-                            'Lifelong Learner',
-                            1000,
-                        ]}
-                        wrapper="span"
-                        speed={50}
-                        repeat={Infinity}
-                    />
+
                 </motion.h2>
 
                 <motion.section 
