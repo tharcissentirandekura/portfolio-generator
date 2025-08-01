@@ -273,16 +273,16 @@ const Hero = () => {
                             </motion.a>
                             <motion.a
                                 href="/resume.pdf"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className={`w-full sm:w-auto backdrop-blur-md border-2 border-green-400/50 hover:border-green-300 hover:bg-green-500/20 text-green-200 hover:text-green-100 px-4 sm:px-6 md:px-8 py-3 sm:py-4 rounded-full text-sm sm:text-base font-bold transition-all duration-300 min-w-[120px] sm:min-w-[140px] flex items-center justify-center gap-2 ${
-                                    theme === 'dark' ? 'bg-green-500/5 hover:bg-green-400/15' : 'bg-green-500/10 hover:bg-green-400/20'
-                                }`}
-                                whileHover={{ scale: 1.05, y: -2 }}
-                                whileTap={{ scale: 0.95 }}
+                            //     target="_blank"
+                            //     rel="noopener noreferrer"
+                            //     className={`w-full sm:w-auto backdrop-blur-md border-2 border-green-400/50 hover:border-green-300 hover:bg-green-500/20 text-green-200 hover:text-green-100 px-4 sm:px-6 md:px-8 py-3 sm:py-4 rounded-full text-sm sm:text-base font-bold transition-all duration-300 min-w-[120px] sm:min-w-[140px] flex items-center justify-center gap-2 ${
+                            //         theme === 'dark' ? 'bg-green-500/5 hover:bg-green-400/15' : 'bg-green-500/10 hover:bg-green-400/20'
+                            //     }`}
+                            //     whileHover={{ scale: 1.05, y: -2 }}
+                            //     whileTap={{ scale: 0.95 }}
                             >
-                                📄
-                                <span className="hidden xs:inline sm:inline">Resume</span>
+                            {/* //     📄 */}
+                            {/* //     <span className="hidden xs:inline sm:inline">Resume</span> */}
                             </motion.a>
                         </div>
                     </motion.section>
