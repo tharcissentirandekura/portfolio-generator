@@ -1,4 +1,3 @@
-import Hero from '../components/Hero';
 import About from '../components/About';
 import Skills from '../components/Skills';
 import Experience from '../components/Experience';
@@ -8,43 +7,92 @@ import Education from '../components/Education';
 import Community from '../components/Communities';
 import Contact from '../components/Contact';
 import Footer from '../components/Footer';
+import Hero from '../components/Hero';
+import SectionWrapper from '../components/SectionWrapper';
 
 /**
- * 
- * @returns The main layout of the application that wraps
- *  the entire application with the Hero, About, Skills, Experience,
- *  Projects, Education, Contact, and Footer components.
+ * Main layout component that organizes all sections of the portfolio
+ * @returns The complete portfolio layout with all sections
  */
 const MainLayout = () => {
+  const sections = [
+    { 
+      id: 'home', 
+      component: <Hero />, 
+      background: 'transparent' as const,
+      padding: 'none' as const,
+      animate: false,
+      fullWidth: true
+    },
+    { 
+      id: 'about', 
+      component: <About />, 
+      background: 'light' as const,
+      padding: 'lg' as const 
+    },
+    { 
+      id: 'skills', 
+      component: <Skills />, 
+      background: 'light' as const,
+      padding: 'lg' as const 
+    },
+    { 
+      id: 'experience', 
+      component: <Experience />, 
+      background: 'light' as const,
+      padding: 'lg' as const 
+    },
+    { 
+      id: 'certifications', 
+      component: <Certifications />, 
+      background: 'dark' as const,
+      padding: 'lg' as const 
+    },
+    { 
+      id: 'projects', 
+      component: <Projects />, 
+      background: 'light' as const,
+      padding: 'lg' as const 
+    },
+    { 
+      id: 'education', 
+      component: <Education />, 
+      background: 'dark' as const,
+      padding: 'lg' as const 
+    },
+    { 
+      id: 'community', 
+      component: <Community />, 
+      background: 'light' as const,
+      padding: 'lg' as const 
+    },
+    { 
+      id: 'contact', 
+      component: <Contact />, 
+      background: 'gradient' as const,
+      padding: 'xl' as const 
+    },
+  ];
+
   return (
     <>
-      <div id="home">
-        <Hero />
-      </div>
-      <div id="about" className="container mx-auto px-4 py-12">
-        <About />
-      </div>
-      <div id="skills" className="container mx-auto px-4 py-12">
-        <Skills />
-      </div>
-      <div id="experience" className="container mx-auto px-4 py-12">
-        <Experience />
-      </div>
-      <div id="certifications" className="container mx-auto px-4 py-12">
-        <Certifications />
-      </div>
-      <div id="projects" className="container mx-auto px-4 py-12">
-        <Projects />
-      </div>
-      <div id="education" className="container mx-auto px-4 py-12">
-        <Education />
-      </div>
-      <div id="community" className="container mx-auto px-4 py-12">
-        <Community />
-      </div>
-      <div id="contact" className="container mx-auto px-4 py-12">
-        <Contact />
-      </div>
+      {sections.map((section) => (
+        section.id === 'home' ? (
+          <div key={section.id} id={section.id} className="w-full">
+            {section.component}
+          </div>
+        ) : (
+          <SectionWrapper
+            key={section.id}
+            id={section.id}
+            background={section.background}
+            padding={section.padding}
+            animate={section.animate !== false}
+          >
+            {section.component}
+          </SectionWrapper>
+        )
+      ))}
       <Footer />
     </>
   );

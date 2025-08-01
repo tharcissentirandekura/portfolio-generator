@@ -89,18 +89,18 @@ const Contact = () => {
 
     return (
         <ScrollAnimationWrapper direction="up" delay={0.2}>
-            <section className="mb-16 max-w-6xl mx-auto px-4">
-                <div className="text-center mb-12">
-                    <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">Let's Connect</h2>
-                    <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-                        I'm always excited to discuss new opportunities, collaborate on projects, 
+            <section className="mb-8 sm:mb-12 lg:mb-16">
+                <div className="text-center mb-8 sm:mb-12 px-2">
+                    <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 dark:text-white mb-4">Let's Connect</h2>
+                    <p className="text-base sm:text-lg md:text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto px-2">
+                        I'm always excited to discuss new opportunities, collaborate on projects,
                         or simply chat about technology and innovation. Reach out through any of these channels!
                     </p>
                 </div>
 
                 {/* Contact Cards */}
-                <motion.div 
-                    className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12"
+                <motion.div
+                    className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 mb-8 sm:mb-12"
                     variants={containerVariants}
                     initial="hidden"
                     animate="visible"
@@ -111,18 +111,18 @@ const Contact = () => {
                             href={contact.href}
                             target={contact.href.startsWith('http') ? '_blank' : undefined}
                             rel={contact.href.startsWith('http') ? 'noopener noreferrer' : undefined}
-                            className={`${contact.bgColor} rounded-3xl p-6 hover:shadow-lg transition-all duration-300 group cursor-pointer border border-gray-100`}
+                            className={`${contact.bgColor} dark:bg-gray-800 rounded-2xl sm:rounded-3xl p-4 sm:p-6 hover:shadow-lg transition-all duration-300 group cursor-pointer border border-gray-100 dark:border-gray-700`}
                             variants={itemVariants}
                             whileHover={{ scale: 1.05, y: -5 }}
                             whileTap={{ scale: 0.95 }}
                         >
                             <div className="flex items-center gap-4 mb-4">
-                                <div className={`w-16 h-16 ${contact.color} ${contact.hoverColor} rounded-2xl flex items-center justify-center text-white text-2xl transition-colors group-hover:scale-110 transform duration-300`}>
+                                <div className={`w-12 h-12 sm:w-16 sm:h-16 ${contact.color} ${contact.hoverColor} rounded-xl sm:rounded-2xl flex items-center justify-center text-white text-xl sm:text-2xl transition-colors group-hover:scale-110 transform duration-300`}>
                                     {contact.icon}
                                 </div>
                                 <div>
-                                    <h3 className="text-xl font-bold text-gray-900">{contact.name}</h3>
-                                    <p className="text-gray-600">{contact.description}</p>
+                                    <h3 className="text-lg sm:text-xl font-bold text-gray-900 dark:text-white">{contact.name}</h3>
+                                    <p className="text-sm sm:text-base text-gray-600 dark:text-gray-300">{contact.description}</p>
                                 </div>
                             </div>
                             <div className="flex items-center justify-between">
@@ -135,33 +135,8 @@ const Contact = () => {
                     ))}
                 </motion.div>
 
-                {/* Quick Contact Info */}
-                <motion.div 
-                    className="bg-gradient-to-r from-blue-500 to-purple-600 rounded-3xl p-8 text-center text-white"
-                    initial={{ opacity: 0, y: 50 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.6, delay: 0.8 }}
-                >
-                    <h3 className="text-2xl font-bold mb-4">Quick Contact</h3>
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-2xl mx-auto">
-                        <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-4">
-                            <div className="text-2xl mb-2">📧</div>
-                            <div className="font-semibold">Email</div>
-                            <div className="text-sm opacity-90">tharcissentira@gmail.com</div>
-                        </div>
-                        <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-4">
-                            <div className="text-2xl mb-2">📱</div>
-                            <div className="font-semibold">Phone</div>
-                            <div className="text-sm opacity-90">+1 (440) 506-5881</div>
-                        </div>
-                    </div>
-                    <p className="mt-6 opacity-90">
-                        Available for freelance projects, internships, and full-time opportunities
-                    </p>
-                </motion.div>
-
                 {/* Response Time */}
-                <motion.div 
+                <motion.div
                     className="mt-8 text-center"
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}

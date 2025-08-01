@@ -132,10 +132,10 @@ const Certifications = () => {
 
     return (
         <ScrollAnimationWrapper direction="right" delay={0.2}>
-            <section className="mb-16 max-w-6xl mx-auto px-4">
+            <section className="mb-8 sm:mb-12 lg:mb-16">
                 <div className="text-center mb-12">
-                    <h2 className="text-4xl font-bold text-gray-900 mb-4">Professional Certifications</h2>
-                    <p className="text-lg text-gray-600">
+                    <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">Professional Certifications</h2>
+                    <p className="text-base sm:text-lg text-gray-600 dark:text-gray-300">
                         Industry simulations and certifications from leading global companies
                     </p>
                 </div>
@@ -151,9 +151,26 @@ const Certifications = () => {
                         >
                             <div className="flex items-center justify-between mb-6">
                                 <div className="w-16 h-16 bg-white rounded-2xl flex items-center justify-center shadow-sm">
-                                    <span className={`text-xl font-bold ${cert.accentColor}`}>
-                                        {cert.logo}
-                                    </span>
+                                    {cert.logo === 'BCG' && (
+                                        <div className="w-12 h-12 bg-gradient-to-br from-blue-600 to-blue-800 rounded-lg flex items-center justify-center">
+                                            <span className="text-white font-bold text-sm">BCG</span>
+                                        </div>
+                                    )}
+                                    {cert.logo === 'AWS' && (
+                                        <div className="w-12 h-12 bg-gradient-to-br from-orange-400 to-orange-600 rounded-lg flex items-center justify-center">
+                                            <span className="text-white font-bold text-sm">AWS</span>
+                                        </div>
+                                    )}
+                                    {cert.logo === 'GS' && (
+                                        <div className="w-12 h-12 bg-gradient-to-br from-blue-900 to-blue-700 rounded-lg flex items-center justify-center">
+                                            <span className="text-white font-bold text-sm">GS</span>
+                                        </div>
+                                    )}
+                                    {cert.logo === 'BOA' && (
+                                        <div className="w-12 h-12 bg-gradient-to-br from-red-600 to-red-800 rounded-lg flex items-center justify-center">
+                                            <span className="text-white font-bold text-xs">BOA</span>
+                                        </div>
+                                    )}
                                 </div>
                                 <div className="flex items-center gap-2 text-gray-600">
                                     <span className="text-sm font-medium">{cert.period}</span>
@@ -163,10 +180,10 @@ const Certifications = () => {
                                 </div>
                             </div>
 
-                            <h3 className="text-xl font-bold text-gray-900 mb-2">{cert.title}</h3>
+                            <h3 className="text-lg sm:text-xl font-bold text-gray-900 dark:text-white mb-2">{cert.title}</h3>
                             <p className={`font-semibold mb-1 ${cert.accentColor}`}>{cert.company}</p>
-                            <p className="text-sm text-gray-600 mb-4">via {cert.platform}</p>
-                            <p className="text-gray-700 leading-relaxed">{cert.shortDescription}</p>
+                            <p className="text-sm text-gray-600 dark:text-gray-400 mb-4">via {cert.platform}</p>
+                            <p className="text-gray-700 dark:text-gray-300 leading-relaxed">{cert.shortDescription}</p>
                         </motion.div>
                     ))}
                 </div>
@@ -224,9 +241,26 @@ const Certifications = () => {
                                     <div className="max-w-6xl mx-auto px-6">
                                         <div className="flex items-center gap-6 mb-8">
                                             <div className="w-24 h-24 bg-white rounded-3xl flex items-center justify-center shadow-lg">
-                                                <span className={`text-3xl font-bold ${certifications[selectedCertification].accentColor}`}>
-                                                    {certifications[selectedCertification].logo}
-                                                </span>
+                                                {certifications[selectedCertification].logo === 'BCG' && (
+                                                    <div className="w-16 h-16 bg-gradient-to-br from-blue-600 to-blue-800 rounded-2xl flex items-center justify-center">
+                                                        <span className="text-white font-bold text-lg">BCG</span>
+                                                    </div>
+                                                )}
+                                                {certifications[selectedCertification].logo === 'AWS' && (
+                                                    <div className="w-16 h-16 bg-gradient-to-br from-orange-400 to-orange-600 rounded-2xl flex items-center justify-center">
+                                                        <span className="text-white font-bold text-lg">AWS</span>
+                                                    </div>
+                                                )}
+                                                {certifications[selectedCertification].logo === 'GS' && (
+                                                    <div className="w-16 h-16 bg-gradient-to-br from-blue-900 to-blue-700 rounded-2xl flex items-center justify-center">
+                                                        <span className="text-white font-bold text-lg">GS</span>
+                                                    </div>
+                                                )}
+                                                {certifications[selectedCertification].logo === 'BOA' && (
+                                                    <div className="w-16 h-16 bg-gradient-to-br from-red-600 to-red-800 rounded-2xl flex items-center justify-center">
+                                                        <span className="text-white font-bold text-sm">BOA</span>
+                                                    </div>
+                                                )}
                                             </div>
                                             <div>
                                                 <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-2">

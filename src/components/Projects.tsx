@@ -1,11 +1,12 @@
-import { useState } from 'react';
+import { useState, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import ScrollAnimationWrapper from './ScrollAnimationWrapper';
 
 const Projects = () => {
     const [selectedProject, setSelectedProject] = useState<number | null>(null);
+    const [searchTerm, setSearchTerm] = useState("");
 
-    const projects = [
+    const projects = useMemo(() => [
         {
             name: "Epreuves.com",
             period: "Jul 2024 - Oct 2024",
@@ -28,7 +29,8 @@ const Projects = () => {
             category: "Web Development",
             link: 'https://github.com/tharcissentirandekura/epreuve-archive',
             bgColor: "bg-purple-50",
-            accentColor: "text-purple-600"
+            accentColor: "text-purple-600",
+            bgImage: "bg-tech-image"
         },
         {
             name: "LED Matrices Research",
@@ -52,7 +54,8 @@ const Projects = () => {
             category: "Hardware Research",
             link: 'https://www.oberlin.edu/undergraduate-research/student-projects/478980',
             bgColor: "bg-orange-50",
-            accentColor: "text-orange-600"
+            accentColor: "text-orange-600",
+            bgImage: "bg-work-image"
         },
         {
             name: "Image Classifier: Machine Learning",
@@ -76,7 +79,8 @@ const Projects = () => {
             category: "Machine Learning",
             link: 'https://github.com/tharcissentirandekura/ML-yew',
             bgColor: "bg-red-50",
-            accentColor: "text-red-600"
+            accentColor: "text-red-600",
+            bgImage: "bg-rust-image"
         },
         {
             name: "Collatz Visualizer",
@@ -100,9 +104,24 @@ const Projects = () => {
             category: "Data Visualization",
             link: 'https://github.com/tharcissentirandekura/collatz',
             bgColor: "bg-green-50",
-            accentColor: "text-green-600"
+            accentColor: "text-green-600",
+            bgImage: "bg-custom-image"
         }
-    ];
+    ], []);
+
+    // Filter projects based on search term only
+    const filteredProjects = useMemo(() => {
+        if (!searchTerm) return projects;
+        
+        return projects.filter(project => {
+            const matchesSearch = project.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                                project.shortDescription.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                                project.fullDescription.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                                project.technologies.some(tech => tech.toLowerCase().includes(searchTerm.toLowerCase()));
+            
+            return matchesSearch;
+        });
+    }, [projects, searchTerm]);
 
     const openModal = (index: number) => {
         setSelectedProject(index);
@@ -116,40 +135,86 @@ const Projects = () => {
 
     return (
         <ScrollAnimationWrapper direction="right" delay={0.2}>
-            <section className="mb-16 max-w-6xl mx-auto px-4">
+            <section className="mb-8 sm:mb-12 lg:mb-16">
                 <div className="text-center mb-8 sm:mb-12">
-                    <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 mb-3 sm:mb-4">Featured Projects</h2>
-                    <p className="text-base sm:text-lg text-gray-600 px-4">
+                    <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-3 sm:mb-4">Featured Projects</h2>
+                    <p className="text-base sm:text-lg text-gray-600 dark:text-gray-300 px-4 mb-6">
                         A showcase of my technical projects and research work
+                    </p>
+                    <p className="text-sm text-gray-500 dark:text-gray-400">
+                        Showing {filteredProjects.length} of {projects.length} projects
                     </p>
                 </div>
 
+                {/* Search Bar */}
+                <div className="mb-8">
+                    <div className="flex justify-center">
+                        <div className="relative w-full max-w-md">
+                            <input
+                                type="text"
+                                placeholder="Search projects..."
+                                value={searchTerm}
+                                onChange={(e) => setSearchTerm(e.target.value)}
+                                className="w-full px-4 py-3 pl-10 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 rounded-xl text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent shadow-sm transition-colors duration-200"
+                            />
+                            <div className="absolute inset-y-0 left-0 flex items-center pl-3">
+                                <svg className="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                {/* No Results Message */}
+                {filteredProjects.length === 0 && (
+                    <div className="text-center py-12">
+                        <div className="w-16 h-16 mx-auto mb-4 bg-gray-100 rounded-full flex items-center justify-center">
+                            <svg className="w-8 h-8 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.172 16.172a4 4 0 015.656 0M9 12h6m-6-4h6m2 5.291A7.962 7.962 0 0112 15c-2.34 0-4.47.881-6.08 2.33" />
+                            </svg>
+                        </div>
+                        <h3 className="text-lg font-medium text-gray-900 mb-2">No projects found</h3>
+                        <p className="text-gray-500 mb-4">Try adjusting your search criteria</p>
+                        <button
+                            onClick={() => setSearchTerm("")}
+                            className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors duration-200"
+                        >
+                            Clear Search
+                        </button>
+                    </div>
+                )}
+
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
-                    {projects.map((project, index) => (
+                    {filteredProjects.map((project, index) => (
                         <motion.div
                             key={index}
-                            className={`${project.bgColor} rounded-2xl sm:rounded-3xl p-4 sm:p-6 md:p-8 cursor-pointer transition-all duration-300 hover:shadow-lg hover:-translate-y-1`}
-                            onClick={() => openModal(index)}
+                            className={`relative ${project.bgImage} bg-cover bg-center rounded-2xl sm:rounded-3xl p-4 sm:p-6 md:p-8 cursor-pointer transition-all duration-300 hover:shadow-lg hover:-translate-y-1 overflow-hidden`}
+                            onClick={() => openModal(projects.findIndex(p => p.name === project.name))}
                             whileHover={{ scale: 1.02 }}
                             whileTap={{ scale: 0.98 }}
                         >
-                            <div className="flex items-center justify-between mb-4 sm:mb-6">
-                                <div className="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 bg-white rounded-xl sm:rounded-2xl flex items-center justify-center shadow-sm">
-                                    <span className={`text-lg sm:text-xl md:text-2xl font-bold ${project.accentColor}`}>
-                                        {project.name.charAt(0)}
-                                    </span>
+                            {/* Overlay for better text readability */}
+                            <div className="absolute inset-0 bg-black/40 dark:bg-black/60 rounded-2xl sm:rounded-3xl"></div>
+                            <div className="relative z-10">
+                                <div className="flex items-center justify-between mb-4 sm:mb-6">
+                                    <div className="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 bg-white/90 backdrop-blur-sm rounded-xl sm:rounded-2xl flex items-center justify-center shadow-sm">
+                                        <span className={`text-lg sm:text-xl md:text-2xl font-bold ${project.accentColor}`}>
+                                            {project.name.charAt(0)}
+                                        </span>
+                                    </div>
+                                    <div className="flex items-center gap-1 sm:gap-2 text-white/90">
+                                        <span className="text-xs sm:text-sm font-medium">{project.period}</span>
+                                        <svg className="w-4 h-4 sm:w-5 sm:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                                        </svg>
+                                    </div>
                                 </div>
-                                <div className="flex items-center gap-1 sm:gap-2 text-gray-600">
-                                    <span className="text-xs sm:text-sm font-medium">{project.period}</span>
-                                    <svg className="w-4 h-4 sm:w-5 sm:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                                    </svg>
-                                </div>
-                            </div>
 
-                            <h3 className="text-lg sm:text-xl font-bold text-gray-900 mb-2 leading-tight">{project.name}</h3>
-                            <p className={`font-semibold mb-3 sm:mb-4 ${project.accentColor} text-sm sm:text-base`}>{project.category}</p>
-                            <p className="text-gray-700 leading-relaxed text-sm sm:text-base">{project.shortDescription}</p>
+                                <h3 className="text-lg sm:text-xl font-bold text-white mb-2 leading-tight">{project.name}</h3>
+                                <p className="font-semibold mb-3 sm:mb-4 text-blue-300 text-sm sm:text-base">{project.category}</p>
+                                <p className="text-white/90 leading-relaxed text-sm sm:text-base">{project.shortDescription}</p>
+                            </div>
                         </motion.div>
                     ))}
                 </div>
@@ -180,13 +245,13 @@ const Projects = () => {
                                                         </svg>
                                                         <span className="font-medium text-gray-700">Back to Projects</span>
                                                     </button>
-                                                    
+
                                                     <div className="flex items-center gap-3">
                                                         <div className="hidden sm:flex items-center gap-2 px-3 py-1 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full">
                                                             <div className="w-2 h-2 bg-blue-400 rounded-full animate-pulse"></div>
                                                             <span className="text-sm text-gray-600 font-medium">Project Details</span>
                                                         </div>
-                                                        
+
                                                         <button
                                                             onClick={closeModal}
                                                             className="p-3 bg-white/10 hover:bg-red-50 backdrop-blur-sm border border-white/20 rounded-full transition-all duration-300 hover:scale-110 hover:shadow-lg group"

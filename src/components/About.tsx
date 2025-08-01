@@ -1,27 +1,29 @@
 import { useNavigate } from "react-router-dom";
 import { motion } from 'framer-motion';
 import ScrollAnimationWrapper from './ScrollAnimationWrapper';
+import image from "../assets/me.png";
 
 const About = () => {
     const navigate = useNavigate();
+
     const handleClick = () => {
         navigate('/activities');
     }
 
     const personalStats = [
-        { label: "Years of Coding", value: "3+", icon: "💻" },
-        { label: "Projects Completed", value: "15+", icon: "🚀" },
-        { label: "Technologies Mastered", value: "10+", icon: "⚡" },
-        { label: "Communities Joined", value: "6+", icon: "🤝" }
+        { label: "Years of Coding", value: "3+", icon: "" },
+        { label: "Projects Completed", value: "15+", icon: "" },
+        { label: "Technologies Mastered", value: "10+", icon: "" },
+        { label: "Communities Joined", value: "6+", icon: "" }
     ];
 
     const interests = [
-        { name: "Full-Stack Development", icon: "🌐", color: "bg-blue-100 text-blue-700" },
-        { name: "Machine Learning", icon: "🤖", color: "bg-purple-100 text-purple-700" },
-        { name: "Systems Programming", icon: "⚙️", color: "bg-orange-100 text-orange-700" },
-        { name: "Data Analysis", icon: "📊", color: "bg-green-100 text-green-700" },
-        { name: "UI/UX Design", icon: "🎨", color: "bg-pink-100 text-pink-700" },
-        { name: "Open Source", icon: "🔓", color: "bg-indigo-100 text-indigo-700" }
+        { name: "Full-Stack Development", icon: "", color: "bg-blue-100 text-blue-700" },
+        { name: "Machine Learning", icon: "", color: "bg-purple-100 text-purple-700" },
+        { name: "Systems Programming", icon: "", color: "bg-orange-100 text-orange-700" },
+        { name: "Data Analysis", icon: "", color: "bg-green-100 text-green-700" },
+        { name: "UI/UX Design", icon: "", color: "bg-pink-100 text-pink-700" },
+        { name: "Open Source", icon: "", color: "bg-indigo-100 text-indigo-700" }
     ];
 
     return (
@@ -44,7 +46,7 @@ const About = () => {
                     >
                         <div className="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-3xl p-6 md:p-8 border border-blue-100">
                             <h3 className="text-2xl font-bold text-gray-900 mb-4 flex items-center gap-3">
-                                <span className="text-3xl">👋</span>
+                                <span className="text-3xl"></span>
                                 Hello, I'm Tharcisse!
                             </h3>
                             <p className="text-lg text-gray-700 leading-relaxed mb-6">
@@ -70,7 +72,7 @@ const About = () => {
                         <div className="bg-white rounded-3xl p-6 md:p-8 shadow-lg border border-gray-100">
                             <div className="text-center mb-6">
                                 <div className="w-24 h-24 sm:w-28 sm:h-28 md:w-32 md:h-32 mx-auto bg-gradient-to-br from-blue-500 to-purple-600 rounded-full flex items-center justify-center text-white text-2xl sm:text-3xl md:text-4xl font-bold shadow-lg mb-4">
-                                    TN
+                                    <img src={image} alt="Tharcisse Ntirandekura" className="w-full h-full object-cover rounded-full" />
                                 </div>
                                 <h4 className="text-lg sm:text-xl font-bold text-gray-900">Tharcisse Ntirandekura</h4>
                                 <p className="text-sm sm:text-base text-gray-600">CS & Economics Student</p>
@@ -115,13 +117,13 @@ const About = () => {
 
                 {/* Call to Action */}
                 <motion.div 
-                    className="bg-gradient-to-r from-blue-500 to-purple-600 rounded-3xl p-6 sm:p-8 text-center text-white"
+                    className="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-3xl p-6 sm:p-8 text-center text-gray-900"
                     initial={{ opacity: 0, y: 50 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.6, delay: 0.8 }}
                 >
                     <h3 className="text-xl sm:text-2xl font-bold mb-3 sm:mb-4">Beyond the Code</h3>
-                    <p className="text-base sm:text-lg mb-4 sm:mb-6 opacity-90 px-2">
+                    <p className="text-base sm:text-lg mb-4 sm:mb-6 opacity-100 px-2">
                         Discover how I engage beyond academics through leadership roles, community involvement, 
                         and initiatives that make a difference.
                     </p>
@@ -129,7 +131,7 @@ const About = () => {
                         onClick={handleClick}
                         className="inline-flex items-center px-6 sm:px-8 py-3 sm:py-4 bg-white text-blue-600 rounded-full font-bold hover:bg-gray-100 transition-all duration-300 hover:scale-105 shadow-lg text-sm sm:text-base"
                     >
-                        <span className="mr-2">🌟</span>
+                        <span className="mr-2"></span>
                         <span className="hidden xs:inline">Explore My Activities</span>
                         <span className="xs:hidden">My Activities</span>
                         <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 sm:h-5 sm:w-5 ml-2" viewBox="0 0 20 20" fill="currentColor">

@@ -1,12 +1,15 @@
 import { useState, useEffect } from 'react';
 import { motion, Variants, useAnimation } from 'framer-motion';
-// import { TypeAnimation } from 'react-type-animation';
 import { useInView } from 'react-intersection-observer';
+import { useTheme } from '../context/ThemeContext';
 
 const Hero = () => {
+    const { theme } = useTheme();
     const backgrounds = [
-        'relative bg-custom-image bg-cover bg-center text-white rounded-lg',
-        'relative bg-work-image bg-cover bg-center text-white rounded-lg'
+        'bg-custom-image',
+        'bg-work-image',
+        'bg-tech-image',
+        'bg-rust-image'
     ];
 
     const [currentBackground, setCurrentBackground] = useState(0);
@@ -29,6 +32,9 @@ const Hero = () => {
         }, 7000);
 
         const handleMouseMove = (e: MouseEvent) => {
+            // Disable mouse effects on mobile devices
+            if (window.innerWidth < 768) return;
+
             setMousePosition({
                 x: (e.clientX / window.innerWidth - 0.5) * 15, // Reduced intensity for smoother effect
                 y: (e.clientY / window.innerHeight - 0.5) * 15
@@ -117,154 +123,194 @@ const Hero = () => {
         };
     };
 
-    // Generate 40 particles with random properties for more visual interest
-    const particles = Array.from({ length: 40 }, () => generateParticle());
+    // Generate particles for visual effect
+    const particles = Array.from({ length: 30 }, () => generateParticle());
 
     return (
-        <motion.div 
-            ref={ref}
-            className={backgrounds[currentBackground]}
-            initial={{ scale: 1.05 }}
-            animate={{ scale: 1 }}
-            transition={{ duration: 1.5, ease: "easeOut" }}
-            style={{
-                transform: `perspective(1200px) rotateX(${mousePosition.y}deg) rotateY(${mousePosition.x}deg)`,
-                position: 'relative',
-                overflow: 'hidden',
-                backgroundSize: 'cover',
-                backgroundPosition: 'center',
-                width: '100%',
-                minHeight: '90vh', // Ensure minimum height for better display
-                            }}
-                        >
-            {/* Animated Gradient Overlay with enhanced colors */}
-            <motion.div 
-                className="absolute inset-0 bg-gradient-to-r from-blue-600/20 to-purple-600/20 rounded-lg"
-                animate={{
-                    background: [
-                        'linear-gradient(45deg, rgba(37, 99, 235, 0.25), rgba(168, 85, 247, 0.25))',
-                        'linear-gradient(45deg, rgba(168, 85, 247, 0.25), rgba(59, 130, 246, 0.25))',
-                        'linear-gradient(45deg, rgba(59, 130, 246, 0.25), rgba(236, 72, 153, 0.25))',
-                    ]
+        <div className="relative w-full min-h-screen overflow-hidden">
+            {/* Full Width Background Container */}
+            <motion.div
+                ref={ref}
+                className="absolute inset-0 w-full h-full"
+                initial={{ scale: 1.02 }}
+                animate={{ scale: 1 }}
+                transition={{ duration: 2, ease: "easeOut" }}
+                style={{
+                    transform: window.innerWidth >= 768 ? `perspective(1000px) rotateX(${mousePosition.y * 0.5}deg) rotateY(${mousePosition.x * 0.5}deg)` : 'none',
                 }}
-                transition={{
-                    duration: 8,
-                    repeat: Infinity,
-                    repeatType: "reverse"
-                }}
-            />
+            >
+                {/* Background Image - Full Width */}
+                <div 
+                    className={`absolute inset-0 w-full h-full ${backgrounds[currentBackground]} hero-bg transition-all duration-1000`}
+                />
 
-            {/* Animated Overlay with better opacity */}
-            <motion.div 
-                className="absolute inset-0 bg-black opacity-60 rounded-lg"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 0.6 }}
-                transition={{ duration: 1 }}
-            />
-            
-            {/* Enhanced Floating Particles */}
-            {particles.map((particle, i) => (
+                {/* Animated Gradient Overlay - Improved for dark mode */}
                 <motion.div
-                    key={i}
-                    className="absolute rounded-full"
-                    style={{
-                        width: `${particle.size}px`,
-                        height: `${particle.size}px`,
-                        backgroundColor: particle.color,
-                        left: `${particle.x}%`,
-                        top: `${particle.y}%`,
-                        filter: `blur(${particle.blur}px)`,
-                        boxShadow: `0 0 8px ${particle.color}`,
-                        }}
-                    variants={particleVariants}
-                    initial="initial"
-                    animate="animate"
+                    className="absolute inset-0"
+                    animate={{
+                        background: theme === 'dark' ? [
+                            'linear-gradient(135deg, rgba(15, 23, 42, 0.8), rgba(30, 41, 59, 0.6), rgba(51, 65, 85, 0.8))',
+                            'linear-gradient(135deg, rgba(30, 41, 59, 0.8), rgba(51, 65, 85, 0.6), rgba(71, 85, 105, 0.8))',
+                            'linear-gradient(135deg, rgba(51, 65, 85, 0.8), rgba(71, 85, 105, 0.6), rgba(15, 23, 42, 0.8))',
+                        ] : [
+                            'linear-gradient(135deg, rgba(59, 130, 246, 0.3), rgba(147, 51, 234, 0.2), rgba(236, 72, 153, 0.3))',
+                            'linear-gradient(135deg, rgba(147, 51, 234, 0.3), rgba(236, 72, 153, 0.2), rgba(59, 130, 246, 0.3))',
+                            'linear-gradient(135deg, rgba(236, 72, 153, 0.3), rgba(59, 130, 246, 0.2), rgba(147, 51, 234, 0.3))',
+                        ]
+                    }}
                     transition={{
-                        delay: particle.delay,
-                        duration: particle.duration,
+                        duration: 10,
                         repeat: Infinity,
+                        repeatType: "reverse"
                     }}
                 />
-            ))}
-            
-            {/* Content with improved layout */}
-            <motion.div 
-                className="relative z-10 px-4 sm:px-6 lg:px-8 py-16 sm:py-20 lg:py-24 max-w-7xl mx-auto"
+
+                {/* Adaptive Overlay for better contrast */}
+                <motion.div
+                    className={`absolute inset-0 ${
+                        theme === 'dark' ? 'bg-black/50' : 'bg-black/30'
+                    }`}
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ duration: 1.5 }}
+                />
+
+                {/* Floating Particles */}
+                {particles.map((particle, i) => (
+                    <motion.div
+                        key={i}
+                        className="absolute rounded-full opacity-60"
+                        style={{
+                            width: `${particle.size}px`,
+                            height: `${particle.size}px`,
+                            backgroundColor: particle.color,
+                            left: `${particle.x}%`,
+                            top: `${particle.y}%`,
+                            filter: `blur(${particle.blur}px)`,
+                            boxShadow: `0 0 ${particle.size * 2}px ${particle.color}`,
+                        }}
+                        variants={particleVariants}
+                        initial="initial"
+                        animate="animate"
+                        transition={{
+                            delay: particle.delay,
+                            duration: particle.duration,
+                            repeat: Infinity,
+                        }}
+                    />
+                ))}
+            </motion.div>
+
+            {/* Content Layer - Full Width */}
+            <motion.div
+                className="relative z-10 flex flex-col justify-center min-h-screen px-3 sm:px-4 md:px-6 lg:px-8 py-16 overflow-hidden"
                 variants={containerVariants}
                 initial="hidden"
                 animate={controls}
             >
-                <motion.div className="text-center mb-12" variants={itemVariants}>
-                    <motion.span 
-                        className="inline-block px-4 py-2 rounded-full bg-blue-500/30 text-blue-200 text-sm font-medium mb-4"
-                        whileHover={{ scale: 1.05 }}
+                <div className="max-w-6xl mx-auto text-center w-full">
+                    <motion.div className="text-center mb-8 sm:mb-12 lg:mb-16" variants={itemVariants}>
+                        <motion.span
+                            className={`inline-block px-6 py-3 sm:px-8 sm:py-4 rounded-full backdrop-blur-md border text-sm sm:text-base font-medium shadow-xl ${
+                                theme === 'dark' 
+                                    ? 'bg-white/5 border-white/20 text-white' 
+                                    : 'bg-white/20 border-white/40 text-white'
+                            }`}
+                            whileHover={{ scale: 1.05, y: -2 }}
+                            transition={{ duration: 0.2 }}
+                        >
+                            🎓 Student & Developer
+                        </motion.span>
+                    </motion.div>
+
+                    <motion.h1
+                        className={`font-inter text-3xl xs:text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold text-center mb-4 sm:mb-6 md:mb-8 leading-tight px-2 ${
+                            theme === 'dark'
+                                ? 'bg-clip-text text-transparent bg-gradient-to-r from-white via-blue-200 to-purple-300'
+                                : 'text-white drop-shadow-2xl'
+                        }`}
+                        variants={itemVariants}
+                        whileHover={{ scale: 1.02, transition: { duration: 0.3 } }}
                     >
-                        Welcome to my portfolio
-                    </motion.span>
-                </motion.div>
-                
-                <motion.h1 
-                    className="font-inter text-2xl xs:text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl 2xl:text-8xl font-bold text-center mb-4 bg-clip-text text-transparent bg-gradient-to-r from-white to-blue-200 leading-tight px-2"
-                    variants={itemVariants}
-                    whileHover={{ scale: 1.02, transition: { duration: 0.2 } }}
-                >
-                    Computer Science & Economics
-                </motion.h1>
-                
-                <motion.h2 
-                    className="text-lg xs:text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold py-3 sm:py-4 md:py-6 text-blue-300 text-center mb-6 sm:mb-8 px-2"
-                    variants={itemVariants}
-                    whileHover={{ scale: 1.02, transition: { duration: 0.2 } }}
-                >
+                        CS & Econ
+                    </motion.h1>
 
-                </motion.h2>
-
-                <motion.section 
-                    className="mt-12 sm:mt-16 text-center"
-                    variants={itemVariants}
-                >
-                    <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center items-center px-4">
-                        <motion.button 
-                            className="w-full sm:w-auto bg-gradient-to-r from-blue-600 to-blue-400 hover:from-blue-700 hover:to-blue-500 text-white px-6 sm:px-8 md:px-12 py-3 sm:py-4 rounded-full text-lg sm:text-xl md:text-2xl font-bold transition-all duration-300 shadow-lg hover:shadow-xl"
-                            whileHover={{ 
-                                scale: 1.05,
-                                boxShadow: "0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)"
-                            }}
-                            whileTap={{ scale: 0.95 }}
-                            onClick={() => window.location.href = 'mailto:tharcissentira@gmail.com'}
-                        >
-                            Let's Connect
-                        </motion.button>
-                        <motion.button 
-                            className="w-full sm:w-auto bg-transparent border-2 border-white/50 hover:border-white text-white px-6 sm:px-8 md:px-12 py-3 sm:py-4 rounded-full text-lg sm:text-xl md:text-2xl font-bold transition-all duration-300"
-                            whileHover={{ 
-                                scale: 1.05,
-                                borderColor: "rgba(255, 255, 255, 1)"
-                            }}
-                            whileTap={{ scale: 0.95 }}
-                            onClick={() => window.location.href = '#projects'}
-                        >
-                            View Projects
-                        </motion.button>
-                    </div>
-                </motion.section>
+                    <motion.h2
+                        className={`text-base sm:text-lg md:text-xl lg:text-2xl font-semibold text-center mb-8 sm:mb-12 lg:mb-16 px-2 sm:px-4 max-w-4xl mx-auto ${
+                            theme === 'dark'
+                                ? 'text-blue-200'
+                                : 'text-blue-100 drop-shadow-lg'
+                        }`}
+                        variants={itemVariants}
+                        whileHover={{ scale: 1.02, transition: { duration: 0.3 } }}
+                    >
+                        Building the future with code and economics
+                    </motion.h2>
+                    <motion.section
+                        className="text-center px-2"
+                        variants={itemVariants}
+                    >
+                        <div className="flex flex-col gap-3 sm:gap-4 sm:flex-row justify-center items-center max-w-4xl mx-auto">
+                            <motion.a
+                                href="mailto:tharcissentira@gmail.com"
+                                className={`w-full sm:w-auto bg-gradient-to-r from-blue-600 to-blue-500 hover:from-blue-700 hover:to-blue-600 text-white px-4 sm:px-6 md:px-8 py-3 sm:py-4 rounded-full text-sm sm:text-base font-bold transition-all duration-300 shadow-xl hover:shadow-2xl min-w-[120px] sm:min-w-[140px] text-center backdrop-blur-sm ${
+                                    theme === 'dark' ? 'shadow-blue-500/25' : 'shadow-blue-600/30'
+                                }`}
+                                whileHover={{ scale: 1.05, y: -2 }}
+                                whileTap={{ scale: 0.95 }}
+                            >
+                                Let's Connect
+                            </motion.a>
+                            <motion.a
+                                href="#projects"
+                                className={`w-full sm:w-auto backdrop-blur-md border-2 border-white/50 hover:border-white hover:bg-white/20 text-white px-4 sm:px-6 md:px-8 py-3 sm:py-4 rounded-full text-sm sm:text-base font-bold transition-all duration-300 min-w-[120px] sm:min-w-[140px] text-center ${
+                                    theme === 'dark' ? 'bg-white/5 hover:bg-white/15' : 'bg-white/10 hover:bg-white/25'
+                                }`}
+                                whileHover={{ scale: 1.05, y: -2 }}
+                                whileTap={{ scale: 0.95 }}
+                            >
+                                View Projects
+                            </motion.a>
+                            <motion.a
+                                href="/resume.pdf"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className={`w-full sm:w-auto backdrop-blur-md border-2 border-green-400/50 hover:border-green-300 hover:bg-green-500/20 text-green-200 hover:text-green-100 px-4 sm:px-6 md:px-8 py-3 sm:py-4 rounded-full text-sm sm:text-base font-bold transition-all duration-300 min-w-[120px] sm:min-w-[140px] flex items-center justify-center gap-2 ${
+                                    theme === 'dark' ? 'bg-green-500/5 hover:bg-green-400/15' : 'bg-green-500/10 hover:bg-green-400/20'
+                                }`}
+                                whileHover={{ scale: 1.05, y: -2 }}
+                                whileTap={{ scale: 0.95 }}
+                            >
+                                📄
+                                <span className="hidden xs:inline sm:inline">Resume</span>
+                            </motion.a>
+                        </div>
+                    </motion.section>
+                </div>
                 
-                <motion.div 
-                    className="absolute bottom-8 left-1/2 transform -translate-x-1/2"
+                {/* Scroll Indicator */}
+                <motion.div
+                    className="absolute bottom-8 sm:bottom-12 left-1/2 transform -translate-x-1/2"
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 2, duration: 1 }}
+                    transition={{ delay: 2.5, duration: 1 }}
                 >
-                    <motion.div 
-                        className="w-8 h-12 border-2 border-white/50 rounded-full flex justify-center items-start p-1"
-                        animate={{ y: [0, 10, 0] }}
-                        transition={{ duration: 1.5, repeat: Infinity }}
+                    <motion.div
+                        className={`w-6 h-10 sm:w-8 sm:h-12 border-2 rounded-full flex justify-center items-start p-1 backdrop-blur-sm ${
+                            theme === 'dark' 
+                                ? 'border-white/40 bg-white/5' 
+                                : 'border-white/60 bg-white/10'
+                        }`}
+                        animate={{ y: [0, 8, 0] }}
+                        transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
                     >
-                        <div className="w-1 h-3 bg-white/80 rounded-full"></div>
+                        <div className={`w-1 h-3 rounded-full ${
+                            theme === 'dark' ? 'bg-white/60' : 'bg-white/80'
+                        }`}></div>
                     </motion.div>
                 </motion.div>
             </motion.div>
-        </motion.div>
+        </div>
     );
 };
 
