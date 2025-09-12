@@ -64,8 +64,8 @@ const Navbar: React.FC = () => {
             transition={{ duration: 0.3 }}
             className="text-gradient font-bold text-sm sm:text-base md:text-lg lg:text-xl truncate max-w-[100px] xs:max-w-[120px] sm:max-w-none"
           >
-            <span className="hidden md:inline">Tharcisse Portfolio</span>
-            <span className="hidden sm:inline md:hidden">T. Portfolio</span>
+            <span className="hidden md:inline">Tharcisse Ntirandekura</span>
+            <span className="hidden sm:inline md:hidden">Tharcisse</span>
             <span className="sm:hidden">T.P</span>
           </motion.div>
         </Link>

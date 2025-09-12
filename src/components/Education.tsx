@@ -12,42 +12,42 @@ const Education = () => {
         courses: {
             computerScience: [
                 {
-                    title: "Algorithms: Design and Analysis",
+                    title: "Algorithms: Design and Analysis - Spring 2025",
                     description: "Advanced study of algorithm design techniques and analysis methods. Implemented various sorting algorithms and graph algorithms.",
                     projects: [
                         { name: "Sorting Algorithm Visualizer", link: "https://github.com/yourusername/sorting-visualizer" }
                     ]
                 },
                 {
-                    title: "Programming Abstractions",
+                    title: "Programming Abstractions with Scheme - Fall 2025",
                     description: "Understanding functional programming and implementing Scheme interpreter. Built a complete Scheme interpreter from scratch.",
                     projects: [
                         { name: "Scheme Interpreter", link: "https://github.com/yourusername/scheme-interpreter" }
                     ]
                 },
                 {
-                    title: "Data Structures and Algorithms",
+                    title: "Data Structures and Algorithms (Java) - Fall 2024",
                     description: "Comprehensive study of fundamental data structures and their applications. Implemented custom data structures and optimized algorithms.",
                     projects: [
                         { name: "Custom Data Structure Library", link: "https://github.com/yourusername/data-structures" }
                     ]
                 },
                 {
-                    title: "Systems Programming with Rust & Bash",
+                    title: "Systems Programming (Rust & Bash) - Spring 2024",
                     description: "Low-level programming concepts and system-level development using Rust and Bash. Built system utilities and tools.",
                     projects: [
                         { name: "Custom Shell Implementation", link: "https://github.com/yourusername/custom-shell" }
                     ]
                 },
                 {
-                    title: "Research and Reasoning",
+                    title: "Research and Reasoning in STEM - Fall 2023",
                     description: "Research application in STEM fields. Conducted independent research projects and presented findings.",
                     projects: [
                         { name: "Research Paper", link: "https://github.com/yourusername/research-paper" }
                     ]
                 },
                 {
-                    title: "Statistical Modeling",
+                    title: "Introduction to Statistics - Spring 2025",
                     description: "Applied statistical methods and modeling techniques. Implemented various statistical models and analysis tools.",
                     projects: [
                         { name: "Statistical Analysis Tool", link: "https://github.com/yourusername/stats-tool" }
@@ -56,27 +56,39 @@ const Education = () => {
             ],
             economics: [
                 {
-                    title: "Principles of Economics",
+                    title: "Principles of Economics - Spring 2024",
                     description: "Fundamental economic principles and theories. Analyzed market structures and economic policies.",
                     projects: [
                         { name: "Market Analysis Report", link: "https://github.com/yourusername/market-analysis" }
                     ]
                 },
                 {
-                    title: "Money, the Financial System, and the Economy",
+                    title: "Money, the Financial System, and the Economy - Spring 2025",
                     description: "Study of monetary systems and their impact on the economy. Analyzed financial markets and monetary policy.",
                     projects: [
                         { name: "Financial Market Analysis", link: "https://github.com/yourusername/financial-analysis" }
+                    ]
+                },
+                {
+                    title: "Intermediate Microeconomics - Fall 2025",
+                    description: "In-depth study of microeconomic theory and applications. Modeled consumer behavior and market dynamics.",
+                    projects: [
+                        { name: "Consumer Behavior Model (In progress)", link: "" }
                     ]
                 }
             ],
             codepath: [
                 {
-                    title: "Intermediate CyberSecurity",
+                    title: "Introduction to CyberSecurity (Spring 2024)",
                     description: "Advanced cybersecurity concepts and practices. Implemented security measures and conducted vulnerability assessments.",
                     projects: [
                         { name: "Security Audit Tool", link: "https://github.com/yourusername/security-audit" }
                     ]
+                },
+                {
+                    title:"Intermediate Technical Interviewing prep (Summer 2025)",
+                    description: "Comprehensive technical interview preparation. Practiced coding problems and system design interviews.",
+                    projects: []
                 }
             ]
         }

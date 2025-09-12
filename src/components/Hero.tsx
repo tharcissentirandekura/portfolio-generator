@@ -219,7 +219,7 @@ const Hero = () => {
                             whileHover={{ scale: 1.05, y: -2 }}
                             transition={{ duration: 0.2 }}
                         >
-                            🎓 Student & Developer
+                            🎓 Student & Engineer
                         </motion.span>
                     </motion.div>
 

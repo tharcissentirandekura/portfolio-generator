@@ -21,7 +21,7 @@ export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({ childre
   useEffect(() => {
     // Update document class when theme changes
     if (theme === 'dark') {
-      document.documentElement.classList.add('dark');
+      document.documentElement.classList.add('light');
     } else {
       document.documentElement.classList.remove('dark');
     }
