@@ -1,11 +1,6 @@
 import { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
-import About from '../components/About';
-// import Skills from '../components/Skills';
 import Experience from '../components/Experience';
-// import Certifications from '../components/Certifications';
-// import Projects from '../components/Projects';
-// import Education from '../components/Education';
 import Footer from '../components/Footer';
 import Hero from '../components/Hero';
 import SectionWrapper from '../components/SectionWrapper';
@@ -43,37 +38,6 @@ const MainLayout = () => {
       background: 'light' as const,
       padding: 'lg' as const 
     },
-    { 
-      id: 'about', 
-      component: <About />, 
-      background: 'light' as const,
-      /* Tight to footer when About is minimal; increase to 'lg' when the section has real content */
-      padding: 'none' as const 
-    },
-    // { 
-    //   id: 'skills', 
-    //   component: <Skills />, 
-    //   background: 'light' as const,
-    //   padding: 'lg' as const 
-    // },
-    // { 
-    //   id: 'certifications', 
-    //   component: <Certifications />, 
-    //   background: 'dark' as const,
-    //   padding: 'lg' as const 
-    // },
-    // { 
-    //   id: 'projects', 
-    //   component: <Projects />, 
-    //   background: 'light' as const,
-    //   padding: 'lg' as const 
-    // },
-    // { 
-    //   id: 'education', 
-    //   component: <Education />, 
-    //   background: 'dark' as const,
-    //   padding: 'lg' as const 
-    // },
   ];
 
   return (

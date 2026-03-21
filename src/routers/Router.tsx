@@ -1,7 +1,8 @@
 import { Routes, Route } from 'react-router-dom';
-// import ExtracurricularActivities from '../pages/ExtracurricularActivities';
 import MainLayout from '../layouts/MainLayout';
 import WorkCaseStudy from '../pages/WorkCaseStudy';
+import {About} from '../pages/About';
+import { Research } from '../pages/Research';
 
 /**
  * 
@@ -10,9 +11,34 @@ import WorkCaseStudy from '../pages/WorkCaseStudy';
 const Router = () => {
   return (
     <Routes>
-      <Route path="/" element={<MainLayout />} />
-      <Route path="/work/:slug" element={<WorkCaseStudy />} />
-      {/* <Route path="/activities" element={<ExtracurricularActivities />} /> */}
+      <Route
+        path="/"
+        element={
+          <MainLayout />
+        }
+      />
+      <Route
+        path="/work/:slug"
+        element={
+          <WorkCaseStudy />
+        }
+      />
+
+      <Route
+        path='/about'
+        element={
+          <About />
+        }
+      />
+
+      <Route
+        path='/research'
+        element={
+          <Research />
+        }
+      />
+
+
     </Routes>
   );
 };

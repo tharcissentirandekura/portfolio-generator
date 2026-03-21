@@ -1,9 +1,6 @@
 import { useEffect, useState } from 'react';
 import { ArrowUpRight } from 'lucide-react';
 
-/** Set to your live Swapp URL when ready */
-const SWAPP_URL = 'https://swapp.com';
-
 const Hero = () => {
   const slides = [
     {
@@ -61,23 +58,23 @@ const Hero = () => {
               {/* Slide information overlay */}
               <div
                 className="absolute left-4 right-4 sm:left-6 sm:right-6 bottom-14 z-20 text-white"
-                style={{ fontFamily: "'Instrumental Sans', sans-serif" }}
+                style={{ fontFamily: "'Instrument Sans', sans-serif" }}
               >
                 <p
                   className="text-lg sm:text-xl font-thin text-white"
-                  style={{ fontFamily: "'Instrumental Sans', sans-serif" }}
+                  style={{ fontFamily: "'Instrument Sans', sans-serif" }}
                 >
                   {slides[activeSlide].meta}
                 </p>
                 <h3
                   className="mt-1 text-4xl sm:text-5xl font-thin leading-tight"
-                  style={{ fontFamily: "'Instrumental Sans', sans-serif" }}
+                  style={{ fontFamily: "'Instrument Sans', sans-serif" }}
                 >
                   {slides[activeSlide].title}
                 </h3>
                 <p
                   className="mt-1 text-3xl sm:text-2xl italic text-white max-w-xl font-thin leading-loose"
-                  style={{ fontFamily: "'Instrumental Sans', sans-serif" }}
+                  style={{ fontFamily: "'Instrument Sans', sans-serif" }}
                 >
                   {slides[activeSlide].description}
                 </p>
@@ -129,7 +126,7 @@ const Hero = () => {
               <p className="flex flex-wrap items-center gap-x-2 gap-y-2 text-black">
                 <span className="text-gray-600">Currently working on</span>
                 <a
-                  href={SWAPP_URL}
+                  href=''
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-1 rounded-md bg-emerald-600 px-2.5 py-1 text-base font-medium text-white shadow-sm transition-colors hover:bg-emerald-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500 focus-visible:ring-offset-2"

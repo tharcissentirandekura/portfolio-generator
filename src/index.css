@@ -2,16 +2,17 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Custom display font — add files: public/fonts/MyWebFont.woff2 (and/or .woff) */
-@font-face {
-  font-family: 'MyWebFont';
-  src:
-    url('/fonts/MyWebFont.woff2') format('woff2'),
-    url('/fonts/MyWebFont.woff') format('woff');
-  font-weight: 200;
-  font-style: normal;
-  font-display: swap;
-}
+/*
+  Custom "MyWebFont" — add your files, then uncomment @font-face.
+
+  Option A (recommended, Vite bundles + no build warning):
+    Put MyWebFont.woff2 in src/assets/fonts/ and use:
+    src: url('./assets/fonts/MyWebFont.woff2') format('woff2');
+
+  Option B (public folder):
+    Put files in public/fonts/ — production works, but Vite may still log
+    a "didn't resolve at build time" notice for url('/fonts/...') in CSS.
+*/
 
 @layer base {
   html {

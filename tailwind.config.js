@@ -63,11 +63,14 @@ module.exports = {
 			},
 			fontFamily:{
 				inter: ['Inter', 'sans-serif'],
+				instrument: ['"Instrument Sans"', 'system-ui', 'sans-serif'],
 				mono: ['JetBrains Mono', 'monospace'],
 				myWeb: ['MyWebFont', 'system-ui', 'sans-serif'],
 				playfair: ['"Playfair Display"', 'Georgia', 'serif'],
 			},
 			colors: {
+				/** RGB(251, 250, 235) — warm ivory / cream; supports bg-parchment/80 etc. */
+				parchment: 'rgb(251 250 235 / <alpha-value>)',
 				primary: {
 					50: '#eff6ff',
 					100: '#dbeafe',

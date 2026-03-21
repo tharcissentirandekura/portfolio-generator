@@ -9,9 +9,14 @@ const Navbar: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const location = useLocation();
   const isHome = location.pathname === '/';
-  const navItems = [
-    { name: 'Work', id: 'experience' },
-    { name: 'About', id: 'about' },
+  type NavItem =
+    | { name: string; kind: 'scroll'; id: string }
+    | { name: string; kind: 'route'; to: string };
+
+  const navItems: NavItem[] = [
+    { name: 'Work', kind: 'scroll', id: 'experience' },
+    { name: 'About', kind: 'route', to: '/about' },
+    { name: 'Research', kind: 'route', to: '/research' },
   ];
 
   useEffect(() => {
@@ -70,21 +75,31 @@ const Navbar: React.FC = () => {
 
         {/* Desktop: links inside the same small pill */}
         <div className="hidden lg:flex items-center gap-0.5 bg-gray-100/90 dark:bg-gray-800/80 rounded-full p-0.5">
-          {navItems.map((item) => (
-            <Link
-              key={item.id}
-              to={`/#${item.id}`}
-              onClick={(e) => {
-                if (location.pathname === '/') {
-                  e.preventDefault();
-                  scrollToSection(item.id);
-                }
-              }}
-              className="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors duration-200 text-xs font-medium px-2.5 py-1 rounded-full hover:bg-white dark:hover:bg-gray-700"
-            >
-              {item.name}
-            </Link>
-          ))}
+          {navItems.map((item) =>
+            item.kind === 'route' ? (
+              <Link
+                key={item.to}
+                to={item.to}
+                className="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors duration-200 text-xs font-medium px-2.5 py-1 rounded-full hover:bg-white dark:hover:bg-gray-700"
+              >
+                {item.name}
+              </Link>
+            ) : (
+              <Link
+                key={item.id}
+                to={`/#${item.id}`}
+                onClick={(e) => {
+                  if (location.pathname === '/') {
+                    e.preventDefault();
+                    scrollToSection(item.id);
+                  }
+                }}
+                className="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors duration-200 text-xs font-medium px-2.5 py-1 rounded-full hover:bg-white dark:hover:bg-gray-700"
+              >
+                {item.name}
+              </Link>
+            ),
+          )}
         </div>
 
         <div className="hidden lg:flex items-center gap-1.5 shrink-0">
@@ -119,22 +134,33 @@ const Navbar: React.FC = () => {
       {isMenuOpen && (
         <div className="pointer-events-auto absolute top-full left-1/2 -translate-x-1/2 mt-2 w-[min(22rem,calc(100vw-2rem))] bg-white/95 dark:bg-gray-900/95 backdrop-blur-xl rounded-2xl shadow-2xl border border-gray-200/70 dark:border-gray-700/70 lg:hidden">
           <div className="flex flex-col py-4 px-4 space-y-1">
-            {navItems.map((item) => (
-              <Link
-                key={item.id}
-                to={`/#${item.id}`}
-                onClick={(e) => {
-                  if (location.pathname === '/') {
-                    e.preventDefault();
-                    scrollToSection(item.id);
-                  }
-                  setIsMenuOpen(false);
-                }}
-                className="py-3 px-3 text-left text-gray-700 dark:text-gray-200 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-800 rounded-xl transition-colors duration-200 font-medium block"
-              >
-                {item.name}
-              </Link>
-            ))}
+            {navItems.map((item) =>
+              item.kind === 'route' ? (
+                <Link
+                  key={item.to}
+                  to={item.to}
+                  onClick={() => setIsMenuOpen(false)}
+                  className="py-3 px-3 text-left text-gray-700 dark:text-gray-200 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-800 rounded-xl transition-colors duration-200 font-medium block"
+                >
+                  {item.name}
+                </Link>
+              ) : (
+                <Link
+                  key={item.id}
+                  to={`/#${item.id}`}
+                  onClick={(e) => {
+                    if (location.pathname === '/') {
+                      e.preventDefault();
+                      scrollToSection(item.id);
+                    }
+                    setIsMenuOpen(false);
+                  }}
+                  className="py-3 px-3 text-left text-gray-700 dark:text-gray-200 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-800 rounded-xl transition-colors duration-200 font-medium block"
+                >
+                  {item.name}
+                </Link>
+              ),
+            )}
             <a
               href="/resume.pdf"
               target="_blank"
