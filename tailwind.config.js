@@ -64,6 +64,8 @@ module.exports = {
 			fontFamily:{
 				inter: ['Inter', 'sans-serif'],
 				mono: ['JetBrains Mono', 'monospace'],
+				myWeb: ['MyWebFont', 'system-ui', 'sans-serif'],
+				playfair: ['"Playfair Display"', 'Georgia', 'serif'],
 			},
 			colors: {
 				primary: {

@@ -1,5 +1,4 @@
 import React from 'react';
-import { motion } from 'framer-motion';
 import { cn } from '../utils/cn';
 import ResponsiveContainer from './ResponsiveContainer';
 
@@ -53,20 +52,9 @@ const SectionWrapper: React.FC<SectionWrapperProps> = ({
     </section>
   );
 
-  if (!animate) {
-    return sectionContent;
-  }
-
-  return (
-    <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: '-100px' }}
-      transition={{ duration: 0.6, ease: 'easeOut' }}
-    >
-      {sectionContent}
-    </motion.div>
-  );
+  // Keep a simple, non-animated landing page.
+  void animate;
+  return sectionContent;
 };
 
 export default SectionWrapper;

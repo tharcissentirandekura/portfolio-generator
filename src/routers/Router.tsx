@@ -1,6 +1,7 @@
 import { Routes, Route } from 'react-router-dom';
-import ExtracurricularActivities from '../pages/ExtracurricularActivities';
+// import ExtracurricularActivities from '../pages/ExtracurricularActivities';
 import MainLayout from '../layouts/MainLayout';
+import WorkCaseStudy from '../pages/WorkCaseStudy';
 
 /**
  * 
@@ -10,7 +11,8 @@ const Router = () => {
   return (
     <Routes>
       <Route path="/" element={<MainLayout />} />
-      <Route path="/activities" element={<ExtracurricularActivities />} />
+      <Route path="/work/:slug" element={<WorkCaseStudy />} />
+      {/* <Route path="/activities" element={<ExtracurricularActivities />} /> */}
     </Routes>
   );
 };

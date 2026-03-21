@@ -179,7 +179,7 @@ const Education = () => {
     };
 
     return (
-        <section className="mb-12">
+        <section className="mb-0">
             <motion.h2 
                 initial={{ opacity: 0, y: -20 }}
                 animate={{ opacity: 1, y: 0 }}

@@ -135,7 +135,7 @@ const Projects = () => {
 
     return (
         <ScrollAnimationWrapper direction="right" delay={0.2}>
-            <section className="mb-8 sm:mb-12 lg:mb-16">
+            <section className="mb-0">
                 <div className="text-center mb-8 sm:mb-12">
                     <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-3 sm:mb-4">Featured Projects</h2>
                     <p className="text-base sm:text-lg text-gray-600 dark:text-gray-300 px-4 mb-6">

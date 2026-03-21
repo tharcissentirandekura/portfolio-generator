@@ -44,4 +44,3 @@ The main components are located in `src/components/`:
 - `Projects.tsx` - Projects showcase
 - `Skills.tsx` - Skills section
 - `Experience.tsx` - Work experience
-- `Contact.tsx` - Contact information

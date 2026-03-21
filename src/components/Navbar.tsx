@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X } from 'lucide-react';
 import { cn } from '../utils/cn';
 import ThemeToggle from './ThemeToggle';
@@ -9,6 +8,11 @@ const Navbar: React.FC = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const location = useLocation();
+  const isHome = location.pathname === '/';
+  const navItems = [
+    { name: 'Work', id: 'experience' },
+    { name: 'About', id: 'about' },
+  ];
 
   useEffect(() => {
     setIsMenuOpen(false);
@@ -22,12 +26,6 @@ const Navbar: React.FC = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // const handleSearchSubmit = (e: React.FormEvent) => {
-  //   e.preventDefault();
-  //   console.log('Searching for:', searchQuery);
-  //   setIsSearchOpen(false);
-  // };
-
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
     if (element) {
@@ -39,72 +37,77 @@ const Navbar: React.FC = () => {
     setIsMenuOpen(false);
   };
 
-  const navClasses = cn(
-    'fixed w-full z-50 transition-all duration-500 flex justify-center',
-    isScrolled
-      ? 'top-2 sm:top-4'
-      : 'top-4 sm:top-8'
-  );
+  const navClasses =
+    'fixed top-0 left-0 right-0 z-[100] flex justify-center px-3 sm:px-4 pointer-events-none transition-all duration-300';
 
+  /* Small inner pill: only this bar is visible; full width is transparent */
   const navContentClasses = cn(
-    'rounded-full backdrop-blur-md transition-all duration-500 flex items-center justify-between px-3 sm:px-4 md:px-6 py-2 sm:py-3',
+    'pointer-events-auto w-fit max-w-[min(100%,calc(100vw-1.5rem))] mx-auto rounded-full backdrop-blur-xl transition-all duration-300 flex items-center gap-1 sm:gap-2 pl-2 pr-2 sm:pl-3 sm:pr-3 py-1.5 sm:py-2 shadow-lg border',
     isScrolled
-      ? 'bg-white/90 dark:bg-gray-900/95 shadow-xl border border-white/20 dark:border-gray-700/50 w-[96%] sm:w-[90%] md:w-[80%] lg:w-[70%]'
-      : 'bg-white/70 dark:bg-gray-900/70 border border-white/30 dark:border-gray-700/30 w-[98%] sm:w-[95%] md:w-[85%] lg:w-[75%]'
+      ? 'bg-white/95 dark:bg-gray-900/95 border-gray-200/90 dark:border-gray-700/90 shadow-xl'
+      : 'bg-white/90 dark:bg-gray-900/90 border-gray-200/80 dark:border-gray-700/80'
   );
 
   return (
-    <nav className={navClasses}>
+    <nav className={navClasses} aria-label="Main">
       <div className={navContentClasses}>
-        {/* Logo */}
-        <Link to="/" className="flex items-center z-10">
-          <motion.div
-            initial={{ opacity: 0, x: -10 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.3 }}
-            className="text-gradient font-bold text-sm sm:text-base md:text-lg lg:text-xl truncate max-w-[100px] xs:max-w-[120px] sm:max-w-none"
+        {isHome ? (
+          <button
+            type="button"
+            onClick={() => scrollToSection('home')}
+            className="shrink-0 font-semibold text-xs sm:text-sm text-gray-900 dark:text-gray-100 tracking-tight px-2 py-1 rounded-full hover:bg-gray-100/80 dark:hover:bg-gray-800/80 transition-colors duration-200"
           >
-            <span className="hidden md:inline">Tharcisse Ntirandekura</span>
-            <span className="hidden sm:inline md:hidden">Tharcisse</span>
-            <span className="sm:hidden">T.P</span>
-          </motion.div>
-        </Link>
+            Tharcisse
+          </button>
+        ) : (
+          <Link
+            to="/"
+            className="shrink-0 font-semibold text-xs sm:text-sm text-gray-900 dark:text-gray-100 tracking-tight px-2 py-1 rounded-full hover:bg-gray-100/80 dark:hover:bg-gray-800/80 transition-colors duration-200"
+          >
+            Tharcisse
+          </Link>
+        )}
 
-        {/* Desktop Menu */}
-        <div className="hidden lg:flex items-center space-x-3 xl:space-x-5">
-          {[
-            { name: 'About', id: 'about' },
-            { name: 'Skills', id: 'skills' },
-            { name: 'Experience', id: 'experience' },
-            { name: 'Certifications', id: 'certifications' },
-            { name: 'Projects', id: 'projects' },
-            { name: 'Education', id: 'education' },
-            { name: 'Contact', id: 'contact' }
-          ].map((item) => (
-            <button
+        {/* Desktop: links inside the same small pill */}
+        <div className="hidden lg:flex items-center gap-0.5 bg-gray-100/90 dark:bg-gray-800/80 rounded-full p-0.5">
+          {navItems.map((item) => (
+            <Link
               key={item.id}
-              onClick={() => scrollToSection(item.id)}
-              className="text-gray-700 dark:text-gray-200 hover:text-blue-600 dark:hover:text-blue-400 transition-all duration-200 text-sm xl:text-base font-medium px-2 py-1 rounded-lg hover:bg-white/20 dark:hover:bg-gray-800/20"
+              to={`/#${item.id}`}
+              onClick={(e) => {
+                if (location.pathname === '/') {
+                  e.preventDefault();
+                  scrollToSection(item.id);
+                }
+              }}
+              className="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors duration-200 text-xs font-medium px-2.5 py-1 rounded-full hover:bg-white dark:hover:bg-gray-700"
             >
               {item.name}
-            </button>
+            </Link>
           ))}
         </div>
 
-        {/* Desktop Actions */}
-        <div className="hidden lg:flex items-center space-x-2">
-          <ThemeToggle className="hover:bg-white/20 dark:hover:bg-gray-800/20" />
+        <div className="hidden lg:flex items-center gap-1.5 shrink-0">
+          <a
+            href="/resume.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center justify-center px-3 py-1.5 rounded-full bg-gray-900 text-white dark:bg-white dark:text-gray-900 text-xs font-semibold hover:opacity-90 transition-opacity duration-200"
+          >
+            Resume
+          </a>
+          <ThemeToggle className="hover:bg-gray-100 dark:hover:bg-gray-800" />
         </div>
 
-        {/* Mobile Icons */}
-        <div className="flex lg:hidden items-center space-x-1 z-10">
-          <ThemeToggle 
-            size="sm" 
-            className="hover:bg-white/20 dark:hover:bg-gray-800/20" 
+        {/* Mobile: compact row inside same pill */}
+        <div className="flex lg:hidden items-center gap-0.5 z-10 shrink-0">
+          <ThemeToggle
+            size="sm"
+            className="hover:bg-gray-100 dark:hover:bg-gray-800"
           />
           <button
             onClick={() => setIsMenuOpen(!isMenuOpen)}
-            className="text-gray-700 dark:text-gray-200 p-2 rounded-full hover:bg-white/20 dark:hover:bg-gray-800/20 transition-all duration-200"
+            className="text-gray-700 dark:text-gray-200 p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors duration-200"
             aria-label={isMenuOpen ? 'Close menu' : 'Open menu'}
           >
             {isMenuOpen ? <X size={20} /> : <Menu size={20} />}
@@ -112,38 +115,37 @@ const Navbar: React.FC = () => {
         </div>
       </div>
 
-      {/* Mobile Menu */}
-      <AnimatePresence>
-        {isMenuOpen && (
-          <motion.div
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            transition={{ duration: 0.3 }}
-            className="absolute top-full mt-2 left-[2%] right-[2%] bg-white/95 dark:bg-gray-800/95 backdrop-blur-md rounded-2xl shadow-xl border border-white/20 dark:border-gray-700/50 lg:hidden"
-          >
-            <div className="flex flex-col py-4 px-4 space-y-1">
-              {[
-                { name: 'About', id: 'about' },
-                { name: 'Skills', id: 'skills' },
-                { name: 'Experience', id: 'experience' },
-                { name: 'Certifications', id: 'certifications' },
-                { name: 'Projects', id: 'projects' },
-                { name: 'Education', id: 'education' },
-                { name: 'Contact', id: 'contact' }
-              ].map((item) => (
-                <button
-                  key={item.id}
-                  onClick={() => scrollToSection(item.id)}
-                  className="py-3 px-3 text-left text-gray-700 dark:text-gray-200 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-gray-100 dark:hover:bg-gray-700/50 rounded-lg transition-all duration-200 font-medium"
-                >
-                  {item.name}
-                </button>
-              ))}
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+      {/* Mobile Menu — anchored under the small pill */}
+      {isMenuOpen && (
+        <div className="pointer-events-auto absolute top-full left-1/2 -translate-x-1/2 mt-2 w-[min(22rem,calc(100vw-2rem))] bg-white/95 dark:bg-gray-900/95 backdrop-blur-xl rounded-2xl shadow-2xl border border-gray-200/70 dark:border-gray-700/70 lg:hidden">
+          <div className="flex flex-col py-4 px-4 space-y-1">
+            {navItems.map((item) => (
+              <Link
+                key={item.id}
+                to={`/#${item.id}`}
+                onClick={(e) => {
+                  if (location.pathname === '/') {
+                    e.preventDefault();
+                    scrollToSection(item.id);
+                  }
+                  setIsMenuOpen(false);
+                }}
+                className="py-3 px-3 text-left text-gray-700 dark:text-gray-200 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-800 rounded-xl transition-colors duration-200 font-medium block"
+              >
+                {item.name}
+              </Link>
+            ))}
+            <a
+              href="/resume.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-2 inline-flex items-center justify-center py-3 rounded-xl bg-gray-900 text-white dark:bg-white dark:text-gray-900 font-semibold"
+            >
+              Resume
+            </a>
+          </div>
+        </div>
+      )}
     </nav>
   );
 };

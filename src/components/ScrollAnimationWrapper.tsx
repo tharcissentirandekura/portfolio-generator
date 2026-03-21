@@ -1,5 +1,3 @@
-import { motion } from 'framer-motion';
-import { useInView } from 'react-intersection-observer';
 import { ReactNode } from 'react';
 
 interface ScrollAnimationWrapperProps {
@@ -17,40 +15,13 @@ const ScrollAnimationWrapper = ({
   duration = 0.8,
   className = ''
 }: ScrollAnimationWrapperProps) => {
-  const [ref, inView] = useInView({
-    threshold: 0.1,
-    triggerOnce: true,
-  });
+  // Intentionally render without motion/reveal to keep the landing page simple.
+  // Props are kept for compatibility with existing call sites.
+  void direction;
+  void delay;
+  void duration;
 
-  const variants = {
-    hidden: {
-      opacity: 0,
-      x: direction === 'left' ? -100 : direction === 'right' ? 100 : 0,
-      y: direction === 'up' ? -50 : direction === 'down' ? 50 : 0,
-    },
-    visible: {
-      opacity: 1,
-      x: 0,
-      y: 0,
-      transition: {
-        duration,
-        delay,
-        ease: "easeOut",
-      },
-    },
-  };
-
-  return (
-    <motion.div
-      ref={ref}
-      initial="hidden"
-      animate={inView ? "visible" : "hidden"}
-      variants={variants}
-      className={className}
-    >
-      {children}
-    </motion.div>
-  );
+  return <div className={className}>{children}</div>;
 };
 
 export default ScrollAnimationWrapper;

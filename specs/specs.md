@@ -29,8 +29,6 @@ src/
 │   ├── Experience.tsx  # Work experience
 │   ├── Projects.tsx    # Project portfolio
 │   ├── Education.tsx   # Educational background
-│   ├── Communities.tsx # Community involvement
-│   ├── Contact.tsx     # Contact form/info
 │   ├── Footer.tsx      # Site footer
 │   └── Blog.tsx        # Blog section
 ├── UI/                 # Base UI components

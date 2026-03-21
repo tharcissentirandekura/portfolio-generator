@@ -2,6 +2,17 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Custom display font — add files: public/fonts/MyWebFont.woff2 (and/or .woff) */
+@font-face {
+  font-family: 'MyWebFont';
+  src:
+    url('/fonts/MyWebFont.woff2') format('woff2'),
+    url('/fonts/MyWebFont.woff') format('woff');
+  font-weight: 200;
+  font-style: normal;
+  font-display: swap;
+}
+
 @layer base {
   html {
     scroll-behavior: smooth;
@@ -37,6 +48,22 @@
 }
 
 @layer components {
+  /* Portfolio work section title — matches requested typography */
+  .work-section-heading {
+    font-family: 'MyWebFont', system-ui, sans-serif;
+    font-weight: 200;
+    font-size: 30px;
+    line-height: 2.3rem;
+    margin-bottom: 2rem;
+  }
+
+  /* MyWebFont + extralight for entire Experience / work section */
+  .experience-section {
+    font-family: 'MyWebFont', system-ui, sans-serif;
+    font-weight: 200;
+    line-height: 2.3rem;
+  }
+
   .section-container {
     @apply container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl;
   }
