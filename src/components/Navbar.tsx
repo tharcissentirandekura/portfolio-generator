@@ -17,6 +17,7 @@ const Navbar: React.FC = () => {
     { name: 'Work', kind: 'scroll', id: 'experience' },
     { name: 'About', kind: 'route', to: '/about' },
     { name: 'Research', kind: 'route', to: '/research' },
+    { name: 'Contact', kind: 'route', to: '/contact' },
   ];
 
   useEffect(() => {

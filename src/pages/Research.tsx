@@ -13,7 +13,20 @@ export const Research = () =>{
             // ]}
             mainColumn={
                 <div className="space-y-5 leading-[1.75] text-gray-600 dark:text-gray-400 sm:space-y-6 sm:text-[17px] md:text-lg md:leading-[1.8]">
-                    <p>Page coming soon!</p>
+                    <p>
+                        I am currently working in an AI research lab focusing on designing algorithms
+                        for AI agents to act collectively as firefighters in wildfires.
+                    </p>
+                    <p>
+                        In this research, we study how AI agents can work together like a team of
+                        firefighters during a wildfire. Each AI agent acts like a team member that can
+                        observe what is happening around it, such as where the fire is spreading, and
+                        make decisions on what to do next. Instead of acting alone, these agents
+                        communicate and coordinate with each other to decide how to best contain the fire
+                        and protect important areas as conditions change. We test these ideas in
+                        simulated wildfire environments to see how well the agents can work together to
+                        reduce damage.
+                    </p>
                 </div>
             }
             // sections={[

@@ -3,6 +3,7 @@ import MainLayout from '../layouts/MainLayout';
 import WorkCaseStudy from '../pages/WorkCaseStudy';
 import {About} from '../pages/About';
 import { Research } from '../pages/Research';
+import { Contact } from '../pages/Contact';
 
 /**
  * 
@@ -35,6 +36,13 @@ const Router = () => {
         path='/research'
         element={
           <Research />
+        }
+      />
+
+      <Route
+        path='/contact'
+        element={
+          <Contact />
         }
       />
 
