@@ -34,5 +34,7 @@ export const Research = () =>{
             //     </div>,
             // ]}
         />
+
+        
     );
 }

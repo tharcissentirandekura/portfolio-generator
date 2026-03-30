@@ -23,7 +23,7 @@ const skills: string[] = [
 ];
 
 
-export const About = () =>{
+export const About = () => {
     return (
         <ContentLayout
             title="About"
@@ -60,7 +60,7 @@ export const About = () =>{
                     <header className="max-w-2xl">
                         <h2 className="font-playfair text-4xl">Skills</h2>
                         <p className="ont-instrument mt-5 text-lg font-normal leading-snug text-gray-600 dark:text-gray-400 sm:text-xl">
-                        Difference skills I possess to have me do the job
+                            Difference skills I possess to have me do the job
                         </p>
                     </header>
                     <div className="mt-6 flex flex-wrap gap-3 rounded-2xl bg-parchment px-4 py-12">
@@ -70,6 +70,19 @@ export const About = () =>{
                             </div>
                         ))}
                     </div>
+                    <div className='mt-5'>
+                        <header className="">
+                            <h2 className="font-playfair text-4xl">Academics</h2>
+                            <p className="font-instrument mt-5 text-lg font-normal leading-snug text-gray-600 dark:text-gray-400 sm:text-xl">
+                                I am double majoring in Computer Science and Economics, with an interest in either a Mathematics minor or a concentration in Data Science. My coursework has provided me with a strong foundation in computer science, including Software Engineering, Algorithm Design and Analysis, Natural Language Processing, Systems Programming, Programming Abstractions, and Human-Computer Interaction.
+                            </p>
+
+                            <p className="font-instrument mt-5 text-lg font-normal leading-snug text-gray-600 dark:text-gray-400 sm:text-xl">
+                                While I have always been drawn to computer science, I am equally interested in exploring its intersection with economics. This perspective allows me to better understand how products are built, as well as the key technical and economic considerations involved in creating solutions that effectively meet users’ needs.
+                            </p>
+                        </header>
+                    </div>
+
                 </div>,
             ]}
         />

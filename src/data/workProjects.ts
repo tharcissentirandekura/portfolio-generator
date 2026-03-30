@@ -45,11 +45,11 @@ export const WORK_PROJECTS: WorkProject[] = [
     ],
     responsibilities:
       'My responsibilities included updating website content, managing social media accounts, creating digital marketing materials, and assisting with online event promotion.',
-    technologies: ['WordPress', 'Canva', 'Hootsuite', 'Google Analytics'],
+    technologies: ['Canva','Google Sites'],
     bgColor: 'bg-green-50',
     accentColor: 'text-green-600',
     link: 'https://www.oberlin.edu/bonner-center',
-    platform: 'Web & social',
+    platform: 'Web and social',
     images: [
       {
         src: '/images/bonner-online1.png',

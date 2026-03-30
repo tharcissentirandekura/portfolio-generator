@@ -7,25 +7,6 @@ import {
   type WorkProject,
 } from '../data/workProjects';
 
-/** Matches in-page section ids — inspired by editorial case-study nav (e.g. Cecilia Kim’s Kuma). */
-const TOC = [
-  { id: 'overview', label: 'Overview' },
-  { id: 'highlights', label: 'Outcomes' },
-  { id: 'challenge', label: 'The challenge' },
-  { id: 'solution', label: 'Implementation' },
-  { id: 'research', label: 'Approach' },
-  { id: 'process', label: 'Stack & tooling' },
-  { id: 'features', label: 'Contributions' },
-  { id: 'visuals', label: 'Gallery' },
-  { id: 'final', label: 'Featured' },
-  { id: 'handoff', label: 'Delivery' },
-  { id: 'reflections', label: 'Reflections' },
-] as const;
-
-function scrollToSection(id: string) {
-  document.getElementById(id)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
-}
-
 function SectionTitle({
   children,
   className = '',
@@ -35,7 +16,7 @@ function SectionTitle({
 }) {
   return (
     <h2
-      className={`font-playfair mb-10 flex flex-wrap items-start gap-3 text-3xl font-normal tracking-tight text-stone-900 sm:text-4xl md:text-[2.65rem] ${className}`}
+      className={`font-playfair mb-10 flex flex-wrap items-start gap-3 text-left text-3xl font-normal tracking-tight text-stone-900 sm:text-4xl md:text-[2.65rem] ${className}`}
     >
       <Sparkles className="mt-1.5 h-7 w-7 shrink-0 text-amber-700/85" strokeWidth={1.2} aria-hidden />
       <span>{children}</span>
@@ -45,7 +26,7 @@ function SectionTitle({
 
 function Subheading({ children }: { children: React.ReactNode }) {
   return (
-    <h3 className="mt-12 mb-6 flex items-center gap-2 font-sans text-lg font-semibold text-stone-900">
+    <h3 className="mt-12 mb-6 flex items-center justify-start gap-2 text-left font-sans text-lg font-semibold text-stone-900">
       <span className="h-2 w-2 shrink-0 rounded-full bg-amber-600/90" aria-hidden />
       {children}
     </h3>
@@ -60,11 +41,11 @@ function MetaRow({
   children: React.ReactNode;
 }) {
   return (
-    <div className="grid grid-cols-1 gap-2 border-b border-stone-200/80 py-6 sm:grid-cols-[minmax(0,6.5rem)_1fr] sm:gap-10">
-      <span className="font-sans text-[0.65rem] font-semibold uppercase tracking-[0.22em] text-amber-900/80">
+    <div className="border-b border-stone-200/80 py-6 text-left">
+      <span className="block font-sans text-[0.65rem] font-semibold uppercase tracking-[0.22em] text-amber-900/80">
         {label}
       </span>
-      <div className="font-sans text-stone-800">{children}</div>
+      <div className="mt-3 font-sans text-stone-800">{children}</div>
     </div>
   );
 }
@@ -157,15 +138,13 @@ const WorkCaseStudy = () => {
 
   return (
     <div className="min-h-screen bg-[#faf8f3] font-sans text-stone-800 antialiased selection:bg-amber-100/80">
-      <div className="mx-auto flex max-w-[1600px] flex-col lg:flex-row lg:items-start">
-        {/* Main column — editorial width */}
-        <div className="min-w-0 flex-1 px-5 py-12 sm:px-8 sm:py-16 lg:px-14 lg:py-20 lg:pr-10 xl:px-20">
-          <header className="mb-20 text-center lg:mb-24">
+      <div className="mx-auto max-w-3xl px-5 py-12 text-left sm:px-8 sm:py-16 lg:py-20">
+          <header className="mb-20 sm:mb-24">
             <h1 className="font-playfair text-4xl font-normal tracking-tight text-stone-900 sm:text-5xl md:text-6xl">
               {displayTitle}
             </h1>
             <p className="mt-4 font-sans text-sm font-medium text-stone-500">{timeline}</p>
-            <div className="mx-auto mt-10 max-w-3xl overflow-hidden rounded-[2rem] bg-sky-100/70 p-6 sm:p-10 lg:rounded-[2.25rem]">
+            <div className="mt-10 max-w-3xl overflow-hidden rounded-[2rem] bg-sky-100/70 p-6 sm:p-10 lg:rounded-[2.25rem]">
               <div className="overflow-hidden rounded-2xl bg-white shadow-sm ring-1 ring-stone-900/5">
                 <img
                   src={project.featured_image}
@@ -174,10 +153,10 @@ const WorkCaseStudy = () => {
                 />
               </div>
             </div>
-            <p className="mx-auto mt-8 max-w-2xl font-sans text-base font-light leading-relaxed text-stone-500">
+            <p className="mt-8 max-w-2xl font-sans text-base font-light leading-relaxed text-stone-500">
               {project.shortDescription}
             </p>
-            <div className="mt-10 flex flex-wrap items-center justify-center gap-4">
+            <div className="mt-10 flex flex-wrap items-center justify-start gap-4">
               <Link
                 to="/#experience"
                 className="font-sans text-sm text-stone-600 underline decoration-stone-300 underline-offset-[5px] transition-colors hover:text-stone-900"
@@ -216,7 +195,7 @@ const WorkCaseStudy = () => {
                 <p className="text-base font-bold text-stone-900">{status}</p>
               </MetaRow>
               <MetaRow label="Deliverables">
-                <p className="text-base font-bold text-stone-900">Engineering & systems</p>
+                <p className="text-base font-bold text-stone-900">Engineering and systems</p>
                 <ul className="mt-2 list-inside list-disc text-sm text-stone-500">
                   {deliverables.map((d) => (
                     <li key={d} className="marker:text-amber-800/50">
@@ -237,10 +216,10 @@ const WorkCaseStudy = () => {
           </section>
 
           <section id="highlights" className="scroll-mt-28 pt-24">
-            <SectionTitle>Outcomes & impact</SectionTitle>
+            <SectionTitle>Outcomes and impact</SectionTitle>
             <ul className="max-w-2xl space-y-5 font-sans text-stone-600">
               {project.achievements.map((a, i) => (
-                <li key={i} className="border-l-2 border-amber-700/35 pl-5 leading-relaxed">
+                <li key={i} className="border-t border-amber-700/25 pt-5 leading-relaxed first:border-t-0 first:pt-0">
                   <span className="text-stone-900">{a}</span>
                 </li>
               ))}
@@ -248,10 +227,10 @@ const WorkCaseStudy = () => {
           </section>
 
           <section id="challenge" className="scroll-mt-28 pt-24">
-            <SectionTitle>Problem & constraints</SectionTitle>
+            <SectionTitle>Problem and constraints</SectionTitle>
             <Subheading>Problem framing</Subheading>
             <div className="grid max-w-4xl gap-10 lg:grid-cols-2 lg:gap-14">
-              <div className="flex min-h-[220px] items-center justify-center rounded-2xl border border-dashed border-stone-300/90 bg-white/50 p-8 text-center font-sans text-sm leading-relaxed text-stone-500">
+              <div className="min-h-[220px] rounded-2xl border border-dashed border-stone-300/90 bg-white/50 p-8 text-left font-sans text-sm leading-relaxed text-stone-500">
                 Framing the work around users, data, and production constraints—what “correct” and
                 “operable” meant before choosing implementations.
               </div>
@@ -270,7 +249,7 @@ const WorkCaseStudy = () => {
             <Subheading>Pinpointing focus areas</Subheading>
             <div className="grid max-w-4xl gap-x-10 gap-y-10 sm:grid-cols-2">
               {challengePoints.map((text, i) => (
-                <div key={i} className="flex gap-4">
+                <div key={i} className="flex gap-4 text-left">
                   <span
                     className="font-playfair text-5xl italic leading-none text-sky-600 sm:text-6xl"
                     aria-hidden
@@ -360,7 +339,7 @@ const WorkCaseStudy = () => {
           </section>
 
           <section id="handoff" className="scroll-mt-28 pt-24">
-            <SectionTitle>Delivery & handoff</SectionTitle>
+            <SectionTitle>Delivery and handoff</SectionTitle>
             <p className="max-w-2xl font-sans text-base leading-relaxed text-stone-600">
               Structured for maintainability: clear module boundaries, documentation where it lowers
               bus factor, and alignment with deployment and monitoring. Live reference:{' '}
@@ -374,7 +353,7 @@ const WorkCaseStudy = () => {
             </p>
           </section>
 
-          <section id="reflections" className="scroll-mt-28 pt-24 pb-28 lg:pb-24">
+          <section id="reflections" className="scroll-mt-28 pb-28 pt-24 lg:pb-24">
             <SectionTitle>Reflections</SectionTitle>
             <p className="max-w-2xl font-sans text-base leading-relaxed text-stone-600">
               {project.shortDescription} Small, testable steps beat big rewrites; explicit interfaces
@@ -382,52 +361,6 @@ const WorkCaseStudy = () => {
               the system.
             </p>
           </section>
-        </div>
-
-        {/* Contents — sticky sidebar (Kuma-style) */}
-        <aside className="hidden shrink-0 border-t border-stone-200/80 bg-[#f3f0e8] px-8 py-10 lg:block lg:w-52 lg:border-l lg:border-t-0 lg:px-9 lg:py-24 xl:w-60">
-          <p className="font-playfair text-[0.7rem] font-semibold uppercase tracking-[0.28em] text-amber-900/85">
-            Contents
-          </p>
-          <nav className="mt-10 flex flex-col gap-3.5 font-sans text-sm" aria-label="Case study sections">
-            {TOC.map((item) => (
-              <button
-                key={item.id}
-                type="button"
-                onClick={() => scrollToSection(item.id)}
-                className="text-left text-stone-600 transition-colors hover:text-stone-900"
-              >
-                {item.label}
-              </button>
-            ))}
-            <button
-              type="button"
-              onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-              className="mt-6 border-t border-stone-200/80 pt-6 text-left font-semibold text-stone-900"
-            >
-              Back to top
-            </button>
-          </nav>
-        </aside>
-      </div>
-
-      {/* Mobile: horizontal jump links */}
-      <div className="sticky bottom-0 z-40 border-t border-stone-200/90 bg-[#f3f0e8]/95 px-3 py-2.5 backdrop-blur-md lg:hidden">
-        <p className="mb-1.5 text-center font-sans text-[0.6rem] font-semibold uppercase tracking-[0.2em] text-amber-900/80">
-          Jump to
-        </p>
-        <div className="flex gap-2 overflow-x-auto pb-1">
-          {TOC.map((item) => (
-            <button
-              key={item.id}
-              type="button"
-              onClick={() => scrollToSection(item.id)}
-              className="shrink-0 rounded-full border border-stone-300/80 bg-white/90 px-3 py-1.5 text-xs text-stone-700 shadow-sm"
-            >
-              {item.label}
-            </button>
-          ))}
-        </div>
       </div>
     </div>
   );
