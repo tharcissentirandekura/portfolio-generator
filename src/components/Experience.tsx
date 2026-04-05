@@ -58,13 +58,13 @@ const WorkCard = ({ exp, index, loading }: WorkCardProps) => (
   >
     <Link
       to={`/work/${exp.slug}`}
-      className="mb-4 block overflow-hidden rounded-2xl bg-gray-100 ring-1 ring-black/5 transition-opacity hover:opacity-95 dark:bg-gray-800/80 dark:ring-white/10"
+      className="mb-4 block overflow-hidden rounded-2xl transition-opacity hover:opacity-95"
     >
       <div className="aspect-[4/3] w-full overflow-hidden">
         <img
           src={exp.featured_image}
           alt={`${exp.title} — ${exp.company}`}
-          className="h-full w-full object-cover object-center transition-transform duration-300 hover:scale-[1.02]"
+          className="h-full w-full border-0 object-cover object-center outline-none transition-transform duration-300 hover:scale-[1.02]"
           loading={loading}
         />
       </div>
@@ -125,13 +125,13 @@ const Experience = () => {
               <div className="grid lg:grid-cols-2 gap-10 lg:gap-16 items-start">
                 <Link
                   to={`/work/${exp.slug}`}
-                  className={`rounded-[2rem] overflow-hidden p-6 sm:p-8 ${exp.bgColor} border border-black/5 shadow-sm transition-opacity hover:opacity-95`}
+                  className={`block overflow-hidden rounded-[2rem] ${exp.bgColor} transition-opacity hover:opacity-95`}
                 >
-                  <div className="rounded-2xl bg-white/60 backdrop-blur-sm overflow-hidden ring-1 ring-black/5">
+                  <div className="aspect-[4/3] w-full overflow-hidden sm:aspect-[5/4]">
                     <img
                       src={exp.featured_image}
                       alt={`${exp.title} at ${exp.company}`}
-                      className="w-full h-auto max-h-[min(420px,55vh)] object-contain bg-white"
+                      className="h-full w-full border-0 object-cover object-center outline-none"
                       loading={index === 0 ? 'eager' : 'lazy'}
                     />
                   </div>
