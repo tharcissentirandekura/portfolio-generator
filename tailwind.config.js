@@ -48,10 +48,6 @@ module.exports = {
                 }
             },
 			backgroundImage: {
-				"custom-image": "url('./assets/me.png')",
-				"work-image": "url('./assets/work.png')",
-				"tech-image": "url('./assets/tech.png')",
-				"rust-image": "url('./assets/rust.png')",
 				'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
 				'gradient-conic': 'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
 			},
