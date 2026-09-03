@@ -21,6 +21,7 @@ const Home = () => {
         </p>
         <div className="mt-9 flex flex-wrap gap-3">
           <Link to="/work" className="button button-dark">View selected work <ArrowRight size={17} /></Link>
+          <Link to="/academics" className="button button-light">Explore CS map <ArrowRight size={17} /></Link>
           <a href="/resume.pdf" target="_blank" rel="noreferrer" className="button button-light">View resume <ArrowUpRight size={16} /></a>
         </div>
       </div>

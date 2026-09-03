@@ -1,5 +1,6 @@
 import { Navigate, Route, Routes } from 'react-router-dom';
 import SiteLayout from '../layouts/SiteLayout';
+import Academics from '../pages/Academics';
 import About from '../pages/About';
 import Contact from '../pages/Contact';
 import Home from '../pages/Home';
@@ -13,6 +14,7 @@ const Router = () => (
       <Route path="/" element={<Home />} />
       <Route path="/work" element={<Work />} />
       <Route path="/work/:slug" element={<WorkCaseStudy />} />
+      <Route path="/academics" element={<Academics />} />
       <Route path="/about" element={<About />} />
       <Route path="/perspectives/:slug" element={<Perspective />} />
       <Route path="/contact" element={<Contact />} />

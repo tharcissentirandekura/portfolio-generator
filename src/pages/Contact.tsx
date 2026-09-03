@@ -6,7 +6,7 @@ const Contact = () => (
     <p className="eyebrow">Contact</p>
     <div className="grid gap-12 lg:grid-cols-[1.2fr_0.8fr] lg:gap-20">
       <div>
-        <h1 className="page-title mt-5">Let’s build something useful.</h1>
+        <h1 className="page-title mt-5">Let’s build something together.</h1>
         <p className="page-intro">I’m open to new-grad software roles, research collaborations, and conversations about technology, education, or entrepreneurship.</p>
         <a href="mailto:tharcissentira@gmail.com" className="button button-dark mt-9"><Mail size={17} /> Send an email</a>
       </div>
