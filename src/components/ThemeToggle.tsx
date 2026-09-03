@@ -1,4 +1,3 @@
-import React from 'react';
 import { Sun, Moon } from 'lucide-react';
 import { useTheme } from '../context/ThemeContext';
 
@@ -7,10 +6,7 @@ interface ThemeToggleProps {
   size?: 'sm' | 'md' | 'lg';
 }
 
-const ThemeToggle: React.FC<ThemeToggleProps> = ({ 
-  className = '', 
-  size = 'md' 
-}) => {
+const ThemeToggle = ({ className = '', size = 'md' }: ThemeToggleProps) => {
   const { theme, toggleTheme } = useTheme();
   
   const sizeClasses = {
@@ -29,19 +25,17 @@ const ThemeToggle: React.FC<ThemeToggleProps> = ({
     <button
       onClick={toggleTheme}
       className={`
-        relative overflow-hidden rounded-full
-        bg-gray-200 dark:bg-gray-700
-        hover:bg-gray-300 dark:hover:bg-gray-600
-        transition-all duration-300
+        relative grid place-items-center rounded-full border border-ink/10
+        transition-colors hover:border-ink/30 dark:border-white/15 dark:hover:border-white/40
         ${sizeClasses[size]}
         ${className}
       `}
       aria-label={theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'}
     >
       {theme === 'dark' ? (
-        <Sun size={iconSizes[size]} className="text-yellow-500 relative z-10" />
+        <Sun size={iconSizes[size]} />
       ) : (
-        <Moon size={iconSizes[size]} className="text-gray-700 dark:text-gray-200 relative z-10" />
+        <Moon size={iconSizes[size]} />
       )}
     </button>
   );

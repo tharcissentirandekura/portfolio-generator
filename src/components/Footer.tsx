@@ -1,23 +1,16 @@
+import { Link } from 'react-router-dom';
 
-import {Github,Linkedin} from 'lucide-react'
-const Footer = () => {
-  return (
-      <footer className="bg-gray-800 text-white pt-4 pb-8">
-          <div className="container mx-auto px-4">
-              <div className="flex justify-between items-center">
-                  <p>© 2024 Tharcisse Ntirandekura. All rights reserved.</p>
-                  <div className="flex gap-4">
-                      <a href="https://github.com/tharcissentirandekura" target="_blank" rel="noopener noreferrer" className="text-gray-300 hover:text-white">
-                          <Github className="w-6 h-6" />
-                      </a>
-                      <a href="https://www.linkedin.com/in/tharcisse-ntirandekura/" target="_blank" rel="noopener noreferrer" className="text-gray-300 hover:text-white">
-                          <Linkedin className="w-6 h-6" />
-                      </a>
-                  </div>
-              </div>
-          </div>
-      </footer>
-  )
-}
+const Footer = () => (
+  <footer className="border-t border-ink/10 dark:border-white/10">
+    <div className="page-shell flex flex-col gap-5 py-8 text-sm text-stone-500 dark:text-stone-400 sm:flex-row sm:items-center sm:justify-between">
+      <p>© {new Date().getFullYear()} Tharcisse Ntirandekura</p>
+      <div className="flex items-center gap-5">
+        <Link to="/contact" className="hover:text-ink dark:hover:text-white">Email</Link>
+        <a href="https://github.com/tharcissentirandekura" target="_blank" rel="noreferrer" className="hover:text-ink dark:hover:text-white">GitHub</a>
+        <a href="https://www.linkedin.com/in/tharcisse-ntirandekura" target="_blank" rel="noreferrer" className="hover:text-ink dark:hover:text-white">LinkedIn</a>
+      </div>
+    </div>
+  </footer>
+);
 
-export default Footer
+export default Footer;

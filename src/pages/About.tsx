@@ -1,152 +1,59 @@
-import { ContentLayout } from '../layouts/ContentLayout';
+import { ArrowUpRight } from 'lucide-react';
 
-const skills: string[] = [
-    'Python',
-    'Java',
-    'TypeScript',
-    'Rust',
-    'Bash',
-    'SQL (Postgres)',
-    'NoSQL (MongoDB)',
-    'HTML/CSS',
-    'Django',
-    'React',
-    'Angular',
-    'Tailwind CSS',
-    'Git',
-    'Docker',
-    'AWS',
-    'Google Cloud',
-    'Matplotlib',
-    'Chart.js',
-    'REST APIs',
-];
+const skills = ['TypeScript', 'React', 'Node.js', 'Python', 'Django', 'PostgreSQL', 'MongoDB', 'Docker', 'Git', 'REST APIs'];
 
+const About = () => (
+  <div className="page-shell page-top">
+    <p className="eyebrow">About</p>
+    <h1 className="page-title mt-5">Engineer, economics student, community builder.</h1>
+    <div className="mt-14 grid gap-12 sm:mt-20 lg:grid-cols-[0.75fr_1.25fr] lg:gap-20">
+      <div>
+        <img src="/images/head-shot.jpeg" alt="Portrait of Tharcisse Ntirandekura" className="aspect-[4/5] w-full rounded-2xl object-cover object-top" />
+        <p className="mt-4 text-sm leading-relaxed text-stone-500 dark:text-stone-400">Born in Bujumbura, Burundi. Currently studying and building in Oberlin, Ohio.</p>
+      </div>
+      <div className="space-y-10">
+        <div className="space-y-5 text-lg leading-relaxed text-stone-600 dark:text-stone-300 sm:text-xl">
+          <p className="font-display text-3xl leading-snug text-ink dark:text-white sm:text-4xl">I’m interested in the systems behind everyday life—and how thoughtful technology can make them work better.</p>
+          <p>I’m a senior at Oberlin College double majoring in Computer Science and Economics. My work sits between software engineering, applied AI, and products built for public benefit.</p>
+          <p>Growing up in Burundi shaped what I choose to build. From exam preparation to cross-border fundraising, my projects often start with a practical barrier I have seen up close.</p>
+        </div>
+        <div className="grid gap-8 border-t border-ink/10 pt-10 dark:border-white/10 sm:grid-cols-2">
+          <div><p className="eyebrow">Education</p><h2 className="mt-3 text-lg font-semibold">Oberlin College</h2><p className="mt-2 text-stone-500 dark:text-stone-400">B.A. Computer Science & Economics<br />Senior · Oberlin, Ohio</p></div>
+          <div><p className="eyebrow">Focus</p><p className="mt-3 text-stone-500 dark:text-stone-400">Software systems, human-computer interaction, applied AI, product thinking, and technology for social impact.</p></div>
+        </div>
+        <div className="border-t border-ink/10 pt-10 dark:border-white/10">
+          <p className="eyebrow">Toolkit</p><div className="mt-5 flex flex-wrap gap-2">{skills.map((skill) => <span key={skill} className="tag">{skill}</span>)}</div>
+        </div>
+        <div className="flex flex-wrap gap-5 border-t border-ink/10 pt-10 text-sm font-medium dark:border-white/10">
+          <a href="/resume.pdf" target="_blank" rel="noreferrer" className="inline-flex items-center gap-1.5">View resume <ArrowUpRight size={16} /></a>
+          <a href="https://www.linkedin.com/in/tharcisse-ntirandekura" target="_blank" rel="noreferrer" className="inline-flex items-center gap-1.5">LinkedIn <ArrowUpRight size={16} /></a>
+        </div>
+      </div>
+    </div>
 
-export const About = () => {
-    return (
-        <ContentLayout
-            title="About"
-            subtitle="Tharcisse Ntirandekura — computer science, economics, and mathematics."
-            image={{ src: '/images/profile.png', alt: 'Portrait of Tharcisse Ntirandekura' }}
-            socialLinks={[
-                { href: 'https://www.linkedin.com/in/tharcisse-ntirandekura', label: 'LinkedIn', iconSrc: 'https://img.icons8.com/fluency/48/linkedin.png' },
-                { href: 'mailto:tharcissentira@gmail.com', label: 'Email', iconSrc: 'https://img.icons8.com/fluency/48/gmail-new.png' },
-                { href: 'https://github.com/tharcissentirandekura', label: 'GitHub', iconSrc: 'https://img.icons8.com/sf-black-filled/64/github.png' },
-            ]}
-            mainColumn={
-                <div className="space-y-5 leading-[1.75] text-gray-600 dark:text-gray-400 sm:space-y-6 sm:text-[17px] md:text-lg md:leading-[1.8]">
-                    <p>
-                        I am a third-year computer science and economics student with a minor in
-                        mathematics at Oberlin College. I am interested in how AI can be applied to
-                        real-world problems, and am currently working in an AI research lab focusing on
-                        designing algorithms for AI agents to act collectively as firefighters in
-                        wildfires.
-                    </p>
-                    <p>
-                        In this research, we study how AI agents can work together like a team of
-                        firefighters during a wildfire. Each AI agent acts like a team member that can
-                        observe what is happening around it, such as where the fire is spreading, and
-                        make decisions on what to do next. Instead of acting alone, these agents
-                        communicate and coordinate with each other to decide how to best contain the fire
-                        and protect important areas as conditions change. We test these ideas in
-                        simulated wildfire environments to see how well the agents can work together to
-                        reduce damage.
-                    </p>
-                    <p>
-                        Apart from academics, I am an entrepreneur and have co-founded a crowdfunding
-                        platform (Dufashe), an Edtech platform (Epreuves), and a waste management
-                        platform (Swapp).
-                    </p>
-                    <p>
-                        In my past work experience, I have focused more on working towards making
-                        software systems more maintainable and high-performing with better scaling. I
-                        currently work as a student software engineer at Oberlin College, where I work on
-                        upgrading their software archive systems for better UI and performance, and work
-                        with the Oberlin Bonner Center to migrate from a legacy reporting system to a
-                        new, modern system, making their day-to-day work more efficient.
-                    </p>
-                </div>
-            }
-            sections={[
-                <div key="personal-statement" className="max-w-3xl">
-                    <h2 className="font-playfair text-4xl">Personal Statement</h2>
-                    <div className="font-instrument mt-5 space-y-5 text-lg font-normal leading-snug text-gray-600 dark:text-gray-400 sm:text-xl">
-                        <p>
-                            My academic and professional interests lie at the intersection of computer
-                            science, economics, and mathematics. Such an interdisciplinary approach
-                            provides me with a deeper understanding of complex systems: how they are
-                            modeled, how they function, and how they affect people and communities.
-                        </p>
-                        <p>
-                            Approaching problems from these three perspectives has shaped the way I think
-                            about designing solutions. When working on a project, I often consider how a
-                            mathematician might model the problem, how a computer scientist might
-                            implement the solution, and how economic principles influence how people
-                            interact with the system. This interdisciplinary mindset allows me to go
-                            beyond purely technical solutions and focus on building systems that are both
-                            effective and meaningful in real-world contexts.
-                        </p>
-                        <p>
-                            Because knowledge and power are intertwined, we should use knowledge to create
-                            tools to serve our communities - that is my philosophy; I believe that
-                            technology exists to improve everyday experiences, no matter what. The most
-                            impactful systems are those that address real problems and make processes more
-                            accessible and efficient for those who rely on them.
-                        </p>
-                        <p>
-                            With my philosophy, I was able to build Dufashe (a crowdfunding platform)
-                            that helps small local non-profit organizations in Burundi raise funds. I
-                            have cofounded Epreuves, which helps high school students prepare well for
-                            the national exam in Burundi by providing them with early and necessary
-                            resources to succeed for free, and I am now working on Swapp, which is a
-                            platform designed to help sustainability initiatives reduce recycling
-                            contamination, especially school campuses in the US.
-                        </p>
-                        <p>
-                            Apart from the founder experience work, I have spent quite some time
-                            volunteering with non-profit organizations, including the Bonner Scholars
-                            program and Cleveland GiveCamp, where I help find solutions to some of their
-                            technology-related issues. I have engaged in migrating their old systems to
-                            new, well-maintained ones, and now working with the Bonner Scholars Program
-                            as an intern to keep the website and the reporting system updated and
-                            running. I am also working as a student software engineer at Oberlin College,
-                            focusing on upgrading the recording archive software for better performance,
-                            high scalability, and better maintainability. I am always open to new
-                            opportunities and collaboration. If you are working on something cool, please
-                            reach out.
-                        </p>
-                    </div>
-                </div>,
-                <div key="skills-block">
-                    <header className="max-w-2xl">
-                        <h2 className="font-playfair text-4xl">Skills</h2>
-                        <p className="ont-instrument mt-5 text-lg font-normal leading-snug text-gray-600 dark:text-gray-400 sm:text-xl">
-                            Core skills I bring to engineering and research projects
-                        </p>
-                    </header>
-                    <div className="mt-6 flex flex-wrap gap-3 rounded-2xl bg-parchment px-4 py-12">
-                        {skills.map((s) => (
-                            <div key={s} className="min-w-[100px] rounded-full bg-black px-4 py-2 text-center text-white">
-                                <p className="m-0">{s}</p>
-                            </div>
-                        ))}
-                    </div>
-                    <div className='mt-5'>
-                        <header className="">
-                            <h2 className="font-playfair text-4xl">Academics</h2>
-                            <p className="font-instrument mt-5 text-lg font-normal leading-snug text-gray-600 dark:text-gray-400 sm:text-xl">
-                                I am double majoring in Computer Science and Economics, with an interest in either a Mathematics minor or a concentration in Data Science. My coursework has provided me with a strong foundation in computer science, including Software Engineering, Algorithm Design and Analysis, Natural Language Processing, Systems Programming, Programming Abstractions, and Human-Computer Interaction.
-                            </p>
+    <section className="mt-24 border-t border-ink/10 pt-16 dark:border-white/10 sm:mt-32 sm:pt-20">
+      <p className="eyebrow">What I bring</p>
+      <h2 className="section-title mt-4 max-w-3xl">Technical range with a product point of view.</h2>
+      <div className="mt-12 grid gap-px overflow-hidden rounded-2xl border border-ink/10 bg-ink/10 dark:border-white/10 dark:bg-white/10 md:grid-cols-3">
+        {[
+          ['01', 'Engineering ownership', 'I’m comfortable moving between frontend, backend, authentication, data, and deployment to get a complete system working.'],
+          ['02', 'Economic reasoning', 'I think about incentives, access, adoption, and tradeoffs—not only whether a feature can be implemented.'],
+          ['03', 'Community context', 'Building across Burundi and the United States has taught me to listen closely and design for the environment people actually inhabit.'],
+        ].map(([number, title, copy]) => (
+          <article key={title} className="bg-paper p-7 dark:bg-night sm:p-8">
+            <p className="font-mono text-xs text-stone-400">{number}</p>
+            <h3 className="mt-8 font-display text-2xl font-semibold tracking-tight">{title}</h3>
+            <p className="mt-4 leading-relaxed text-stone-600 dark:text-stone-300">{copy}</p>
+          </article>
+        ))}
+      </div>
+    </section>
 
-                            <p className="font-instrument mt-5 text-lg font-normal leading-snug text-gray-600 dark:text-gray-400 sm:text-xl">
-                                While I have always been drawn to computer science, I am equally interested in exploring its intersection with economics. This perspective allows me to better understand how products are built, as well as the key technical and economic considerations involved in creating solutions that effectively meet users’ needs.
-                            </p>
-                        </header>
-                    </div>
+    <section className="mt-20 grid gap-10 border-t border-ink/10 pt-16 dark:border-white/10 lg:grid-cols-2 lg:gap-20">
+      <div><p className="eyebrow">Relevant coursework</p><p className="mt-4 text-lg leading-relaxed text-stone-600 dark:text-stone-300">Algorithms, software engineering, systems programming, human-computer interaction, natural language processing, and econometrics.</p></div>
+      <div><p className="eyebrow">Research interest</p><p className="mt-4 text-lg leading-relaxed text-stone-600 dark:text-stone-300">How autonomous agents coordinate under uncertainty, and how technical systems can be evaluated through both performance and human outcomes.</p></div>
+    </section>
+  </div>
+);
 
-                </div>,
-            ]}
-        />
-    );
-}
+export default About;
