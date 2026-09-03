@@ -12,8 +12,7 @@ const Home = () => {
     <>
     <section className="page-shell grid min-h-[calc(100vh-4rem)] items-center gap-12 py-16 lg:grid-cols-[1.1fr_0.9fr] lg:gap-16 lg:py-24">
       <div className="min-w-0">
-        <div className="eyebrow"><span className="status-dot" /> Oberlin, Ohio · Open to opportunities</div>
-        <h1 className="mt-7 max-w-4xl font-display text-[clamp(2.35rem,9vw,4rem)] font-medium leading-[0.96] tracking-[-0.045em] sm:text-[clamp(3rem,7vw,6.5rem)] sm:leading-[0.94]">
+        <h1 className="max-w-4xl font-display text-[clamp(2.35rem,9vw,4rem)] font-medium leading-[0.96] tracking-[-0.045em] sm:text-[clamp(3rem,7vw,6.5rem)] sm:leading-[0.94]">
           Computer science,
           <span className="block text-stone-400 dark:text-stone-500">with an economic lens.</span>
         </h1>
@@ -53,7 +52,7 @@ const Home = () => {
           <div><p className="eyebrow">Selected work</p><h2 className="section-title mt-4">Things I’ve helped build.</h2></div>
           <Link to="/work" className="hidden items-center gap-2 text-sm font-medium sm:flex">All work <ArrowRight size={16} /></Link>
         </div>
-        <div className="border-b border-ink/10 dark:border-white/10">
+        <div className="space-y-8 sm:space-y-12">
           {WORK_PROJECTS.map((project, index) => <ProjectRow key={project.slug} project={project} index={index} />)}
         </div>
       </div>
@@ -67,13 +66,13 @@ const Home = () => {
           <p className="eyebrow">Currently</p>
           <h2 className="section-title mt-4">Learning in public. Building in practice.</h2>
         </div>
-        <div className="divide-y divide-ink/10 border-y border-ink/10 dark:divide-white/10 dark:border-white/10">
+        <div className="space-y-3">
           {[
             ['Engineering', 'Modernizing Oberlin’s Conservatory Audio Archive across authentication, performance, and maintainability.'],
             ['Research', 'Exploring coordination and decision-making in multi-agent systems through simulated wildfire response.'],
             ['Next', 'Looking for new-grad software engineering roles where product judgment and technical ownership both matter.'],
           ].map(([title, copy], index) => (
-            <div key={title} className="grid gap-3 py-6 sm:grid-cols-[3rem_8rem_1fr] sm:gap-5">
+            <div key={title} className="grid gap-3 rounded-2xl bg-ink/[0.025] px-5 py-6 dark:bg-white/[0.04] sm:grid-cols-[3rem_8rem_1fr] sm:gap-5">
               <span className="font-mono text-xs text-stone-400">0{index + 1}</span>
               <h3 className="font-semibold">{title}</h3>
               <p className="leading-relaxed text-stone-600 dark:text-stone-300">{copy}</p>

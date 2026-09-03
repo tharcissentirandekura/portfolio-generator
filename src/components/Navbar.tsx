@@ -23,7 +23,7 @@ const Navbar = () => {
   useEffect(() => setOpen(false), [location.pathname]);
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b border-ink/10 bg-paper/90 backdrop-blur-xl dark:border-white/10 dark:bg-night/90">
+    <header className="sticky top-0 z-50 w-full bg-paper/90 backdrop-blur-xl dark:bg-night/90">
       <nav className="page-shell flex h-16 min-w-0 items-center justify-between gap-4" aria-label="Main navigation">
         <Link to="/" className="flex min-w-0 items-center gap-2.5 font-display text-lg font-semibold tracking-tight">
           <img src="/images/head-shot.jpeg" alt="" className="h-8 w-8 rounded-lg object-cover object-top" />
@@ -47,7 +47,7 @@ const Navbar = () => {
       </nav>
 
       {open && (
-        <div className="page-shell border-t border-ink/10 py-5 dark:border-white/10 md:hidden">
+        <div className="page-shell py-5 md:hidden">
           <div className="flex flex-col gap-1">
             {links.map((link) => <NavLink key={link.to} to={link.to} className="py-3 text-2xl font-medium">{link.label}</NavLink>)}
             <a href="/resume.pdf" target="_blank" rel="noreferrer" className="py-3 text-2xl font-medium">Resume ↗</a>

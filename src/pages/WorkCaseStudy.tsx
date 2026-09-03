@@ -1,5 +1,6 @@
 import { ArrowLeft, ArrowUpRight } from 'lucide-react';
 import { Link, Navigate, useParams } from 'react-router-dom';
+import LandscapeDivider from '../components/LandscapeDivider';
 import { defaultProjectStatus, getWorkProjectBySlug } from '../data/workProjects';
 
 const WorkCaseStudy = () => {
@@ -22,11 +23,15 @@ const WorkCaseStudy = () => {
         </div>
       </header>
 
-      <div className="page-shell">
+      <LandscapeDivider />
+
+      <div className="page-shell mt-8 sm:mt-12">
         <div className="overflow-hidden rounded-2xl bg-stone-200 p-2 dark:bg-stone-800 sm:p-4">
           <img src={project.featured_image} alt={`${project.title} interface`} className="max-h-[42rem] w-full rounded-xl object-cover object-top" />
         </div>
       </div>
+
+      <LandscapeDivider />
 
       <div className="page-shell grid gap-12 py-20 sm:py-28 lg:grid-cols-[0.6fr_1.4fr] lg:gap-20">
         <div><p className="eyebrow">The project</p></div>

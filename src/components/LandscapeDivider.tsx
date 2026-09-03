@@ -1,9 +1,10 @@
 type LandscapeDividerProps = {
   filled?: boolean;
+  fullWidth?: boolean;
 };
 
-const LandscapeDivider = ({ filled = false }: LandscapeDividerProps) => (
-  <div className={filled ? 'w-full -mb-px' : 'page-shell'} aria-hidden="true">
+const LandscapeDivider = ({ filled = false, fullWidth = false }: LandscapeDividerProps) => (
+  <div className={filled ? 'w-full -mb-px' : fullWidth ? 'w-full' : 'page-shell'} aria-hidden="true">
     <svg
       viewBox="0 0 1200 88"
       preserveAspectRatio="none"

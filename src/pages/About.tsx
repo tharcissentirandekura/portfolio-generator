@@ -1,4 +1,7 @@
 import { ArrowUpRight } from 'lucide-react';
+import { Link } from 'react-router-dom';
+import LandscapeDivider from '../components/LandscapeDivider';
+import { PERSPECTIVES } from '../data/perspectives';
 
 const skills = ['TypeScript', 'React', 'Node.js', 'Python', 'Django', 'PostgreSQL', 'MongoDB', 'Docker', 'Git', 'REST APIs'];
 
@@ -6,7 +9,8 @@ const About = () => (
   <div className="page-shell page-top">
     <p className="eyebrow">About</p>
     <h1 className="page-title mt-5">Engineer, economics student, community builder.</h1>
-    <div className="mt-14 grid gap-12 sm:mt-20 lg:grid-cols-[0.75fr_1.25fr] lg:gap-20">
+    <div className="mt-10 sm:mt-14"><LandscapeDivider fullWidth /></div>
+    <div className="mt-10 grid gap-12 sm:mt-14 lg:grid-cols-[0.75fr_1.25fr] lg:gap-20">
       <div>
         <img src="/images/head-shot.jpeg" alt="Portrait of Tharcisse Ntirandekura" className="aspect-[4/5] w-full rounded-2xl object-cover object-top" />
         <p className="mt-4 text-sm leading-relaxed text-stone-500 dark:text-stone-400">Born in Bujumbura, Burundi. Currently studying and building in Oberlin, Ohio.</p>
@@ -31,25 +35,36 @@ const About = () => (
       </div>
     </div>
 
-    <section className="mt-24 border-t border-ink/10 pt-16 dark:border-white/10 sm:mt-32 sm:pt-20">
+    <div className="mt-20 sm:mt-28"><LandscapeDivider fullWidth /></div>
+    <section className="mt-10 sm:mt-14">
       <p className="eyebrow">What I bring</p>
       <h2 className="section-title mt-4 max-w-3xl">Technical range with a product point of view.</h2>
-      <div className="mt-12 grid gap-px overflow-hidden rounded-2xl border border-ink/10 bg-ink/10 dark:border-white/10 dark:bg-white/10 md:grid-cols-3">
-        {[
-          ['01', 'Engineering ownership', 'I’m comfortable moving between frontend, backend, authentication, data, and deployment to get a complete system working.'],
-          ['02', 'Economic reasoning', 'I think about incentives, access, adoption, and tradeoffs—not only whether a feature can be implemented.'],
-          ['03', 'Community context', 'Building across Burundi and the United States has taught me to listen closely and design for the environment people actually inhabit.'],
-        ].map(([number, title, copy]) => (
-          <article key={title} className="bg-paper p-7 dark:bg-night sm:p-8">
-            <p className="font-mono text-xs text-stone-400">{number}</p>
-            <h3 className="mt-8 font-display text-2xl font-semibold tracking-tight">{title}</h3>
-            <p className="mt-4 leading-relaxed text-stone-600 dark:text-stone-300">{copy}</p>
-          </article>
+      <div className="mt-12 grid gap-5 lg:grid-cols-3">
+        {PERSPECTIVES.map((perspective, index) => (
+          <Link
+            key={perspective.slug}
+            to={`/perspectives/${perspective.slug}`}
+            aria-label={`Read my reflection on ${perspective.title}`}
+            className={`group flex min-h-[22rem] flex-col rounded-[1.75rem] bg-ink/[0.035] p-7 transition duration-300 hover:-translate-y-1 hover:bg-ink/[0.065] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent dark:bg-white/[0.05] dark:hover:bg-white/[0.09] sm:p-8 ${index === 1 ? 'lg:mt-8' : ''}`}
+          >
+            <div className="flex items-center justify-between gap-4">
+              <span className={`rounded-full px-3 py-1.5 font-mono text-xs ${perspective.accent}`}>{perspective.number}</span>
+              <span className="grid size-10 place-items-center rounded-full bg-paper text-ink transition-transform duration-300 group-hover:rotate-12 dark:bg-night dark:text-white">
+                <ArrowUpRight size={18} aria-hidden="true" />
+              </span>
+            </div>
+            <h3 className="mt-12 max-w-xs font-display text-3xl font-semibold leading-tight tracking-tight">{perspective.title}</h3>
+            <p className="mt-5 leading-relaxed text-stone-600 dark:text-stone-300">{perspective.summary}</p>
+            <span className="mt-auto pt-10 text-sm font-semibold text-accent">
+              Read reflection <span aria-hidden="true" className="inline-block transition-transform duration-300 group-hover:translate-x-1">→</span>
+            </span>
+          </Link>
         ))}
       </div>
     </section>
 
-    <section className="mt-20 grid gap-10 border-t border-ink/10 pt-16 dark:border-white/10 lg:grid-cols-2 lg:gap-20">
+    <div className="mt-16"><LandscapeDivider fullWidth /></div>
+    <section className="mt-10 grid gap-10 lg:grid-cols-2 lg:gap-20">
       <div><p className="eyebrow">Relevant coursework</p><p className="mt-4 text-lg leading-relaxed text-stone-600 dark:text-stone-300">Algorithms, software engineering, systems programming, human-computer interaction, natural language processing, and econometrics.</p></div>
       <div><p className="eyebrow">Research interest</p><p className="mt-4 text-lg leading-relaxed text-stone-600 dark:text-stone-300">How autonomous agents coordinate under uncertainty, and how technical systems can be evaluated through both performance and human outcomes.</p></div>
     </section>

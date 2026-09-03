@@ -1,3 +1,4 @@
+import LandscapeDivider from '../components/LandscapeDivider';
 import ProjectRow from '../components/ProjectRow';
 import { WORK_PROJECTS } from '../data/workProjects';
 
@@ -11,9 +12,11 @@ const Work = () => (
       <span><strong className="font-semibold text-ink dark:text-white">Strengths</strong> Product ownership · Systems thinking</span>
       <span><strong className="font-semibold text-ink dark:text-white">Domain</strong> Education · Infrastructure · Fintech</span>
     </div>
-    <div className="mt-16 border-b border-ink/10 dark:border-white/10 sm:mt-24">
+    <div className="mt-10 sm:mt-14"><LandscapeDivider fullWidth /></div>
+    <div className="mt-8 space-y-8 sm:mt-12 sm:space-y-12">
       {WORK_PROJECTS.map((project, index) => <ProjectRow key={project.slug} project={project} index={index} />)}
     </div>
+    <div className="mt-14"><LandscapeDivider fullWidth /></div>
   </div>
 );
 

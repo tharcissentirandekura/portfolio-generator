@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 
 const Footer = () => (
-  <footer className="border-t border-ink/10 dark:border-white/10">
+  <footer>
     <div className="page-shell flex flex-col gap-5 py-8 text-sm text-stone-500 dark:text-stone-400 sm:flex-row sm:items-center sm:justify-between">
       <p>© {new Date().getFullYear()} Tharcisse Ntirandekura</p>
       <div className="flex items-center gap-5">

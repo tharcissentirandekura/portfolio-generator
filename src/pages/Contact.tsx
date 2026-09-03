@@ -1,4 +1,5 @@
 import { ArrowUpRight, Mail } from 'lucide-react';
+import LandscapeDivider from '../components/LandscapeDivider';
 
 const Contact = () => (
   <div className="page-shell page-top">
@@ -20,6 +21,7 @@ const Contact = () => (
         <a href="https://github.com/tharcissentirandekura" target="_blank" rel="noreferrer" className="group flex items-center justify-between py-6"><span><span className="block text-xs uppercase tracking-wider text-stone-400">GitHub</span><span className="mt-1 block">@tharcissentirandekura</span></span><ArrowUpRight size={18} /></a>
       </div>
     </div>
+    <div className="mt-20"><LandscapeDivider fullWidth /></div>
   </div>
 );
 
