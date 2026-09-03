@@ -12,6 +12,10 @@ const Home = () => {
     <>
     <section className="page-shell grid min-h-[calc(100vh-4rem)] items-center gap-12 py-16 lg:grid-cols-[1.1fr_0.9fr] lg:gap-16 lg:py-24">
       <div className="min-w-0">
+        {/* <div className="max-w-4xl font-display text-[clamp(2.35rem,9vw,4rem)] font-medium leading-[0.96] tracking-[-0.045em] sm:text-[clamp(3rem,7vw,6.5rem)] sm:leading-[0.94]">
+          <h1>Recents news from me</h1>
+
+        </div> */}
         <h1 className="max-w-4xl font-display text-[clamp(2.35rem,9vw,4rem)] font-medium leading-[0.96] tracking-[-0.045em] sm:text-[clamp(3rem,7vw,6.5rem)] sm:leading-[0.94]">
           Computer science,
           <span className="block text-stone-400 dark:text-stone-500">with an economic lens.</span>
@@ -21,7 +25,7 @@ const Home = () => {
         </p>
         <div className="mt-9 flex flex-wrap gap-3">
           <Link to="/work" className="button button-dark">View selected work <ArrowRight size={17} /></Link>
-          <Link to="/academics" className="button button-light">Explore CS map <ArrowRight size={17} /></Link>
+          <Link to="/academics" className="button button-light">Explore academics <ArrowRight size={17} /></Link>
           <a href="/resume.pdf" target="_blank" rel="noreferrer" className="button button-light">View resume <ArrowUpRight size={16} /></a>
         </div>
       </div>

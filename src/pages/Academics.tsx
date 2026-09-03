@@ -1,85 +1,87 @@
-import { useEffect, useRef } from 'react';
-import { MoveHorizontal } from 'lucide-react';
+import { Link } from 'react-router-dom';
 import LandscapeDivider from '../components/LandscapeDivider';
-import { COMPUTER_SCIENCE_COURSES, COURSE_CONNECTIONS, type ComputerScienceCourse } from '../data/academics';
+import { COMPUTER_SCIENCE_COURSES, getCourse, LEARNING_THREADS, type ComputerScienceCourse } from '../data/academics';
 
-const NODE_WIDTH = 280;
-const NODE_HEIGHT = 126;
-
-const CourseNode = ({ course }: { course: ComputerScienceCourse }) => {
-  const complete = course.status === 'Completed';
+const CourseButton = ({ course, inverse = false }: { course: ComputerScienceCourse; inverse?: boolean }) => {
+  const current = course.status === 'In progress';
 
   return (
-    <article
-      className={`absolute flex h-[126px] w-[280px] flex-col items-center justify-center rounded-[1.7rem] border px-5 text-center ${complete ? 'border-emerald-400 bg-[#306b55]' : 'border-indigo-400 bg-[#535b8c]'}`}
-      style={{ left: course.x, top: course.y }}
+    <Link
+      to={`/academics/${course.id}`}
+      aria-label={`Read my reflection on ${course.title}`}
+      className={`group inline-flex min-h-12 max-w-full items-center gap-3 rounded-full border py-1.5 pl-1.5 pr-2 text-left transition-colors ${
+        inverse
+          ? 'border-white/20 text-white hover:border-white hover:bg-white hover:text-ink dark:border-ink/20 dark:text-ink dark:hover:border-ink dark:hover:bg-ink dark:hover:text-white'
+          : current
+            ? 'border-accent/45 bg-paper hover:border-accent hover:bg-ink hover:text-white dark:bg-night dark:hover:bg-white dark:hover:text-ink'
+            : 'border-ink/15 bg-paper hover:border-ink hover:bg-ink hover:text-white dark:border-white/15 dark:bg-night dark:hover:border-white dark:hover:bg-white dark:hover:text-ink'
+      }`}
     >
-      <h2 className="font-display text-[23px] font-semibold leading-tight tracking-tight text-white">{course.title}</h2>
-      <div className="mt-4 h-2.5 w-full overflow-hidden rounded-full bg-white">
-        <div className="h-full rounded-full bg-emerald-400" style={{ width: `${course.progress}%` }} />
-      </div>
-    </article>
+      <span className={`shrink-0 rounded-full border bg-transparent px-3.5 py-2 font-mono text-[10px] font-semibold tracking-wide ${
+        inverse
+          ? 'border-white/25 text-white/65 group-hover:text-inherit dark:border-ink/20 dark:text-ink/60'
+          : 'border-ink/15 text-stone-500 dark:border-white/20 dark:text-stone-300'
+      }`}>{course.code}</span>
+      <span className="font-medium leading-tight">{course.title}</span>
+    </Link>
   );
 };
 
 const Academics = () => {
-  const coursesById = new Map(COMPUTER_SCIENCE_COURSES.map((course) => [course.id, course]));
-  const canvasViewport = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const viewport = canvasViewport.current;
-    if (viewport && viewport.scrollWidth > viewport.clientWidth) {
-      viewport.scrollLeft = (viewport.scrollWidth - viewport.clientWidth) / 2;
-    }
-  }, []);
+  const currentCourses = COMPUTER_SCIENCE_COURSES.filter((course) => course.status === 'In progress');
 
   return (
     <div>
-      <header className="page-shell pb-14 pt-16 sm:pb-20 sm:pt-24">
-        <p className="eyebrow">Academics · Computer Science</p>
-        <h1 className="page-title mt-5">My CS course map.</h1>
-        <p className="page-intro">A prerequisite-style view of how my computer science coursework has progressed from foundations into systems, theory, AI, and interdisciplinary work.</p>
-        <div className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-3 text-sm text-stone-500 dark:text-stone-400">
-          <span className="inline-flex items-center gap-2"><span className="size-2.5 rounded-full bg-emerald-500" /> Completed</span>
-          <span className="inline-flex items-center gap-2"><span className="size-2.5 rounded-full bg-indigo-400" /> In progress</span>
-          <span className="inline-flex items-center gap-2 sm:hidden"><MoveHorizontal size={16} /> Scroll to explore</span>
+      <header className="page-shell pb-12 pt-14 sm:pb-16 sm:pt-20">
+        <h1 className="page-title">The ideas behind how I build.</h1>
+        <div className="mt-8 grid gap-5 lg:grid-cols-[1fr_0.7fr] lg:items-end lg:gap-14">
+          <p className="font-display text-2xl leading-snug tracking-tight text-stone-600 dark:text-stone-300 sm:text-3xl">My computer science coursework moves from core programming into systems, human-centered software, artificial intelligence, and theory.</p>
+          <p className="max-w-lg text-base leading-relaxed text-stone-500 dark:text-stone-400">Rather than a transcript, this page groups courses by the questions and technical perspectives they helped me develop.</p>
         </div>
       </header>
 
-      <LandscapeDivider />
+      <LandscapeDivider filled />
 
-      <div className="py-10 sm:py-16">
-        <div className="page-shell mb-6 flex items-end justify-between gap-6">
+      <section className="bg-ink text-white dark:bg-white dark:text-ink">
+        <div className="page-shell grid gap-8 py-12 sm:py-14 lg:grid-cols-[0.7fr_1.3fr] lg:gap-14">
           <div>
-            <p className="eyebrow">Learning path</p>
-            <p className="mt-2 max-w-xl text-sm leading-relaxed text-stone-500 dark:text-stone-400">Connections show the academic foundation that led into each later course.</p>
+            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-stone-400 dark:text-stone-500">Current semester</p>
+            <h2 className="mt-4 font-display text-4xl font-medium tracking-tight sm:text-5xl">Working at the edges of the major.</h2>
           </div>
-          <p className="hidden font-mono text-xs text-stone-400 sm:block">Foundations ↓ Advanced work</p>
-        </div>
-
-        <div ref={canvasViewport} className="mx-auto max-w-[90rem] overflow-x-auto px-5 pb-5 sm:px-8 lg:px-12">
-          <div
-            className="relative mx-auto h-[1160px] w-[1230px] overflow-hidden rounded-[2rem] bg-[#1d1d20]"
-            aria-label="Computer science course prerequisite map"
-          >
-            <svg className="absolute inset-0 h-full w-full" viewBox="0 0 1230 1160" fill="none" aria-hidden="true">
-              {COURSE_CONNECTIONS.map((connection) => {
-                const from = coursesById.get(connection.from);
-                const to = coursesById.get(connection.to);
-                if (!from || !to) return null;
-                const startX = from.x + NODE_WIDTH / 2;
-                const startY = from.y + NODE_HEIGHT;
-                const endX = to.x + NODE_WIDTH / 2;
-                const endY = to.y;
-                const midpoint = startY + (endY - startY) / 2;
-                return <path key={`${connection.from}-${connection.to}`} d={`M ${startX} ${startY} C ${startX} ${midpoint}, ${endX} ${midpoint}, ${endX} ${endY}`} stroke="#aaa9ac" strokeWidth="4" strokeLinecap="round" />;
-              })}
-            </svg>
-
-            {COMPUTER_SCIENCE_COURSES.map((course) => <CourseNode key={course.id} course={course} />)}
+          <div className="flex flex-wrap content-start gap-3">
+            {currentCourses.map((course) => (
+              <CourseButton key={course.id} course={course} inverse />
+            ))}
           </div>
         </div>
-      </div>
+      </section>
+
+      <section className="page-shell py-14 sm:py-16">
+        <div className="mb-10 grid gap-4 lg:grid-cols-[0.7fr_1.3fr] lg:gap-14">
+          <p className="eyebrow">Learning threads</p>
+          <h2 className="section-title">Four paths through the curriculum.</h2>
+        </div>
+
+        <div className="space-y-4">
+          {LEARNING_THREADS.map((thread) => {
+            const courses = thread.courseIds.map(getCourse).filter((course): course is ComputerScienceCourse => Boolean(course));
+            return (
+              <article key={thread.number} className="py-7 sm:py-9">
+                <div className="grid gap-6 lg:grid-cols-[0.34fr_0.66fr] lg:gap-12">
+                  <div>
+                    <p className="font-mono text-xs text-stone-400">{thread.number}</p>
+                    <h2 className="mt-3 font-display text-3xl font-semibold leading-tight tracking-tight sm:text-4xl">{thread.title}</h2>
+                    <p className="mt-3 max-w-sm leading-relaxed text-stone-600 dark:text-stone-300">{thread.description}</p>
+                  </div>
+                  <div className="flex content-start flex-wrap gap-2.5 lg:pt-1">
+                    {courses.map((course) => <CourseButton key={course.id} course={course} />)}
+                  </div>
+                </div>
+              </article>
+            );
+          })}
+        </div>
+      </section>
 
       <LandscapeDivider />
     </div>
