@@ -11,8 +11,8 @@ const Home = () => {
   return (
     <>
     <section className="page-shell grid min-h-[calc(100vh-4rem)] items-center gap-12 py-16 lg:grid-cols-[1.1fr_0.9fr] lg:gap-16 lg:py-24">
-      <div className="min-w-0">
-        <h1 className="max-w-4xl font-display text-[clamp(2.35rem,9vw,4rem)] font-medium leading-[0.96] tracking-[-0.045em] sm:text-[clamp(3rem,7vw,6.5rem)] sm:leading-[0.94]">
+      <div className="min-w-0 -translate-y-3 lg:-translate-y-6">
+        <h1 className="max-w-4xl font-display text-[clamp(2.1rem,7vw,3.5rem)] font-medium leading-[0.98] tracking-[-0.04em] sm:text-[clamp(2.75rem,5.5vw,5.25rem)] sm:leading-[0.96]">
           Computer science,
           <span className="block text-stone-400 dark:text-stone-500">with an economic lens.</span>
         </h1>
@@ -21,7 +21,7 @@ const Home = () => {
         </p>
         <div className="mt-9 flex flex-wrap gap-3">
           <Link to="/work" className="button button-dark">View selected work <ArrowRight size={17} /></Link>
-          <Link to="/academics" className="button button-light">Explore CS map <ArrowRight size={17} /></Link>
+          <Link to="/academics" className="button button-light">Explore academics <ArrowRight size={17} /></Link>
           <a href="/resume.pdf" target="_blank" rel="noreferrer" className="button button-light">View resume <ArrowUpRight size={16} /></a>
         </div>
       </div>

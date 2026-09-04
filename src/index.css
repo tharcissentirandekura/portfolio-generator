@@ -28,6 +28,35 @@
   .button-light { @apply border border-ink/15 hover:border-ink/40 dark:border-white/20 dark:hover:border-white/50; }
   .tag { @apply rounded-full border border-ink/10 px-3 py-1 text-xs text-stone-500 dark:border-white/15 dark:text-stone-400; }
   .meta-label { @apply text-xs font-semibold uppercase tracking-[0.15em] text-stone-400; }
+  .markdown-article { @apply text-lg leading-[1.8] text-stone-700 dark:text-stone-300; }
+  .markdown-article > :first-child { margin-top: 0; }
+  .markdown-article h1 { @apply mt-20 font-display text-5xl font-semibold leading-tight tracking-[-0.04em] text-ink dark:text-white sm:text-6xl; }
+  .markdown-article h2 { @apply mt-20 font-display text-4xl font-semibold leading-tight tracking-[-0.035em] text-ink dark:text-white sm:mt-24 sm:text-5xl; }
+  .markdown-article h3 { @apply mt-14 font-display text-2xl font-semibold tracking-tight text-ink dark:text-white sm:text-3xl; }
+  .markdown-article h4 { @apply mt-10 font-display text-xl font-semibold text-ink dark:text-white; }
+  .markdown-article h5, .markdown-article h6 { @apply mt-8 font-semibold text-ink dark:text-white; }
+  .markdown-article p { @apply mt-6; }
+  .markdown-article a { @apply underline decoration-ink/30 underline-offset-4 transition hover:decoration-ink dark:decoration-white/30 dark:hover:decoration-white; }
+  .markdown-article ul { @apply mt-7 list-disc space-y-3 pl-7 marker:text-stone-400; }
+  .markdown-article ol { @apply mt-7 list-decimal space-y-3 pl-7 marker:text-stone-400; }
+  .markdown-article li { @apply pl-2; }
+  .markdown-article li > ul, .markdown-article li > ol { @apply mt-3; }
+  .markdown-article blockquote { @apply my-10 border-l-2 border-accent pl-6 font-display text-2xl leading-relaxed text-ink dark:text-white; }
+  .markdown-article hr { @apply my-16 border-0; }
+  .markdown-article hr::after { content: ""; @apply block h-px w-full bg-ink/10 dark:bg-white/10; }
+  .markdown-article code { @apply rounded bg-ink/[0.07] px-1.5 py-0.5 font-mono text-[0.88em] text-ink dark:bg-white/10 dark:text-stone-100; }
+  .markdown-article pre { @apply my-8 overflow-x-auto rounded-2xl bg-ink p-5 text-sm leading-relaxed text-stone-100 dark:bg-black sm:p-7; }
+  .markdown-article pre code { @apply bg-transparent p-0 text-inherit; }
+  .markdown-article img { @apply my-10 h-auto w-full rounded-2xl; }
+  .markdown-article table { @apply my-10 w-full border-collapse text-left text-base; }
+  .markdown-article th { @apply border-b border-ink/20 px-3 py-3 font-semibold text-ink dark:border-white/20 dark:text-white; }
+  .markdown-article td { @apply border-b border-ink/10 px-3 py-3 align-top dark:border-white/10; }
+  .markdown-article input[type="checkbox"] { @apply mr-2 accent-accent; }
+  .markdown-article details { @apply my-8 rounded-2xl bg-ink/[0.035] px-5 py-4 dark:bg-white/[0.05]; }
+  .markdown-article summary { @apply cursor-pointer font-semibold text-ink dark:text-white; }
+  .markdown-mermaid { @apply relative left-1/2 my-12 w-[min(64rem,calc(100vw-2.5rem))] -translate-x-1/2 overflow-x-auto rounded-2xl bg-white p-6 text-center dark:bg-white/[0.04] sm:p-10; }
+  .markdown-mermaid svg { @apply mx-auto h-auto w-full min-w-[42rem] max-w-none; }
+  .markdown-mermaid .node rect { rx: 14px; ry: 14px; }
 }
 
 @media (prefers-reduced-motion: reduce) {
